@@ -20,6 +20,13 @@ h1, p, div{
 	.user-info{
 		display: inline-block;
 		float: right;
+		>* {
+			margin-right:10px;
+		}
+		p{
+			font-size: 1.2em;
+		}
+
 	}
 
 }
@@ -40,8 +47,6 @@ h1, p, div{
 	input[type="text"]{
 		width:400px;
 	}
-
-
 }
 
 
@@ -170,12 +175,20 @@ h1, p, div{
 		height: $single-program-content-height;
 		float: left;
 	}
-	
-
-
 }
 
 
+.sign-up, .sign-in{
+	width:90%;
+	margin-left: auto;
+	margin-right: auto;
+	.field{
+		margin-top: 10px;
+		.title{
+			width:300px;
+		}
+	}
+}
 
 
 

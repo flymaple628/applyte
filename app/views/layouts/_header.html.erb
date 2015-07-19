@@ -8,12 +8,20 @@
 <% end %>
 
 	<div class="logo">
-		<span class="label label-default"> (A) APPLYTE </span>
+		<%= link_to "(A) APPLYTE", root_path, :class=>"label label-primary"%>
 
 	</div>
+
 	<div class="user-info">
-		<span class="label label-default"> My progress </span>
-		<span class="label label-default"> Log out </span>
+	<% if current_user %>
+		
+		<p class="label label-primary">Hi <%= current_user.username %> </p>
+		<%= link_to 'progress', progresses_path, :class=>"btn btn-primary" %>
+		<%= link_to 'sign-out', destroy_user_session_path, :method=>:delete, :class=>"btn btn-info" %>
+	<% else %>
+		<%= link_to 'sign-in', new_user_session_path, :class=>"btn btn-primary"%>
+		<%= link_to 'sign-up', new_user_registration_path, :class=>"btn btn-primary"%>
+	<% end %>
 	</div>
 </div>
 
