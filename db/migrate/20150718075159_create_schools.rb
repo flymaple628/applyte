@@ -3,7 +3,7 @@ class CreateSchools < ActiveRecord::Migration
     create_table :schools do |t|
       t.string :name
       t.string :campus
-      t.string :desc
+      t.text :desc
       t.string :phone
       t.string :email
       t.integer :logo_id, :index=>true

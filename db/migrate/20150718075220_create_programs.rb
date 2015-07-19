@@ -6,7 +6,6 @@ class CreatePrograms < ActiveRecord::Migration
       t.string :level
       t.string :desc
       t.string :department
-      t.integer :area_id, :index=>true
       t.string :fax
       t.string :phone
       t.string :email

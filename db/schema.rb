@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150718082136) do
+ActiveRecord::Schema.define(version: 20150719062817) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -29,6 +29,30 @@ ActiveRecord::Schema.define(version: 20150718082136) do
   add_index "addresses", ["city_id"], name: "index_addresses_on_city_id"
   add_index "addresses", ["country_id"], name: "index_addresses_on_country_id"
   add_index "addresses", ["state_id"], name: "index_addresses_on_state_id"
+
+  create_table "area_categories", force: :cascade do |t|
+    t.string   "name"
+    t.text     "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "area_to_area_categories", force: :cascade do |t|
+    t.integer  "area_id"
+    t.integer  "area_category_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "area_to_area_categories", ["area_category_id"], name: "index_area_to_area_categories_on_area_category_id"
+  add_index "area_to_area_categories", ["area_id"], name: "index_area_to_area_categories_on_area_id"
+
+  create_table "areas", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "program_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
@@ -64,7 +88,6 @@ ActiveRecord::Schema.define(version: 20150718082136) do
     t.string   "level"
     t.string   "desc"
     t.string   "department"
-    t.integer  "area_id"
     t.string   "fax"
     t.string   "phone"
     t.string   "email"
@@ -75,13 +98,12 @@ ActiveRecord::Schema.define(version: 20150718082136) do
   end
 
   add_index "programs", ["address_id"], name: "index_programs_on_address_id"
-  add_index "programs", ["area_id"], name: "index_programs_on_area_id"
   add_index "programs", ["school_id"], name: "index_programs_on_school_id"
 
   create_table "schools", force: :cascade do |t|
     t.string   "name"
     t.string   "campus"
-    t.string   "desc"
+    t.text     "desc"
     t.string   "phone"
     t.string   "email"
     t.integer  "logo_id"
