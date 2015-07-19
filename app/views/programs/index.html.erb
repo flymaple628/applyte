@@ -1,0 +1,35 @@
+
+<div class="program-list">
+	<h1 class="title"> Computer Science </h1>
+
+	<div class="list-box">		
+		<% @programs.each do |p| %>
+			<div class="unit">
+				<div class="rank">
+					1
+				</div>
+
+				<%= link_to program_path(p),:class=>"content" do %>
+
+
+					<div class="school-box">
+
+						<div class="name">
+							pudue school
+						</div>
+						<div class="logo">
+							logo
+						</div>
+					</div>
+
+					<div class="description">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat vero, officia beatae ullam, deserunt totam, soluta repudiandae nisi impedit eligendi magnam explicabo quibusdam at numquam cumque fugit facilis ad amet?
+					</div>
+
+				<% end %>
+
+				<%= link_to "add-fav", program_path(p), :class=>"btn btn-primary add-fav"%>
+
+			</div>
+		<% end %>
+</div>

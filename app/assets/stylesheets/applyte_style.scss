@@ -1,0 +1,106 @@
+
+$header-height: 40px;
+
+
+.header-box{
+	padding:10px 10%;
+	background-color: #afa;
+	height: $header-height;
+	
+
+	.logo{
+		display: inline-block;
+		float: left;
+	}
+
+	.user-info{
+		display: inline-block;
+		float: right;
+	}
+
+}
+
+
+$search-bar-height: 40px;
+.search-bar{
+	padding:10px 10%;
+
+	background-color: #7f7;
+	height: $search-bar-height;
+
+	>*{
+		display: inline-block;
+	}
+
+}
+
+
+
+$program-unit-height:120px;
+.program-list{
+	
+	.title{
+		border:1px solid #bbb;
+		margin:5px;
+	}
+	
+	.list-box{
+		border:1px solid #afa;
+		margin:5px;
+	
+		.unit {
+			height: $program-unit-height;
+
+			>* {
+				float:left;
+			}
+
+			.rank {
+				width:5%;
+				border:1px solid #aaa;
+				height: $program-unit-height;
+				text-align: center;
+			}
+
+			.content{			
+				width: 85%;
+				display: block;
+
+				.school-box{
+					height: $program-unit-height * 0.4 - 5px;
+					.name {
+						border:1px solid #aaa;
+					}
+
+					.logo {
+						border:1px solid #aaa;
+					}
+				}
+
+				.description{
+					height: $program-unit-height * 0.6 - 5px;
+
+				}
+			}
+
+			.add-fav{
+				width:10%;
+				float: right;
+			}
+
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
