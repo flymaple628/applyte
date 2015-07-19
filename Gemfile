@@ -27,6 +27,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 
 
+gem 'capistrano-rails', :group => :development
+gem 'capistrano-passenger', :group => :development
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rbenv', github: "capistrano/rbenv"
+gem 'pg'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
