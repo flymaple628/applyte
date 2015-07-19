@@ -8,12 +8,19 @@
 </head>
 <body>
 
-<%= render :partial=>"layouts/header" %>
-<%= render :partial=>"layouts/search_bar" %>
 
-<div class="container">
-<%= yield %>
-</div>
+<%= render :partial=>"layouts/header", :locals=>{:welcome=> @welcome } %>
+
+<% unless @welcome %>
+	<%= render :partial=>"layouts/search_bar" %>
+	<div class="container">
+		<%= yield %>
+	</div>
+<% else %>
+	<%= yield %>
+<% end %>
+
+
 
 </body>
 </html>

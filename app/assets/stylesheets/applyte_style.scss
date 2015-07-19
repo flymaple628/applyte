@@ -1,8 +1,11 @@
 
-$header-height: 40px;
+h1, p, div{
+	margin: 0px;
+}
 
 
 .header-box{
+	$header-height: 60px;
 	padding:10px 10%;
 	background-color: #afa;
 	height: $header-height;
@@ -11,6 +14,7 @@ $header-height: 40px;
 	.logo{
 		display: inline-block;
 		float: left;
+		font-size: 2.0em;
 	}
 
 	.user-info{
@@ -21,23 +25,62 @@ $header-height: 40px;
 }
 
 
-$search-bar-height: 40px;
 .search-bar{
-	padding:10px 10%;
+	$search-bar-height: 80px;
 
-	background-color: #7f7;
+	padding:20px 10%;
+	background-color: #5ff;
 	height: $search-bar-height;
 
-	>*{
+	*{
 		display: inline-block;
+		margin-right: 20px;
+	}
+
+	input[type="text"]{
+		width:400px;
+	}
+
+
+}
+
+
+#wlecome-header-box{
+	background-color: #aaa;
+}
+
+.welcome-box{
+	background-color: #aaa;
+	height: 1000px;
+
+	.center-box{
+		margin:0 auto;
+		padding-top: 200px;
+		width:50%;
+		text-align: center;
+
+	  >*{
+			margin-top:30px;
+			margin-top:30px;
+	  }
+
+		input[type="text"]{
+			width:400px;
+			margin-left:20px;
+			margin-right: 20px;
+		}
+
+	
+
 	}
 
 }
 
 
 
-$program-unit-height:120px;
+
 .program-list{
+	$program-unit-height:120px;	
 	
 	.title{
 		border:1px solid #bbb;
@@ -93,6 +136,44 @@ $program-unit-height:120px;
 }
 
 
+
+.single-program{
+	.info {
+		height: 100px;
+		background-color: #ffa;
+	}
+
+	$single-program-content-height:1000px;
+
+	.nav{
+		background-color: #aff;
+		width:20%;
+		float: left;
+		height: $single-program-content-height;
+
+		li{
+			margin-top: 20px;
+			list-style: none;
+
+			a {
+				width: 150px;
+				word-break:break-all;
+			}
+		}
+
+
+	}
+	
+	.content{
+		background-color: #aaa;
+		width:80%;
+		height: $single-program-content-height;
+		float: left;
+	}
+	
+
+
+}
 
 
 

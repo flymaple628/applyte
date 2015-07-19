@@ -1,0 +1,18 @@
+
+<div class="welcome-box">
+	
+	<div class="center-box">
+		<h2 class="main">Slogan</h2>
+		<div>
+			<%= form_tag programs_path, :method=>:get do %>
+				<%= text_field_tag 'keyword',nil, :placeholder=>"Enter program name", :class=>"search-input" %>
+				<%= submit_tag 'search', :class=>"btn btn-primary"%>
+			<% end %>
+		</div>
+		<h4 class="minor">minor slogan</h4>
+		<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet veritatis iure  eos, suscipit itaque quo consequaturculpa, iure pariatur!</p>
+	</div>
+</div>
+
+
+
