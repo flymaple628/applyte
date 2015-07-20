@@ -52,7 +52,9 @@ private
   end 
 
   def school_params
-    params.require(:school).permit(:name,:campus,:desc,:phone,:email,:logo_id,:city_id,:link_name,:link_url)
+    params.require(:school).permit(:name, :campus, :desc, :phone, :email, :logo_id,
+                                   :city_id, :link_name, :link_url,
+                                   :address_attributes=>[:address1, :city_id])
   end
 
   def refresh

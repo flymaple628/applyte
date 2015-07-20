@@ -1,72 +1,153 @@
 <%# programs, program %>
 <div class="admin-programs">
 	<h1> Programs </h1>
-
+	
 	<% if program.new_record? %>
 		<% url_hash = {:url=>admin_programs_path, :remote=>true} %>
 	<% else %>
 		<% url_hash = {:url=>admin_program_path(program), :method=>:patch, :remote=>true} %>
 	<% end %>
 
-	<%= form_for program, url_hash do |f| %>
-	<%= f.fields_for :address do |addr| %>
 
-	<table class="table">
+	<div class="unit">
+		<%= form_for program, url_hash do |f| %>
+		<%= f.fields_for :address do |addr| %>
 
-			<tr>
-				<th> <%= f.label :name, "name" %> </th>
-				<th> <%= f.label :degree, "degree" %> </th>
-				<th> <%= f.label :levelt, "level" %> </th>
-				<th> <%= f.label :desc, "desc" %> </th>
-				<th> <%= f.label :department, "department" %> </th>
-				<th> <%= f.label :fax, "fax" %> </th>
-				<th> <%= f.label :phone, "phone" %> </th>
-				<th> <%= f.label :email, "email" %> </th>
-				<th> <%= addr.label :address1, "address1" %> </th>
-				<th></th>
-				<th></th>
-			</tr>				
-			<tr>
-				<td> <%= f.text_field :name %> </td>
-				<td> <%= f.text_field :degree %> </td>
-				<td> <%= f.text_field :level %> </td>
-				<td> <%= f.text_area :desc %> </td>
-				<td> <%= f.text_field :department %> </td>
-				<td> <%= f.text_field :fax %> </td>
-				<td> <%= f.text_field :phone %> </td>
-				<td> <%= f.text_field :email %> </td>
-				<td> <%= addr.text_field :address1 %> </td>
-				
+			<div class="field">
+				<%= f.label :name, "name", :class=>'title' %> 
+				<%= f.text_field :name, :class=>'value' %>
+			</div>
+
+			<div class="field">
+				<%= f.label :degree, "degree", :class=>'title' %>
+				<%= f.text_field :degree, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :level, "level", :class=>'title' %>
+				<%= f.text_field :level, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :desc, "desc", :class=>'title' %>
+				<%= f.text_area :desc, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :department, "department", :class=>'title' %>
+				<%= f.text_field :department, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :fax, "fax", :class=>'title' %>
+				<%= f.text_field :fax, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :phone, "phone", :class=>'title' %>
+				<%= f.text_field :phone, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :email, "email", :class=>'title' %>
+				<%= f.text_field :email, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= addr.label :address1, "address1", :class=>'title' %>
+				<%= addr.text_field :address1, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= addr.label :city_id, "City", :class=>'title' %>
+				<%= addr.collection_select(:city_id, City.all, :id, :name, :class=>'value') %>			
+			</div>
+
+
+			<div class="field">
 				<% if program.new_record? %>
 					<td>	<%= f.submit 'create', :class=>'btn btn-primary' %> </td>
 				<% else %>
 					<td>	<%= f.submit 'update', :class=>'btn btn-primary' %> </td>
 				<% end %>
+			</div>
 
-				<td></td>
-			</tr>
+		<% end %> <%# fields_for %>				
+		<% end %> <%# form_for %>
+	</div>
 
-		<% programs.each do |pg| %>
-			<tr>
-				<td> <%= pg.name %> </td>
-				<td> <%= pg.degree %> </td>
-				<td> <%= pg.level %> </td>
-				<td> <%= pg.desc %> </td>
-				<td> <%= pg.department %> </td>
-				<td> <%= pg.fax %> </td>
-				<td> <%= pg.phone %> </td>
-				<td> <%= pg.email %> </td>
-				<td> <%= pg.address.try(:address1) %> </td>
-				<td> <%= link_to "Edit", edit_admin_program_path(pg), :remote=>true, :class=>"btn btn-info" %> 
-				</td>
-				<td> <%= link_to "Delete", admin_program_path(pg), :remote=>true, :method=>:delete, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %> 
-				</td>
-			</tr>
-		<% end %>
-	</table>
+	<% programs.each do |pg| %>
+	<div class="unit">
+		<div class="field">
+			<div class="title"> Name: </div> 
+			<div class="value"> <%= pg.name %> </div>
+		</div>
 
-	<% end %> <%# fields_for %>
-	<% end %> <%# form_for %>
+		<div class="field">
+			<div class="title"> Degree: </div> 
+			<div class="value"> <%= pg.degree %> </div>
+		</div>
 
+		<div class="field">
+			<div class="title"> Level: </div> 
+			<div class="value"> <%= pg.level %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Description: </div> 
+			<div class="value"> <%= pg.desc %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Department: </div> 
+			<div class="value"> <%= pg.department %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Fax: </div> 
+			<div class="value"> <%= pg.fax %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Phone: </div> 
+			<div class="value"> <%= pg.phone %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> email: </div> 
+			<div class="value"> <%= pg.email %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Address1: </div> 
+			<div class="value"> <%= pg.address.try(:address1) %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> City: </div> 
+			<div class="value"> <%= pg.address.city.name if pg.address.city %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> State: </div> 
+			<div class="value"> <%= pg.address.state.name if pg.address.state %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Country: </div> 
+			<div class="value"> <%= pg.address.country.name if pg.address.country %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> 
+				<%= link_to "Edit", edit_admin_program_path(pg), :remote=>true, :class=>"btn btn-info" %> 
+			 </div> 
+			<div class="value"> 
+				<%= link_to "Delete", admin_program_path(pg), :remote=>true, :method=>:delete, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %> 
+			 </div>
+		</div>
+	</div>
+	<% end %> <%# each do %>
+	
 
 </div>

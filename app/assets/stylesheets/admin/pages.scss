@@ -30,10 +30,45 @@
 		input[type="text"]{
 			width:100px;
 		}
-		
+
 	}
 }
 
+.admin-box .content{
+	::after{
+		display:block;
+		clear:both;
+		content:"";
+	};
+
+	.unit{
+		float:left;
+		width: 280px;
+		margin: 10px;
+		border: 1px solid #aaa;
+
+		.field{
+			padding:10px;
+			::after{
+				display:block;
+				clear:both;
+				content:"";
+			};
+			
+			.title{
+				float: left;
+				width:90px;
+			}
+			
+			.value{
+				float:left;
+				width:150px;
+				max-height: 200px;
+				overflow: scroll;				
+			}
+		}
+	}
+}
 
 
 

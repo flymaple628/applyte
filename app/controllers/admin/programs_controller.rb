@@ -53,7 +53,8 @@ private
 
 	def program_params
 		params.require(:program).permit(:name, :degree, :level, :desc, :department,
-																	 :fax, :phone, :email, :address_id, :school_id)
+																	 :fax, :phone, :email, :address_id, :school_id,
+                                   :address_attributes=>[:address1, :city_id])
 	end
 
   def refresh

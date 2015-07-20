@@ -8,56 +8,110 @@
 	<% end %>
 
 
-	<%= form_for school, url_hash do |f| %>
-
-	<table class="table">
-			<tr>
-				<th> <%= f.label :name, "name" %> </th>
-				<th> <%= f.label :campus, "campus" %> </th>
-				<th> <%= f.label :desc, "desc" %> </th>
-				<th> <%= f.label :phone, "phone" %> </th>
-				<th> <%= f.label :email, "email" %> </th>
-				<th> <%= f.label :logo_id, "logo" %> </th>
-				<th></th>
-			</tr>				
-
-			<tr>
-				<td> <%= f.text_field :name %> </td>
-				<td> <%= f.text_field :campus %> </td>
-				<td> <%= f.text_area :desc %> </td>
-				<td> <%= f.text_field :phone %> </td>
-				<td> <%= f.text_field :email %> </td>
-				<td> <%= f.text_field :logo_id %> </td>
-
-			<% if school.new_record? %>
-				<td>	<%= f.submit 'create', :class=>'btn btn-primary' %> </td>
-			<% else %>
-				<td>	<%= f.submit 'update', :class=>'btn btn-primary' %> </td>
-			<% end %>
-
-			</tr>
-
-			<% schools.each do |c| %>
-			<tr>
-				<td> <%= c.name %> </td>
-				<td> <%= c.campus %> </td>
-				<td> <%= c.desc %> </td>
-				<td> <%= c.phone %> </td>
-				<td> <%= c.email %> </td>
-				<td> <%= c.logo_id %> </td>
-
-				<td> <%= link_to "Edit", edit_admin_school_path(c), :remote=>true, :class=>"btn btn-info" %> 
-				</td>
-				<td> <%= link_to "Delete", admin_school_path(c), :remote=>true, :method=>:delete, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %> 
-				</td>
-			</tr>
-			<% end %>
-
-	</table>
 
 
-	<% end %> <%# form_for %>
+	<div class="unit">
+		<%= form_for school, url_hash do |f| %>
+		<%= f.fields_for :address do |addr| %>
+			<div class="field">
+				<%= f.label :name, "name", :class=>"title" %>
+				<%= f.text_field :name, :class=>"value" %>
+			</div>
 
+			<div class="field">
+				<%= f.label :campus, "campus", :class=>"title" %>
+				<%= f.text_field :campus, :class=>"value" %>
+			</div>
+
+			<div class="field">
+				<%= f.label :desc, "desc", :class=>"title" %>
+				<%= f.text_area :desc, :class=>"value" %>
+			</div>
+
+			<div class="field">
+				<%= f.label :phone, "phone", :class=>"title" %>
+				<%= f.text_field :phone, :class=>"value" %>
+			</div>
+
+			<div class="field">
+				<%= f.label :email, "email", :class=>"title" %>
+				<%= f.text_field :email, :class=>"value" %>
+			</div>
+
+			<div class="field">
+				<%= addr.label :address1, "address1", :class=>'title' %>
+				<%= addr.text_field :address1, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= addr.label :city_id, "City", :class=>'title' %>
+				<%= addr.collection_select(:city_id, City.all, :id, :name, :class=>'value') %>			
+			</div>
+
+			<div class="field">
+				<% if school.new_record? %>
+					<%= f.submit 'create', :class=>'btn btn-primary' %>
+				<% else %>
+					<%= f.submit 'update', :class=>'btn btn-primary' %>
+				<% end %>
+			</div>
+		<% end %>
+		<% end %> <%# form_for %>
+	</div>
+
+
+	<% schools.each do |c| %>
+		<div class="unit">
+			<div class="field">
+				<div class="title"> Name: </div>
+				<div class="value"> <%= c.name %> </div>
+			</div>
+			<div class="field">
+				<div class="title"> Campus: </div>
+				<div class="value"> <%= c.campus %> </div>
+			</div>
+			<div class="field">
+				<div class="title"> Desc: </div>
+				<div class="value"> <%= c.desc %> </div>
+			</div>
+			<div class="field">
+				<div class="title"> Phone: </div>
+				<div class="value"> <%= c.phone %> </div>
+			</div>
+			<div class="field">
+				<div class="title"> email: </div>
+				<div class="value"> <%= c.email %> </div>
+			</div>
+
+			<div class="field">
+				<div class="title"> Address: </div>
+				<div class="value"> <%= c.address.try(:address1) %> </div>
+			</div>
+
+			<div class="field">
+				<div class="title"> City: </div> 
+				<div class="value"> <%= c.address.city.name if c.address.city %> </div>
+			</div>
+
+			<div class="field">
+				<div class="title"> State: </div> 
+				<div class="value"> <%= c.address.state.name if c.address.state %> </div>
+			</div>
+
+			<div class="field">
+				<div class="title"> Country: </div> 
+				<div class="value"> <%= c.address.country.name if c.address.country %> </div>
+			</div>
+
+
+			<div class="field">
+				<div class="title"> <%= link_to "Edit", edit_admin_school_path(c), :remote=>true, :class=>"btn btn-info" %> 
+				 </div>
+				<div class="value"> <%= link_to "Delete", admin_school_path(c), :remote=>true, :method=>:delete, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %>
+				 </div>
+			</div>
+		</div>
+	<% end %>
 
 </div>
 
