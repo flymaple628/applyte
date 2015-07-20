@@ -1,0 +1,80 @@
+<%# programs, program %>
+<div class="admin-programs">
+	<h1> Programs </h1>
+
+	<div class="form">
+		<% if program.new_record? %>
+			<% url_hash = {:url=>programs_path} %>
+		<% else %>
+			<% url_hash = {:url=>program_path(program), :method=>:patch} %>
+		<% end %>
+
+		<%= form_for program, url_hash do |f| %>
+			<div class="field">
+
+				<%= f.text_field :name %>
+			</div>
+			<div class="field">
+				<%= f.label :degree, "degree" %>
+				<%= f.text_field :degree %>
+			</div>
+			<div class="field">
+				<%= f.label :level, "level" %>
+				<%= f.text_field :level %>
+			</div>
+			<div class="field">
+				<%= f.label :desc, "desc" %>
+				<%= f.text_area :desc %>
+			</div>
+			<div class="field">
+				<%= f.label :department, "department" %>
+				<%= f.text_field :department %>
+			</div>
+			<div class="field">
+				<%= f.label :fax, "fax" %>
+				<%= f.text_field :fax %>
+			</div>
+			<div class="field">
+				<%= f.label :phone, "phone" %>
+				<%= f.text_field :phone %>
+			</div>
+
+			<%= f.fields_for :address do |addr| %>
+				<div class="field">
+					<%= addr.label :address1, "address1" %>
+					<%= addr.text_field :address1 %>
+				</div>
+			<% end %> <%# fields_for %>
+
+			<% if program.new_record? %>
+				<%= f.submit 'create', :class=>'btn btn-primary' %>
+			<% else %>
+				<%= f.submit 'update', :class=>'btn btn-primary' %>
+			<% end %>
+
+		<% end %> <%# form_for %>
+	</div>
+
+
+	<table class="table">
+
+		<% programs.each do |pg| %>
+			<tr>
+				<td> <%= pg.name %> </td>
+				<td> <%= pg.degree %> </td>
+				<td> <%= pg.level %> </td>
+				<td> <%= pg.desc %> </td>
+				<td> <%= pg.department %> </td>
+				<td> <%= pg.fax %> </td>
+				<td> <%= pg.phone %> </td>
+				<td> <%= pg.email %> </td>
+				<td> <%= pg.address.try(:address1) %> </td>
+				<td> <%= link_to "Edit", edit_admin_program_path(pg), :remote=>true, :class=>"btn btn-info" %> 
+				</td>
+				<td> <%= link_to "Delete", edit_admin_program_path(pg), :remote=>true, :class=>"btn btn-danger" %> 
+				</td>
+			</tr>
+		<% end %>
+	</table>
+
+</div>

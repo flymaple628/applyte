@@ -96,7 +96,7 @@ h1, p, div{
 		border:1px solid #afa;
 		margin:5px;
 	
-		.unit {
+		.program_cell {
 			height: $program-unit-height;
 
 			>* {
@@ -137,6 +137,13 @@ h1, p, div{
 			}
 
 		}
+
+		.no-result {
+			width:50%;
+			text-align: center;
+			margin: 20px auto;
+		}
+
 	}
 }
 
@@ -161,7 +168,7 @@ h1, p, div{
 			list-style: none;
 
 			a {
-				width: 150px;
+				width: 80%;
 				word-break:break-all;
 			}
 		}
@@ -174,6 +181,11 @@ h1, p, div{
 		width:80%;
 		height: $single-program-content-height;
 		float: left;
+	}
+
+	.map{
+		margin:30px auto;
+		text-align: center;
 	}
 }
 
