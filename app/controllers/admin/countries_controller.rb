@@ -44,7 +44,7 @@ class Admin::CountriesController < ApplicationController
 
 private 
   def set_countries
-    @countries = Country.all
+    @countries = Country.all.order('id desc')
   end
 
   def set_country

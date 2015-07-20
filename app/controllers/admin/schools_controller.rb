@@ -44,7 +44,7 @@ class Admin::SchoolsController < ApplicationController
 
 private 
   def set_schools
-    @schools = School.all
+    @schools = School.all.order('id desc')
   end
 
   def set_school
@@ -52,7 +52,7 @@ private
   end 
 
   def school_params
-    params.require(:school).permit(:name,:city_id)
+    params.require(:school).permit(:name,:campus,:desc,:phone,:email,:logo_id,:city_id,:link_name,:link_url)
   end
 
   def refresh

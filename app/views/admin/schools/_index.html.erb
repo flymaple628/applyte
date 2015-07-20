@@ -13,12 +13,21 @@
 	<table class="table">
 			<tr>
 				<th> <%= f.label :name, "name" %> </th>
-				<th></th>
+				<th> <%= f.label :campus, "campus" %> </th>
+				<th> <%= f.label :desc, "desc" %> </th>
+				<th> <%= f.label :phone, "phone" %> </th>
+				<th> <%= f.label :email, "email" %> </th>
+				<th> <%= f.label :logo_id, "logo" %> </th>
 				<th></th>
 			</tr>				
 
 			<tr>
 				<td> <%= f.text_field :name %> </td>
+				<td> <%= f.text_field :campus %> </td>
+				<td> <%= f.text_area :desc %> </td>
+				<td> <%= f.text_field :phone %> </td>
+				<td> <%= f.text_field :email %> </td>
+				<td> <%= f.text_field :logo_id %> </td>
 
 			<% if school.new_record? %>
 				<td>	<%= f.submit 'create', :class=>'btn btn-primary' %> </td>
@@ -31,6 +40,12 @@
 			<% schools.each do |c| %>
 			<tr>
 				<td> <%= c.name %> </td>
+				<td> <%= c.campus %> </td>
+				<td> <%= c.desc %> </td>
+				<td> <%= c.phone %> </td>
+				<td> <%= c.email %> </td>
+				<td> <%= c.logo_id %> </td>
+
 				<td> <%= link_to "Edit", edit_admin_school_path(c), :remote=>true, :class=>"btn btn-info" %> 
 				</td>
 				<td> <%= link_to "Delete", admin_school_path(c), :remote=>true, :method=>:delete, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %> 

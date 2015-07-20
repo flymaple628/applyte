@@ -13,12 +13,15 @@
 	<table class="table">
 			<tr>
 				<th> <%= f.label :name, "name" %> </th>
-				<th></th>
+				<th> <%= f.label :state_id, "state" %></th>
+				<th> <%= f.label :country_id, "country" %></th>
 				<th></th>
 			</tr>				
 
 			<tr>
 				<td> <%= f.text_field :name %> </td>
+				<td> <%= f.collection_select(:state_id, State.all, :id, :name) %>
+				<td> </td>
 
 			<% if city.new_record? %>
 				<td>	<%= f.submit 'create', :class=>'btn btn-primary' %> </td>
@@ -31,6 +34,9 @@
 			<% cities.each do |c| %>
 			<tr>
 				<td> <%= c.name %> </td>
+				<td> <%= c.state.try(:name) %> </td>
+				<td> <%= c.state.country.try(:name) if c.state %> </td>
+
 				<td> <%= link_to "Edit", edit_admin_city_path(c), :remote=>true, :class=>"btn btn-info" %> 
 				</td>
 				<td> <%= link_to "Delete", admin_city_path(c), :remote=>true, :method=>:delete, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %> 

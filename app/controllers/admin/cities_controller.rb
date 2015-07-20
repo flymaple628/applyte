@@ -44,7 +44,7 @@ class Admin::CitiesController < ApplicationController
 
 private 
   def set_cities
-    @cities = City.all
+    @cities = City.all.order('id desc')
   end
 
 	def set_city

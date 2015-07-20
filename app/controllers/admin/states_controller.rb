@@ -44,7 +44,7 @@ class Admin::StatesController < ApplicationController
 
 private 
   def set_states
-    @states = State.all
+    @states = State.all.order('id desc')
   end
 
   def set_state
