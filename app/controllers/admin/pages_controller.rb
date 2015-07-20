@@ -3,7 +3,7 @@ class Admin::PagesController < ApplicationController
 	layout 'admin'
 
   def index
-  	@programs = Program.all
+  	@programs = Program.all.order('id desc')
   	@program = Program.new
 
   end

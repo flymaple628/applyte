@@ -3,9 +3,9 @@
 	<h1> Programs </h1>
 	
 	<% if program.new_record? %>
-		<% url_hash = {:url=>admin_programs_path, :remote=>true} %>
+		<% url_hash = {:url=>admin_programs_path, :authenticity_token => true , :remote=>true} %>
 	<% else %>
-		<% url_hash = {:url=>admin_program_path(program), :method=>:patch, :remote=>true} %>
+		<% url_hash = {:url=>admin_program_path(program), :method=>:patch, :authenticity_token => true, :remote=>true} %>
 	<% end %>
 
 
@@ -63,6 +63,14 @@
 				<%= addr.collection_select(:city_id, City.all, :id, :name, :class=>'value') %>			
 			</div>
 
+			<div class="field">	
+				<%= f.nested_fields_for :photos do |p| %>
+						<%= p.file_field :photo, :class=>'photo-file' %>
+						<%= p.remove_nested_fields_link %>			
+				<% end %>
+
+				<%= f.add_nested_fields_link :photos, "Add photo", :class=>"btn btn-primary" %>
+			</div>
 
 			<div class="field">
 				<% if program.new_record? %>
@@ -148,6 +156,28 @@
 		</div>
 	</div>
 	<% end %> <%# each do %>
-	
 
 </div>
+
+<script>
+	$('.field').on('change', '.photo-file', function(e){
+		e.preventDefault();
+
+		var files = e.target.files;
+		var c_target = $(this)
+		console.log("1111");
+
+		$.each(files, function(i, file){
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = function(e){
+
+				var imgtmp = '<img width="100px" src="' + e.target.result + '">';
+				c_target.after(imgtmp);
+			}
+		});
+
+		// $(this).after('<img src="' + $(this).val() + '">' );
+	})
+</script>
+

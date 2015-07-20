@@ -54,7 +54,9 @@ private
   def school_params
     params.require(:school).permit(:name, :campus, :desc, :phone, :email, :logo_id,
                                    :city_id, :link_name, :link_url,
-                                   :address_attributes=>[:address1, :city_id])
+                                   :address_attributes=>[:address1, :city_id],
+                                   :photos_attributes =>[:photo])
+    
   end
 
   def refresh

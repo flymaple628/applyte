@@ -44,7 +44,7 @@ class Admin::ProgramsController < ApplicationController
 
 private 
   def set_programs
-    @programs = Program.all.order('id desc')
+    @programs = Program.includes(:address).order('id desc')
   end
 
   def set_program
@@ -54,7 +54,8 @@ private
 	def program_params
 		params.require(:program).permit(:name, :degree, :level, :desc, :department,
 																	 :fax, :phone, :email, :address_id, :school_id,
-                                   :address_attributes=>[:address1, :city_id])
+                                   :address_attributes=>[:address1, :city_id],
+                                   :photos_attributes =>[:photo])
 	end
 
   def refresh
