@@ -1,7 +1,9 @@
 class Admin::ProgramsController < ApplicationController
-	before_action :set_program, :only=>[:update,:delete]
+  before_action :set_program_list
+	before_action :set_program, :only=>[:edit,:update,:destroy]
 
   def create
+
   	@program = Program.new(program_params)
   	if @program.save
   		@notice = "program success to created"
@@ -9,11 +11,18 @@ class Admin::ProgramsController < ApplicationController
   		@notice = @program.errors.full_messages
   	end
 
-		respond_to |format|
-			format.js { render 'admin/program/refresh'}
+    @program = Program.new
+		respond_to do |format|
+			format.js { render 'admin/programs/refresh'}
   	end
   end
 
+  def edit
+
+    respond_to do |format|
+      format.js { render 'admin/programs/refresh'}
+    end
+  end
 
   def update
   	if @program.update(program_params)
@@ -22,8 +31,9 @@ class Admin::ProgramsController < ApplicationController
   		@notice = @program.errors.full_messages  		
   	end
 
-		respond_to |format|
-			format.js { render 'admin/program/refresh'}
+    @program = Program.new
+		respond_to do |format|
+			format.js { render 'admin/programs/refresh'}
   	end
   end
 
@@ -31,12 +41,17 @@ class Admin::ProgramsController < ApplicationController
   def destroy
   	@program.destroy
 
-		respond_to |format|
-			format.js { render 'admin/program/refresh'}
+    @program = Program.new
+		respond_to do |format|
+			format.js { render 'admin/programs/refresh'}
   	end
   end
 
 private 
+  def set_program_list
+    @programs = Program.all
+  end
+
 	def set_program
 		@program = Program.find params[:id]
 	end 
