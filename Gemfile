@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 
+gem 'nested_form_fields'
 
 gem 'capistrano-rails', :group => :development
 gem 'capistrano-passenger', :group => :development

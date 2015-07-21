@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20150720064116) do
     t.string   "title"
     t.date     "date_from"
     t.date     "date_to"
+    t.string   "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -94,7 +95,7 @@ ActiveRecord::Schema.define(version: 20150720064116) do
 
   add_index "honors", ["user_id"], name: "index_honors_on_user_id"
 
-  create_table "profolios", force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
     t.date     "birthday"
@@ -113,7 +114,7 @@ ActiveRecord::Schema.define(version: 20150720064116) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "profolios", ["user_id"], name: "index_profolios_on_user_id"
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
 
   create_table "program_form_keys", force: :cascade do |t|
     t.string   "name"

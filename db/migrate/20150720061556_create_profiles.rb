@@ -1,6 +1,6 @@
-class CreateProfolios < ActiveRecord::Migration
+class CreateProfiles < ActiveRecord::Migration
   def change
-    create_table :profolios do |t|
+    create_table :profiles do |t|
     	t.integer :user_id, :index=>true
     	t.string :name
     	t.date :birthday
