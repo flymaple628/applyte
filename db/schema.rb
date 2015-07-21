@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20150721015757) do
 
   create_table "addresses", force: :cascade do |t|
@@ -70,7 +69,20 @@ ActiveRecord::Schema.define(version: 20150721015757) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
+  create_table "experiences", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "serial"
+    t.string   "institude"
+    t.string   "title"
+    t.date     "date_from"
+    t.date     "date_to"
+    t.string   "etype"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "experiences", ["profile_id"], name: "index_experiences_on_profile_id"
+
   create_table "faculties", force: :cascade do |t|
     t.integer  "program_id"
     t.string   "name"
@@ -97,32 +109,6 @@ ActiveRecord::Schema.define(version: 20150721015757) do
   add_index "faculty_areas", ["area_id"], name: "index_faculty_areas_on_area_id"
   add_index "faculty_areas", ["faculty_id"], name: "index_faculty_areas_on_faculty_id"
 
-  create_table "photos", force: :cascade do |t|
-    t.string   "photo_link_type"
-    t.integer  "photo_link_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
-  end
-
-=======
-  create_table "experiences", force: :cascade do |t|
-    t.integer  "profile_id"
-    t.integer  "serial"
-    t.string   "institude"
-    t.string   "title"
-    t.date     "date_from"
-    t.date     "date_to"
-    t.string   "etype"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "experiences", ["profile_id"], name: "index_experiences_on_profile_id"
-
   create_table "honors", force: :cascade do |t|
     t.integer  "profile_id"
     t.integer  "serial"
@@ -134,6 +120,17 @@ ActiveRecord::Schema.define(version: 20150721015757) do
   end
 
   add_index "honors", ["profile_id"], name: "index_honors_on_profile_id"
+
+  create_table "photos", force: :cascade do |t|
+    t.string   "photo_link_type"
+    t.integer  "photo_link_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id"
@@ -156,7 +153,6 @@ ActiveRecord::Schema.define(version: 20150721015757) do
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
 
->>>>>>> 7fcb7cb2dc4d531104d138d423f3524f0f34aa28
   create_table "program_form_keys", force: :cascade do |t|
     t.string   "name"
     t.string   "desc"
