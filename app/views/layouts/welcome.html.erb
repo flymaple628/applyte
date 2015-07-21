@@ -8,16 +8,11 @@
 </head>
 <body>
 
-<div class="header-box">
+<div class="header-box" id="wlecome-header-box">
 	<%= render :partial=>"layouts/header" %>
 </div>
 
-<%= render(:partial=>"layouts/search_bar") if @search_show %>
-<div class="container">
-	<%= yield %>
-</div>
-
-
+<%= yield %>
 
 </body>
 </html>

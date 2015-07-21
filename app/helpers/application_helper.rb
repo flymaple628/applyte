@@ -1,7 +1,7 @@
 module ApplicationHelper
 
 	def address_escape(address)
-		address.gsub ' ','+'
+		address.gsub ' ','+' if address
 	end
 
 

@@ -8,8 +8,10 @@
 </head>
 <body>
 
+<div class="header-box">
+	<%= render :partial=>"layouts/header" %>
+</div>
 
-<%= render :partial=>"layouts/header", :locals=>{:welcome=> @welcome } %>
 <div class="container-fluid">
     <div class="row">
 			<%= yield %>

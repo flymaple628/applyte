@@ -44,7 +44,7 @@ namespace :dev do
 	# end
 	task :data => :environment do
 		User.destroy_all
-		User.create!({:email => "guy@gmail.com",  :password => "12345678" })
+		User.create!({:email => "ac5@gmail.com",  :password => "12345678" })
 		Address.destroy_all
 
 		puts "country state city"
@@ -103,7 +103,7 @@ namespace :dev do
 
 
 
-
+		AreaCategory.destroy_all
 		area_categories = ["Science", "Education", "Engineering"]
 
 		area_categories.each_with_index do |ac,index|
@@ -142,7 +142,14 @@ puts "program for every school"
 				pg.degree = degree[rand(1)]
 				pg.level = rand(3)
 				pg.department = p[1]
+				pg.phone = sc.phone
+				pg.email = sc.email
+				pg.build_address
+				pg.address.address1 = sc.address.address1
+				pg.address.city_id = sc.address.city_id
+
 				puts "#{p} #{index} #{sc}"
+
 				(rand(5)+2).times do |t|
 					area = pg.areas.new(:name => "#{p[3]} #{t}")
 
@@ -152,12 +159,11 @@ puts "program for every school"
 						end
 					end
 				end
-
 				pg.save
 			end
+			
 		end
 
 	end
-
 end
 

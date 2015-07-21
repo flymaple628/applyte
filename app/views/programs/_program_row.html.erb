@@ -1,10 +1,11 @@
+<%# program %>
 
 <div class="program_cell">
 	<div class="rank">
 		1
 	</div>
 
-	<%= link_to program_path(p),:class=>"content" do %>
+	<%= link_to program_path(program),:class=>"content" do %>
 	
 		<div class="school-box">
 
@@ -22,5 +23,5 @@
 
 	<% end %>
 
-	<%= link_to "add-fav", program_path(p), :class=>"btn btn-primary add-fav"%>
+	<%= link_to "add-fav", program_path(program), :class=>"btn btn-primary add-fav"%>
 </div>

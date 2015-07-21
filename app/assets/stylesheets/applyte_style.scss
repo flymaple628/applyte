@@ -1,5 +1,5 @@
 
-h1, p, div{
+h1, h2, h3, p, div{
 	margin: 0px;
 }
 
@@ -150,9 +150,50 @@ h1, p, div{
 
 
 .single-program{
+	::after{
+		content:"";
+		display: block;
+		clear:both;
+	};
+
 	.info {
 		height: 100px;
+		padding: 10px;
 		background-color: #ffa;
+
+		>*{
+			float: left;
+		}
+
+		.logo{
+			width:10%;
+			padding:10px 10px 10px;
+			max-height: 40px;
+
+			img{
+				width:calc(90% - 10px);
+			}
+		}
+
+		.school-box{
+			width:80%;
+
+			h3{
+				padding: 10px
+			}
+
+			p{			
+				padding:10px;
+			}
+		}
+
+		.fav{
+			width:10%;
+			padding:20px;
+			font-size: 2em;
+			text-align: center;
+		}
+
 	}
 
 	$single-program-content-height:1000px;
@@ -181,6 +222,42 @@ h1, p, div{
 		width:80%;
 		height: $single-program-content-height;
 		float: left;
+		padding:20px 2%;
+
+		.gallery{
+			width:95%;
+			padding-bottom: 20px;
+			border-bottom: 2px solid #999;
+			>*{
+				float: left;
+			}
+
+			.main-pic{
+				width:42%;
+				margin: 10px 2%;
+			}
+	
+			.sub-pic-box{
+				width:42%;
+				margin: 10px 2%;
+
+			 .sub-pic-row{
+					width:100%;	
+						
+					.sub-pic{
+						float: left;
+						width:40%;
+						margin: 3%;
+  				}
+				}
+			}
+
+			img{
+				width:100%;
+				max-height: 300px;
+			}
+		}
+
 	}
 
 	.map{

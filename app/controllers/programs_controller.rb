@@ -1,4 +1,5 @@
 class ProgramsController < ApplicationController
+	before_action :show_search_bar
 
 	def index
 		if params[:keyword]
@@ -11,9 +12,15 @@ class ProgramsController < ApplicationController
 
 	def show
 		@program = Program.find(params[:id])
+		@pic_list = @program.photo_list
 		@address = @program.school.address.address1
 
 	end
 
+private
+
+	def show_search_bar
+		@search_show = true
+	end
 
 end
