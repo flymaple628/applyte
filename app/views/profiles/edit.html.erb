@@ -1,4 +1,4 @@
-<%= nested_form_for setup_profile(@profile), :url => profile_path do |f| %>
+<%= form_for @profile, :url => profile_path do |f| %>
 	<div class="profile">
 		<p>profile</p>
 		<p class="form-group">
@@ -63,88 +63,92 @@
 	<div class="publication">
 		<div class="publication_item">
 			<p>publication</p>
-			<%= f.nested_fields_for :publication do |publication_form| %>
+			<%= f.nested_fields_for :publications do |pf| %>
 			<p class="form-group">
-				<%= publication_form.label :title, "title" %>
-				<%= publication_form.text_field :title %>
+				<%= pf.label :title, "title" %>
+				<%= pf.text_field :title %>
 			</p>
 			<p class="form-group">
-				<%= publication_form.label :url, "url" %>
-				<%= publication_form.text_field :url %>
+				<%= pf.label :url, "url" %>
+				<%= pf.text_field :url %>
+				<%= pf.remove_nested_fields_link %>
 			</p>
 			<% end %>
 		</div>
-		<%=link_to '+','',{:id=>:publication_button}%>
+		<p><%= f.add_nested_fields_link :publications %></p>
 	</div>
 	<div class="honor">
 		<div class="honor-item">
 			<p>honor</p>
-			<%= f.fields_for :honor do |honor_form| %>
+			<%= f.nested_fields_for :honors do |hf| %>
 			<p class="form-group">
-				<%= honor_form.label :title, "title" %>
-				<%= text_field_tag 'profile_attribute[honor][][title]' %>
+				<%= hf.label :title, "title" %>
+				<%= hf.text_field :title %>
 			</p>
 			<p class="form-group">
-				<%= honor_form.label :get_date, "get_date" %>
-				<%= text_field_tag 'profile_attribute[honor][][get_date]' %>
+				<%= hf.label :get_date, "get_date" %>
+				<%= hf.text_field :get_date %>
 			</p>
 			<p class="form-group">
-				<%= honor_form.label :description, "description" %>
-				<%= text_field_tag 'profile_attribute[honor][][description]' %>
+				<%= hf.label :description, "description" %>
+				<%= hf.text_field :description %>
+				<%= hf.remove_nested_fields_link %>
 			</p>
 			<% end %>
 		</div>
-		<%=link_to '+','',{:id=>:honor_button}%>
+		<p><%= f.add_nested_fields_link :honors %></p>
 	</div>
 	<div class="research_experience">
 		<div class="research_experience_item">
 			<p>research_experience</p>
-			<%= f.fields_for :experience do |experience_form| %>
+			<%= f.fields_for :experiences do |ef| %>
 			<p class="form-group">
-				<%= experience_form.label :institude, "institude" %>
-				<%= text_field_tag 'experiences[institude][1]' %>
+				<%= ef.label :institude, "institude" %>
+				<%= ef.text_field :institude %>
 			</p>
 			<p class="form-group">
-				<%= experience_form.label :title, "title" %>
-				<%= text_field_tag 'experiences[title][1]' %>
+				<%= ef.label :title, "title" %>
+				<%= ef.text_field :title %>
 			</p>
 			<p class="form-group">
-				<%= experience_form.label :date_from, "date_from" %>
-				<%= text_field_tag 'experiences[date_from][1]' %>
+				<%= ef.label :date_from, "date_from" %>
+				<%= ef.text_field :date_from %>
 			</p>
 			<p class="form-group">
-				<%= experience_form.label :date_to, "date_to" %>
-				<%= text_field_tag 'experiences[date_to][1]' %>
-				<%= hidden_field_tag 'experiences[type][1]', 'research' %>
+				<%= ef.label :date_to, "date_to" %>
+				<%= ef.text_field :date_to %>
+				<%= ef.text_field :type %>
+				<%= ef.remove_nested_fields_link %>
 			</p>
 			<% end %>
 		</div>
-		<%=link_to '+','',{:id=>:research_experience}%>
+		<p><%= f.add_nested_fields_link :experiences %></p>
 	</div>
 	<div class="work_experience">
 		<div class="work_experience">
 			<p>work_experience</p>
-			<%= f.fields_for :experience do |experience_form| %>
+			<%= f.fields_for :experiences do |ef| %>
 			<p class="form-group">
-				<%= experience_form.label :institude, "institude" %>
-				<%= text_field_tag 'experiences[institude][1]' %>
+				<%= ef.label :institude, "institude" %>
+				<%= ef.text_field :institude %>
 			</p>
 			<p class="form-group">
-				<%= experience_form.label :title, "title" %>
-				<%= text_field_tag 'experiences[title][1]' %>
+				<%= ef.label :title, "title" %>
+				<%= ef.text_field :title %>
 			</p>
 			<p class="form-group">
-				<%= experience_form.label :date_from, "date_from" %>
-				<%= text_field_tag 'experiences[date_from][1]' %>
+				<%= ef.label :date_from, "date_from" %>
+				<%= ef.text_field :date_from %>
 			</p>
 			<p class="form-group">
-				<%= experience_form.label :date_to, "date_to" %>
-				<%= text_field_tag 'experiences[date_to][1]' %>
-				<%= hidden_field_tag 'experiences[type][1]', 'work' %>
+				<%= ef.label :date_to, "date_to" %>
+				<%= ef.text_field :date_to %>
+				<%= ef.text_field :type %>
+				<%= ef.remove_nested_fields_link %>
 			</p>
 			<% end %>
 		</div>
-		<%=link_to '+','',{:id=>:work_experience}%>
+		<p><%= f.add_nested_fields_link :experiences %></p>
 	</div>
 	<div class="button">
 		<%= f.submit :submit %>
@@ -155,5 +159,7 @@ $("input[type='text']").val('123');
 $("#research_experience").on("click",function(e){
 	$(".research_experience").append('132');
 });
-
+$("a").on('click',function(event){
+	event.preventDefault()
+});
 </script>

@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20150720064116) do
   end
 
   create_table "experiences", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "profile_id"
     t.integer  "serial"
     t.string   "institude"
     t.string   "title"
@@ -81,10 +81,10 @@ ActiveRecord::Schema.define(version: 20150720064116) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "experiences", ["user_id"], name: "index_experiences_on_user_id"
+  add_index "experiences", ["profile_id"], name: "index_experiences_on_profile_id"
 
   create_table "honors", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "profile_id"
     t.integer  "serial"
     t.string   "title"
     t.date     "get_date"
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20150720064116) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "honors", ["user_id"], name: "index_honors_on_user_id"
+  add_index "honors", ["profile_id"], name: "index_honors_on_profile_id"
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id"
@@ -148,7 +148,7 @@ ActiveRecord::Schema.define(version: 20150720064116) do
   add_index "programs", ["school_id"], name: "index_programs_on_school_id"
 
   create_table "publications", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "profile_id"
     t.integer  "serial"
     t.string   "title"
     t.string   "url"
@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 20150720064116) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "publications", ["user_id"], name: "index_publications_on_user_id"
+  add_index "publications", ["profile_id"], name: "index_publications_on_profile_id"
 
   create_table "schools", force: :cascade do |t|
     t.string   "name"

@@ -2,6 +2,7 @@ class Profile < ActiveRecord::Base
 	belongs_to :user
 
 	has_many :experiences
+	has_many :research_experiences
   has_many :publications
   has_many :honors
 

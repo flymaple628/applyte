@@ -2,11 +2,14 @@ class ProfilesController < ApplicationController
 	before_action :get_profiles
 	#GET /profolio/
 	def show
-		@profile.publications_build if @profile.publications.empty?
+		@profile.publications.bulid
+		@profile.honors.bulid
 	end
 
 	def edit
-
+		@profile.publications.new
+		@profile.honors.new
+		@profile.experiences.new
 	end
 	#POST /profolio/
 	def create
@@ -29,6 +32,7 @@ class ProfilesController < ApplicationController
 		else
 			@profile=Profile.new
 		end
+
 	end
 
 	def profile_params
