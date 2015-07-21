@@ -147,6 +147,12 @@
 		</div>
 
 		<div class="field">
+			<% pg.photos.each do |po| %>
+				<%= image_tag po.photo.url(:thumb) %>
+			<% end %>
+		</div>
+
+		<div class="field">
 			<div class="title"> 
 				<%= link_to "Edit", edit_admin_program_path(pg), :remote=>true, :class=>"btn btn-info" %> 
 			 </div> 
@@ -165,7 +171,6 @@
 
 		var files = e.target.files;
 		var c_target = $(this)
-		console.log("1111");
 
 		$.each(files, function(i, file){
 			var reader = new FileReader();

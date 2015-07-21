@@ -55,7 +55,7 @@ private
 		params.require(:program).permit(:name, :degree, :level, :desc, :department,
 																	 :fax, :phone, :email, :address_id, :school_id,
                                    :address_attributes=>[:address1, :city_id],
-                                   :photos_attributes =>[:photo])
+                                   :photos_attributes =>[:photo, :_destroy, :id])
 	end
 
   def refresh

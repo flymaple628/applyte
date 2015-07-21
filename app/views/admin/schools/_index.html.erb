@@ -48,6 +48,15 @@
 				<%= addr.collection_select(:city_id, City.all, :id, :name, :class=>'value') %>			
 			</div>
 
+			<div class="field">	
+				<%= f.nested_fields_for :photos do |p| %>
+						<%= p.file_field :photo, :class=>'photo-file' %>
+						<%= p.remove_nested_fields_link %>			
+				<% end %>
+
+				<%= f.add_nested_fields_link :photos, "Add photo", :class=>"btn btn-primary" %>
+			</div>
+
 			<div class="field">
 				<% if school.new_record? %>
 					<%= f.submit 'create', :class=>'btn btn-primary' %>
@@ -103,6 +112,12 @@
 				<div class="value"> <%= c.address.country.name if c.address.country %> </div>
 			</div>
 
+			<div class="field">
+				<% c.photos.each do |po| %>
+					<%= image_tag po.photo.url(:thumb) %>
+				<% end %>
+			</div>
+
 
 			<div class="field">
 				<div class="title"> <%= link_to "Edit", edit_admin_school_path(c), :remote=>true, :class=>"btn btn-info" %> 
@@ -115,5 +130,25 @@
 
 </div>
 
+<script>
+	$('.field').on('change', '.photo-file', function(e){
+		e.preventDefault();
+
+		var files = e.target.files;
+		var c_target = $(this)
+
+		$.each(files, function(i, file){
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = function(e){
+
+				var imgtmp = '<img width="100px" src="' + e.target.result + '">';
+				c_target.after(imgtmp);
+			}
+		});
+
+		// $(this).after('<img src="' + $(this).val() + '">' );
+	})
+</script>
 
 
