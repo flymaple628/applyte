@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :user_program_forms
   has_many :programs, :through=>:user_program_forms
-  
 
+  has_one :profile
 
 end

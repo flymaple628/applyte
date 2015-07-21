@@ -17,3 +17,4 @@
 //= require nested_form_fields
 //= require jquery.remotipart
 //= require_tree .
+//= require nested_form_fields

@@ -1,12 +1,53 @@
 
-namespace :dev do 
+namespace :dev do
+	# task :profolio => :environment do
+	# 	Profolio.destroy_all
+	# 	Experience.destroy_all
+	# 	Publication.destroy_all
+	# 	Honor.destroy_all
+	# 	User.destroy_all
 
+	# 	profolio_list={
+	# 	user_id: 1,
+	# 	name: 'name',
+ #    birthday: '',
+ #    major: 'major',
+ #    research_area: 'research',
+ #    toefl_read: 5,
+ #    toefl_listen: 5,
+ #    toefl_speak: 5,
+ #    toefl_write: 5,
+ #    toefl_total: 5,
+ #    gre_verbal: 5,
+ #    gre_guantitatiue: 'guantita' ,
+ #    gre_awa: 5,
+ #    gre_total: 5
+	# 	}
+	# 	Profolio.create(profolio_list)
+	# 	experience_list=[
+	# 		[1,1,'title1','','description1'],
+	# 		[1,2,'title2','','description1'],
+	# 		[1,3,'title3','','description1'],
+	# 		[1,4,'title4','','description1'],
+	# 		[1,5,'title5','','description1'],
+	# 	]
+	# 	experience_list.each do |ex|
+	# 		experience={
+	# 		user_id:ex[0],
+ #    	serial: 1
+ #    	title: 'fdsfdsfdsfds'
+ #    	get_date: ''
+ #    	description: 'dfdsfsdfwewerew'
+	# 	}
+	# 	end
+	# 	Experience.create
+	# end
 	task :data => :environment do
 		User.destroy_all
-
+		User.create!({:email => "guy@gmail.com",  :password => "12345678" })
 		Address.destroy_all
 
-puts "country state city"
+		puts "country state city"
 		Country.destroy_all
 		State.destroy_all
 		City.destroy_all
@@ -20,14 +61,14 @@ puts "country state city"
 
 		city_list = [[1, 'Palo Alto',4],
 								 [2,'West Lafayette',5],
-								 [3, 'Cambridge',6], 
+								 [3, 'Cambridge',6],
 								 [4, 'Chicago',7]]
 
 		city_list.each_with_index do |ct, index|
 			City.create(:id=>ct[0], :name=>ct[1], :state_id=>ct[2])
 		end
 
-puts "school"
+		puts "school"
 		School.destroy_all
 
 		school_list = [[1, 1, 'Stanford', 'Stanford campus','1 650-723-2300', 'aa@Stanford.edu',     '450 Serra Mall, Stanford, CA 94305',				 'http://collegeapps.about.com/od/collegeprofiles/p/Stanford_profil.htm', "Stanford University is one of the world's leading research and teaching institutions. It is located in Stanford, California."],
@@ -78,9 +119,9 @@ puts "program for every school"
 		AreaCategory.destroy_all
 		AreaToAreaCategory.destroy_all
 
-		programs = [[2, "Chemical Engineering", "Eng department", "CheE", ['number','business','atnomic']], 
+		programs = [[2, "Chemical Engineering", "Eng department", "CheE", ['number','business','atnomic']],
 								[2, "Computer Engineering", "Eng department", "CE", ['code','business','embedded']],
-								[2, "Electrical Engineering", "Eng department", "EE", ['communication','machincal','chip']], 
+								[2, "Electrical Engineering", "Eng department", "EE", ['communication','machincal','chip']],
 								[1, "Elementary Education", "Edu department", "EEdu", ['math','eng','social','physics']],
 								[1, "Social Studies Education", "Edu department", "Soc", ['nation','human','history']],
 								[0, "Chemistry", "Science department", "CheS", ['theory','business','che']],
@@ -115,7 +156,7 @@ puts "program for every school"
 				pg.save
 			end
 		end
- 
+
 	end
 
 end

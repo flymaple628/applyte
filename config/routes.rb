@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :programs
   resources :progresses
 
-
   namespace :admin do
     get '/page' => 'pages#index'
     resources :programs
@@ -18,6 +17,8 @@ Rails.application.routes.draw do
     resources :countries
     resources :faculties
   end
+
+  resource :profile
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
