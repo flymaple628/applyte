@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720165241) do
+ActiveRecord::Schema.define(version: 20150721015757) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -68,6 +68,32 @@ ActiveRecord::Schema.define(version: 20150720165241) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "faculties", force: :cascade do |t|
+    t.integer  "program_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "intro"
+    t.string   "link_url"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "faculties", ["program_id"], name: "index_faculties_on_program_id"
+
+  create_table "faculty_areas", force: :cascade do |t|
+    t.integer  "faculty_id"
+    t.integer  "area_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "faculty_areas", ["area_id"], name: "index_faculty_areas_on_area_id"
+  add_index "faculty_areas", ["faculty_id"], name: "index_faculty_areas_on_faculty_id"
 
   create_table "photos", force: :cascade do |t|
     t.string   "photo_link_type"

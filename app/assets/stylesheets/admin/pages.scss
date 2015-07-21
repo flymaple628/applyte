@@ -63,9 +63,16 @@
 			.value{
 				float:left;
 				width:150px;
-				max-height: 200px;
-				overflow: scroll;				
 			}
+			
+			.value-area{
+				float:left;
+				width:150px;
+				max-height: 200px;
+				overflow: scroll;
+			}
+
+
 		}
 	}
 }

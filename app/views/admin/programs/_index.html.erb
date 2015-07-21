@@ -30,7 +30,7 @@
 
 			<div class="field">
 				<%= f.label :desc, "desc", :class=>'title' %>
-				<%= f.text_area :desc, :class=>'value'  %>			
+				<%= f.text_area :desc, :class=>'value-area'  %>			
 			</div>
 
 			<div class="field">
@@ -52,6 +52,11 @@
 				<%= f.label :email, "email", :class=>'title' %>
 				<%= f.text_field :email, :class=>'value'  %>			
 			</div>
+
+			<div class="field">
+				<%= f.label :school_id, "school", :class=>'title' %>
+				<%= f.collection_select :school_id, School.all, :id, :name %>
+			</div>	
 
 			<div class="field">
 				<%= addr.label :address1, "address1", :class=>'title' %>
@@ -103,7 +108,7 @@
 
 		<div class="field">
 			<div class="title"> Description: </div> 
-			<div class="value"> <%= pg.desc %> </div>
+			<div class="value-area"> <%= pg.desc %> </div>
 		</div>
 
 		<div class="field">
@@ -124,6 +129,11 @@
 		<div class="field">
 			<div class="title"> email: </div> 
 			<div class="value"> <%= pg.email %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> school: </div> 
+			<div class="value"> <%= pg.school.try(:name) %> </div>
 		</div>
 
 		<div class="field">
