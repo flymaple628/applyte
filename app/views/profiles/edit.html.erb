@@ -81,27 +81,29 @@
 		<div class="honor-item">
 			<p>honor</p>
 			<%= f.nested_fields_for :honors do |hf| %>
-			<p class="form-group">
-				<%= hf.label :title, "title" %>
-				<%= hf.text_field :title %>
-			</p>
-			<p class="form-group">
-				<%= hf.label :get_date, "get_date" %>
-				<%= hf.text_field :get_date %>
-			</p>
-			<p class="form-group">
-				<%= hf.label :description, "description" %>
-				<%= hf.text_field :description %>
-				<%= hf.remove_nested_fields_link %>
-			</p>
+				<p class="form-group">
+					<%= hf.label :title, "title" %>
+					<%= hf.text_field :title %>
+				</p>
+				<p class="form-group">
+					<%= hf.label :get_date, "get_date" %>
+					<%= hf.text_field :get_date %>
+				</p>
+				<p class="form-group">
+					<%= hf.label :description, "description" %>
+					<%= hf.text_field :description %>
+					<%= hf.remove_nested_fields_link %>
+				</p>
 			<% end %>
 		</div>
 		<p><%= f.add_nested_fields_link :honors %></p>
 	</div>
+
 	<div class="research_experience">
 		<div class="research_experience_item">
 			<p>research_experience</p>
-			<%= f.fields_for :experiences do |ef| %>
+
+			<%= f.nested_fields_for :research_experiences, :class_name => "Experience" do |ef| %>
 			<p class="form-group">
 				<%= ef.label :institude, "institude" %>
 				<%= ef.text_field :institude %>
@@ -117,17 +119,19 @@
 			<p class="form-group">
 				<%= ef.label :date_to, "date_to" %>
 				<%= ef.text_field :date_to %>
-				<%= ef.text_field :type %>
+				<%= ef.hidden_field :etype %>
 				<%= ef.remove_nested_fields_link %>
 			</p>
 			<% end %>
-		</div>
-		<p><%= f.add_nested_fields_link :experiences %></p>
+
+			</div>
+			<p><%= f.add_nested_fields_link :research_experiences %></p>
 	</div>
+
 	<div class="work_experience">
-		<div class="work_experience">
+		<div class="work_experience_item">
 			<p>work_experience</p>
-			<%= f.fields_for :experiences do |ef| %>
+			<%= f.nested_fields_for :work_experiences, :class_name => "Experience" do |ef| %>
 			<p class="form-group">
 				<%= ef.label :institude, "institude" %>
 				<%= ef.text_field :institude %>
@@ -143,22 +147,21 @@
 			<p class="form-group">
 				<%= ef.label :date_to, "date_to" %>
 				<%= ef.text_field :date_to %>
-				<%= ef.text_field :type %>
+				<%= ef.hidden_field :etype %>
 				<%= ef.remove_nested_fields_link %>
 			</p>
 			<% end %>
 		</div>
-		<p><%= f.add_nested_fields_link :experiences %></p>
+		<p><%= f.add_nested_fields_link :work_experiences %></p>
 	</div>
+
 	<div class="button">
 		<%= f.submit :submit %>
 	</div>
 <% end %>
 <script>
-$("input[type='text']").val('123');
-$("#research_experience").on("click",function(e){
-	$(".research_experience").append('132');
-});
+
+
 $("a").on('click',function(event){
 	event.preventDefault()
 });

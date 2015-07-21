@@ -7,7 +7,7 @@ class CreateExperiences < ActiveRecord::Migration
     	t.string :title
     	t.date :date_from
     	t.date :date_to
-      t.string :type
+      t.string :etype
 
       t.timestamps null: false
     end

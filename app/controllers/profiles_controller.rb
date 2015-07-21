@@ -1,27 +1,39 @@
 class ProfilesController < ApplicationController
+	before_action :authenticate_user!
 	before_action :get_profiles
 	#GET /profolio/
 	def show
-		@profile.publications.bulid
-		@profile.honors.bulid
+		@profile.publications
+		@profile.honors
+		@profile.research_experiences
+		@profile.work_experiences
 	end
 
 	def edit
-		@profile.publications.new
-		@profile.honors.new
-		@profile.experiences.new
+		@profile.publications.new if @profile.publications.empty?
+		@profile.honors.new if @profile.honors.empty?
+		@profile.research_experiences.new if @profile.research_experiences.empty?
+		@profile.work_experiences.new if @profile.work_experiences.empty?
 	end
 	#POST /profolio/
 	def create
 		@profile = Profile.new(profile_params)
   	@profile.user_id=current_user.id
-  	@profile.publications.build
   	@profile.save
 
+  	redirect_to :back
 	end
 	#PATCH /profolio/
 	def update
 		@profile = current_user.profile.update(profile_params)
+		redirect_to :back
+	end
+	#DELETE /profolio/
+	def delete
+		@profile = current_user.profile
+    @attendee.destroy
+
+    redirect_to :back
 	end
 
 	protected
@@ -50,9 +62,10 @@ class ProfilesController < ApplicationController
 						:gre_guantitatiue,
 						:gre_awa,
 						:gre_total,
-						:publications => [{:title=>[],:url=>[]}],
-						:honor_attributes=>[:title=>[],:get_date=>[],:description=>[]],
-						:experience_attributes=>[:institude=>[],:title=>[],:date_from=>[],:date_to=>[],:type=>[]]
+						:publications_attributes => [:id,:title,:url,:_destroy],
+						:honors_attributes=>[:id,:title,:get_date,:description,:_destroy],
+						:research_experiences_attributes=>[:id,:institude,:title,:date_from,:date_to,:type,:etype,:_destroy],
+						:work_experiences_attributes=>[:id,:institude,:title,:date_from,:date_to,:type,:etype,:_destroy]
 						)
 	end
 
