@@ -1,0 +1,50 @@
+<%# country, countries %>
+<div class="admin-countries">
+	<h1> Countries </h1>
+	<% if country.new_record? %>
+		<% url_hash = {:url=>admin_countries_path, :remote=>true} %>
+	<% else %>
+		<% url_hash = {:url=>admin_country_path(country), :method=>:patch, :remote=>true} %>
+	<% end %>
+
+
+	<%= form_for country, url_hash do |f| %>
+
+	<table class="table">
+			<tr>
+				<th> <%= f.label :name, "name" %> </th>
+				<th></th>
+				<th></th>
+			</tr>				
+
+			<tr>
+				<td> <%= f.text_field :name %> </td>
+
+			<% if country.new_record? %>
+				<td>	<%= f.submit 'create', :class=>'btn btn-primary' %> </td>
+			<% else %>
+				<td>	<%= f.submit 'update', :class=>'btn btn-primary' %> </td>
+			<% end %>
+
+			</tr>
+
+			<% countries.each do |c| %>
+			<tr>
+				<td> <%= c.name %> </td>
+				<td> <%= link_to "Edit", edit_admin_country_path(c), :remote=>true, :class=>"btn btn-info" %> 
+				</td>
+				<td> <%= link_to "Delete", admin_country_path(c), :remote=>true, :method=>:delete, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %> 
+				</td>
+			</tr>
+			<% end %>
+
+	</table>
+
+
+	<% end %> <%# form_for %>
+
+
+</div>
+
+
+

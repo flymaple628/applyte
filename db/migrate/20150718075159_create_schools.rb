@@ -7,7 +7,6 @@ class CreateSchools < ActiveRecord::Migration
       t.string :phone
       t.string :email
       t.integer :logo_id, :index=>true
-      t.integer :address_id, :index=>true
       t.string :link_name
       t.string :link_url
 

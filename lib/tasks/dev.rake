@@ -51,12 +51,12 @@ puts "school"
 
 
 			addr = Address.new
-			addr.address1 = school_list[6]
+			addr.address1 = s[6]
 			addr.city_id = ct.id
 			addr.state_id = ct.state_id
 			addr.country_id = 1
+			sc.address= addr
 
-			sc.address_id = addr.id
 			sc.save!
 		end
 
@@ -103,7 +103,7 @@ puts "program for every school"
 				pg.department = p[1]
 				puts "#{p} #{index} #{sc}"
 				(rand(5)+2).times do |t|
-					area = pg.areas.new(:name => "#{p[3]} + #{t}")
+					area = pg.areas.new(:name => "#{p[3]} #{t}")
 
 					p[4].each do |area_category|
 						if rand(2) ==1
