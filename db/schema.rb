@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150719062817) do
+ActiveRecord::Schema.define(version: 20150720064116) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -69,6 +69,53 @@ ActiveRecord::Schema.define(version: 20150719062817) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "experiences", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "serial"
+    t.string   "institude"
+    t.string   "title"
+    t.date     "date_from"
+    t.date     "date_to"
+    t.string   "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "experiences", ["profile_id"], name: "index_experiences_on_profile_id"
+
+  create_table "honors", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "serial"
+    t.string   "title"
+    t.date     "get_date"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "honors", ["profile_id"], name: "index_honors_on_profile_id"
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.date     "birthday"
+    t.string   "major"
+    t.string   "research_area"
+    t.integer  "toefl_read"
+    t.integer  "toefl_listen"
+    t.integer  "toefl_speak"
+    t.integer  "toefl_write"
+    t.integer  "toefl_total"
+    t.integer  "gre_verbal"
+    t.integer  "gre_guantitatiue"
+    t.integer  "gre_awa"
+    t.integer  "gre_total"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
+
   create_table "program_form_keys", force: :cascade do |t|
     t.string   "name"
     t.string   "desc"
@@ -99,6 +146,17 @@ ActiveRecord::Schema.define(version: 20150719062817) do
 
   add_index "programs", ["address_id"], name: "index_programs_on_address_id"
   add_index "programs", ["school_id"], name: "index_programs_on_school_id"
+
+  create_table "publications", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "serial"
+    t.string   "title"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "publications", ["profile_id"], name: "index_publications_on_profile_id"
 
   create_table "schools", force: :cascade do |t|
     t.string   "name"

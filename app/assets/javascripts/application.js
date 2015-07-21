@@ -15,3 +15,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require nested_form_fields
