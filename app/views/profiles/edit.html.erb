@@ -7,7 +7,7 @@
 		</p>
 		<p class="form-group">
 		<%= f.label :birthday,"birthday"%>
-		<%= f.text_field :birthday %>
+		<%= f.text_field :birthday,class:'datetimepicker' %>
 		</p>
 		<p class="form-group">
 		<%= f.label :major,"major"%>
@@ -161,7 +161,7 @@
 <% end %>
 <script>
 
-
+$('.datetimepicker').datetimepicker({ format: 'YYYY-MM-DD' })
 $("a").on('click',function(event){
 	event.preventDefault()
 });

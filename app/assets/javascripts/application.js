@@ -18,3 +18,5 @@
 //= require jquery.remotipart
 //= require_tree .
 //= require nested_form_fields
+//= require moment
+//= require bootstrap-datetimepicker

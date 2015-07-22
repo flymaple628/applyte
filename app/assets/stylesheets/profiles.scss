@@ -6,3 +6,10 @@
 	margin:10px 0px 10px;
 	padding: 10px;
 }
+.datetimepicker {
+  position: relative;
+}
+.datetimepicker .dropdown-menu {
+   left: auto !important;
+   right: 0px;
+ }

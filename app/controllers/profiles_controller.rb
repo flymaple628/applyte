@@ -25,6 +25,7 @@ class ProfilesController < ApplicationController
 	end
 	#PATCH /profolio/
 	def update
+		byebug
 		@profile = current_user.profile.update(profile_params)
 		redirect_to :back
 	end
