@@ -7,11 +7,12 @@
 
 <div class="user-info">
 <% if current_user %>
-	
+
 	<p class="label label-primary">Hi <%= current_user.username %> </p>
 	<%= link_to 'progress', progresses_path, :class=>"btn btn-primary" %>
 	<%= link_to 'sign-out', destroy_user_session_path, :method=>:delete, :class=>"btn btn-info" %>
 	<%= link_to 'admin', admin_page_path, :class=>'btn btn-danger'%>
+	<%= link_to 'profile', profile_path, :class=>'btn btn-primary'%>
 <% else %>
 	<%= link_to 'sign-in', new_user_session_path, :class=>"btn btn-primary"%>
 	<%= link_to 'sign-up', new_user_registration_path, :class=>"btn btn-primary"%>

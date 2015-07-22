@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721015757) do
+ActiveRecord::Schema.define(version: 20150722124148) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -29,6 +29,22 @@ ActiveRecord::Schema.define(version: 20150721015757) do
   add_index "addresses", ["city_id"], name: "index_addresses_on_city_id"
   add_index "addresses", ["country_id"], name: "index_addresses_on_country_id"
   add_index "addresses", ["state_id"], name: "index_addresses_on_state_id"
+
+  create_table "alumns", force: :cascade do |t|
+    t.integer  "program_id"
+    t.integer  "profile_id"
+    t.string   "program_degree"
+    t.string   "program_year"
+    t.string   "admission"
+    t.string   "background"
+    t.string   "recommendation"
+    t.text     "description"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "alumns", ["profile_id"], name: "index_alumns_on_profile_id"
+  add_index "alumns", ["program_id"], name: "index_alumns_on_program_id"
 
   create_table "area_categories", force: :cascade do |t|
     t.string   "name"

@@ -1,5 +1,7 @@
-<%= form_for @profile, :url => profile_path do |f| %>
-	<div class="profile">
+<div class="profile">
+<%= link_to "edit", edit_profile_path() %>
+</div>
+<div class="profile">
 		<p>profile</p>
 		<p class="form-group">
 			name:<%= @profile.name%>
@@ -64,7 +66,7 @@
 	<div class="honor">
 		<div class="honor-item">
 			<p>honor</p>
-			<%= @profile.honors.each do |hf| %>
+			<% @profile.honors.each do |hf| %>
 				<p class="form-group">
 					title:<%= hf.title%>
 				</p>
@@ -82,7 +84,7 @@
 		<div class="research_experience_item">
 			<p>research_experience</p>
 
-			<%= @profile.research_experiences.each do |ef| %>
+			<% @profile.research_experiences.each do |ef| %>
 				<p class="form-group">
 				institude:<%= ef.institude%>
 				</p>
@@ -103,7 +105,7 @@
 	<div class="work_experience">
 		<div class="work_experience_item">
 			<p>work_experience</p>
-			<%= @profile.work_experiences.each do |ef| %>
+			<% @profile.work_experiences.each do |ef| %>
 			<p class="form-group">
 				institude:<%= ef.institude%>
 			</p>
@@ -120,6 +122,27 @@
 		</div>
 		</p>
 	</div>
-
-<% end %>
+	<div class="alumnus">
+		<div class="alumnus_item">
+			<p>alumnus</p>
+			<p class="form-group">
+				program_degree:<%=  @profile.alumn.program_degree%>
+			</p>
+			<p class="form-group">
+				program_year:<%= @profile.alumn.program_year%>
+			</p>
+			<p class="form-group">
+				admission:<%= @profile.alumn.admission%>
+			</p>
+			<p class="form-group">
+				background:<%= @profile.alumn.background%>
+			</p>
+			<p class="form-group">
+				recommendation:<%= @profile.alumn.recommendation%>
+			</p>
+			<p class="form-group">
+				description:<%= @profile.alumn.description%>
+			</p>
+		</div>
+	</div>
 

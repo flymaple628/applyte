@@ -7,6 +7,8 @@ class ProfilesController < ApplicationController
 		@profile.honors
 		@profile.research_experiences
 		@profile.work_experiences
+		@profile.alumn
+
 	end
 
 	def edit
@@ -14,6 +16,7 @@ class ProfilesController < ApplicationController
 		@profile.honors.new if @profile.honors.empty?
 		@profile.research_experiences.new if @profile.research_experiences.empty?
 		@profile.work_experiences.new if @profile.work_experiences.empty?
+		@profile.build_alumn if @profile.alumn.nil?
 	end
 	#POST /profolio/
 	def create
@@ -25,7 +28,6 @@ class ProfilesController < ApplicationController
 	end
 	#PATCH /profolio/
 	def update
-		byebug
 		@profile = current_user.profile.update(profile_params)
 		redirect_to :back
 	end
@@ -66,7 +68,8 @@ class ProfilesController < ApplicationController
 						:publications_attributes => [:id,:title,:url,:_destroy],
 						:honors_attributes=>[:id,:title,:get_date,:description,:_destroy],
 						:research_experiences_attributes=>[:id,:institude,:title,:date_from,:date_to,:type,:etype,:_destroy],
-						:work_experiences_attributes=>[:id,:institude,:title,:date_from,:date_to,:type,:etype,:_destroy]
+						:work_experiences_attributes=>[:id,:institude,:title,:date_from,:date_to,:type,:etype,:_destroy],
+						:alumn_attributes=>[:id,:program_id,:profile_id,:program_degree,:program_year,:admission,:background,:recommendation,:description,:_destro]
 						)
 	end
 
