@@ -52,7 +52,7 @@ private
   end 
 
   def country_params
-    params.require(:country).permit(:name,:state_id)
+    params.require(:country).permit(:name)
   end
 
   def refresh
