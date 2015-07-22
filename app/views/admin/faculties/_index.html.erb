@@ -1,0 +1,118 @@
+<%# faculties, faculty %>
+<div class="admin-faculties">
+	<h1> faculties </h1>
+	
+	<% if faculty.new_record? %>
+		<% url_hash = {:url=>admin_faculties_path, :authenticity_token => true , :remote=>true} %>
+	<% else %>
+		<% url_hash = {:url=>admin_faculty_path(faculty), :method=>:patch, :authenticity_token => true, :remote=>true} %>
+	<% end %>
+
+
+	<div class="unit">
+		<%= form_for faculty, url_hash do |f| %>
+		<%= f.fields_for :address do |addr| %>
+
+			<div class="field">
+				<%= f.label :name, "name", :class=>'title' %> 
+				<%= f.text_field :name, :class=>'value' %>
+			</div>
+
+			<div class="field">
+				<%= f.label :intro, "intro", :class=>'title' %>
+				<%= f.text_area :intro, :class=>'value-area'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :email, "email", :class=>'title' %>
+				<%= f.text_field :email, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :program_id, "program", :class=>'title' %>
+				<%= f.collection_select :program_id, Program.all, :id, :name, :class=>'value' %>
+			</div>
+
+			<div class="field">
+				<% unless faculty.image.exists? %>
+					<%= f.file_field :image %>
+				<% else %>
+					<%= check_box_tag "destroy_image", "1" %> 刪除檔案
+					<%= image_tag faculty.image.url(:thumb)%>
+				<% end %>	
+			</div>
+
+			<div class="field">
+				<% if faculty.new_record? %>
+					<td>	<%= f.submit 'create', :class=>'btn btn-primary' %> </td>
+				<% else %>
+					<td>	<%= f.submit 'update', :class=>'btn btn-primary' %> </td>
+				<% end %>
+			</div>
+
+		<% end %> <%# fields_for %>				
+		<% end %> <%# form_for %>
+	</div>
+
+	<% faculties.each do |fc| %>
+	<div class="unit">
+		<div class="field">
+			<div class="title"> Name: </div> 
+			<div class="value"> <%= fc.name %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> intro: </div> 
+			<div class="value-area"> <%= fc.intro %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> email: </div> 
+			<div class="value"> <%= fc.email %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Program: </div> 
+			<div class="value"> <%= fc.program.try(:name) %> </div>
+		</div>
+
+		<div class="field">
+			<%= image_tag fc.image.url(:thumb) if fc.image.exists? %>
+
+		</div>
+
+
+		<div class="field">
+			<div class="title"> 
+				<%= link_to "Edit", edit_admin_faculty_path(fc), :remote=>true, :class=>"btn btn-info" %> 
+			 </div> 
+			<div class="value"> 
+				<%= link_to "Delete", admin_faculty_path(fc), :remote=>true, :method=>:delete, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %> 
+			 </div>
+		</div>
+	</div>
+	<% end %> <%# each do %>
+
+</div>
+
+<script>
+	$('.field').on('change', '.photo-file', function(e){
+		e.preventDefault();
+
+		var files = e.target.files;
+		var c_target = $(this)
+
+		$.each(files, function(i, file){
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = function(e){
+
+				var imgtmp = '<img width="100px" src="' + e.target.result + '">';
+				c_target.after(imgtmp);
+			}
+		});
+
+		// $(this).after('<img src="' + $(this).val() + '">' );
+	})
+</script>
+

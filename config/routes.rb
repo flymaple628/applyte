@@ -7,8 +7,21 @@ Rails.application.routes.draw do
   resources :programs
   resources :progresses
 
+
   resources :user_programs
-  resource :profile
+
+  namespace :admin do
+    get '/page' => 'pages#index'
+    resources :programs
+    resources :schools
+    resources :addresses
+    resources :cities
+    resources :states
+    resources :countries
+    resources :faculties
+  end
+
+ resource :profile
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

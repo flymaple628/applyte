@@ -6,7 +6,8 @@ namespace :dev do
 		User.destroy_all
 		User.create!({:email => "guy@gmail.com",  :password => "12345678" })
 		user_id=User.first.id
-
+		User.create!({:email => "ac5@gmail.com",  :password => "12345678" })
+		user_id=User.first.id
 		Address.destroy_all
 
 
@@ -57,18 +58,18 @@ namespace :dev do
 
 
 			addr = Address.new
-			addr.address1 = school_list[6]
+			addr.address1 = s[6]
 			addr.city_id = ct.id
 			addr.state_id = ct.state_id
 			addr.country_id = 1
+			sc.address= addr
 
-			sc.address_id = addr.id
 			sc.save!
 		end
 
 
 
-
+		AreaCategory.destroy_all
 		area_categories = ["Science", "Education", "Engineering"]
 
 		area_categories.each_with_index do |ac,index|
@@ -107,9 +108,16 @@ puts "program for every school"
 				pg.degree = degree[rand(1)]
 				pg.level = rand(3)
 				pg.department = p[1]
+				pg.phone = sc.phone
+				pg.email = sc.email
+				pg.build_address
+				pg.address.address1 = sc.address.address1
+				pg.address.city_id = sc.address.city_id
+
 				puts "#{p} #{index} #{sc}"
+
 				(rand(5)+2).times do |t|
-					area = pg.areas.new(:name => "#{p[3]} + #{t}")
+					area = pg.areas.new(:name => "#{p[3]} #{t}")
 
 					p[4].each do |area_category|
 						if rand(2) ==1
@@ -117,9 +125,9 @@ puts "program for every school"
 						end
 					end
 				end
-
 				pg.save
 			end
+
 		end
 
 		#profile
@@ -217,6 +225,5 @@ puts "program for every school"
 			UserProgramForm.create(user_program_forms)
 		end
 	end
-
 end
 

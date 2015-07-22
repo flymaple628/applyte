@@ -7,6 +7,7 @@
     <div class="field">
       <%= f.label :email, :class=>"title" %>
       <%= f.email_field :email, autofocus: true %>
+      <span class="required glyphicon glyphicon-star"></span>    
     </div>
 
     <div class="field">
@@ -17,43 +18,46 @@
         <% end %>          
       <% end %>
       <%= f.password_field :password, autocomplete: "off" %>
+      <span class="required glyphicon glyphicon-star"></span>
     </div>
 
     <div class="field">
       <%= f.label :password_confirmation, :class=>"title"  %>
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      <span class="required glyphicon glyphicon-star"></span>
     </div>
 
   <%# user name %>
     <div class="field">
       <%= f.label :username, :class=>"title"  %>
-      <%= f.password_field :username, :required=>true %>    
+      <%= f.text_field :username, :required=>true %>    
+      <span class="required glyphicon glyphicon-star"></span>
     </div>
 
     <div class="field">
       <%= f.label :first_name, :class=>"title"  %>
-      <%= f.password_field :first_name %>    
+      <%= f.text_field :first_name %>    
     </div>
 
     <div class="field">
       <%= f.label :middle_name, :class=>"title"  %>
-      <%= f.password_field :middle_name %>    
+      <%= f.text_field :middle_name %>    
     </div>
 
     <div class="field">
       <%= f.label :last_name, :class=>"title"  %>
-      <%= f.password_field :last_name %>    
+      <%= f.text_field :last_name %>    
     </div>
 
     <div class="field">
       <%= f.label :prefered_name, :class=>"title"  %>
-      <%= f.password_field :prefered_name %>    
+      <%= f.text_field :prefered_name %>    
     </div>
 
     <div class="field">
       <%= f.label :sex, "sex:", :class=>"title"  %>
       <%= f.label :male %>
-      <%= f.radio_button :sex,'male'%>
+      <%= f.radio_button :sex,'male', :checked => true%>
       <%= f.label :female %>
       <%= f.radio_button :sex,'female'%>    
     </div>

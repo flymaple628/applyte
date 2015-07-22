@@ -1,6 +1,6 @@
 class WelcomesController < ApplicationController
-
+	layout 'welcome'	
 	def index
-		@welcome = true
+
 	end
 end

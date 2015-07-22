@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 
+gem "paperclip", "~> 4.3"
 gem 'nested_form_fields'
 
 gem 'capistrano-rails', :group => :development
@@ -35,6 +36,7 @@ gem 'capistrano-rbenv', github: "capistrano/rbenv"
 gem 'pg'
 
 gem 'bootstrap-sass', '~> 3.3.5'
+gem 'remotipart', '~> 1.2'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

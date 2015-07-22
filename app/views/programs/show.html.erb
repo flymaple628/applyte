@@ -2,11 +2,19 @@
 <div class="single-program">	
 	<div class="info">
 		<div class="logo">
+			<%= image_tag(@pic_list[0]) %>
 		</div>
 
 		<div class="school-box">
+			<h3> <%= @program.school.name %></h3>
+			<p>	<%= @program.desc %></p>
 			
 		</div>
+
+		<div class="fav">
+			<%= link_to "", program_path(@program),:class=>"glyphicon glyphicon-plus" %>
+		</div>
+
 	</div>
 
 	<div class="nav">
@@ -21,19 +29,37 @@
 
 	</div>
 	<div class="content">
-
-
+		
 		<div class="gallery">
+			<div class="main-pic">
+				<%= image_tag(@pic_list[1]) %>
+			</div>
+			<div class="sub-pic-box">
+				<div class="sub-pic-row">
+					<div class="sub-pic">
+						<%= image_tag(@pic_list[2]) %>
+					</div>
+					<div class="sub-pic">
+						<%= image_tag(@pic_list[3]) %>
+					</div>
+				</div>
 
-
+				<div class="sub-pic-row">
+					<div class="sub-pic">
+						<%= image_tag(@pic_list[4]) %>
+					</div>
+					<div class="sub-pic">
+						<%= image_tag(@pic_list[5]) %>
+					</div>
+				</div>
+				
+			</div>
 		</div>
 
-		<div class="map">
-
-		</div>
+		<%= render :partial=>"programs/program_map", :locals=>{:address=>@address} %>
 
 		<div class="faculty">
-
+			
 		</div>
 
 		<div class="PAS"> <%# previous admitted student %>

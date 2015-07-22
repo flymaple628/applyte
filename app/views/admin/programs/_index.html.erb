@@ -1,0 +1,198 @@
+<%# programs, program %>
+<div class="admin-programs">
+	<h1> Programs </h1>
+	
+	<% if program.new_record? %>
+		<% url_hash = {:url=>admin_programs_path, :authenticity_token => true , :remote=>true} %>
+	<% else %>
+		<% url_hash = {:url=>admin_program_path(program), :method=>:patch, :authenticity_token => true, :remote=>true} %>
+	<% end %>
+
+
+	<div class="unit">
+		<%= form_for program, url_hash do |f| %>
+		<%= f.fields_for :address do |addr| %>
+
+			<div class="field">
+				<%= f.label :name, "name", :class=>'title' %> 
+				<%= f.text_field :name, :class=>'value' %>
+			</div>
+
+			<div class="field">
+				<%= f.label :degree, "degree", :class=>'title' %>
+				<%= f.text_field :degree, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :level, "level", :class=>'title' %>
+				<%= f.text_field :level, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :desc, "desc", :class=>'title' %>
+				<%= f.text_area :desc, :class=>'value-area'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :department, "department", :class=>'title' %>
+				<%= f.text_field :department, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :fax, "fax", :class=>'title' %>
+				<%= f.text_field :fax, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :phone, "phone", :class=>'title' %>
+				<%= f.text_field :phone, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :email, "email", :class=>'title' %>
+				<%= f.text_field :email, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :school_id, "school", :class=>'title' %>
+				<%= f.collection_select :school_id, School.all, :id, :name %>
+			</div>	
+
+			<div class="field">
+				<%= addr.label :address1, "address1", :class=>'title' %>
+				<%= addr.text_field :address1, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= addr.label :city_id, "City", :class=>'title' %>
+				<%= addr.collection_select(:city_id, City.all, :id, :name, :class=>'value') %>			
+			</div>
+
+			<div class="field">	
+				<%= f.nested_fields_for :photos do |p| %>
+						<%= p.file_field :photo, :class=>'photo-file' %>
+						<%= p.remove_nested_fields_link %>			
+				<% end %>
+
+				<%= f.add_nested_fields_link :photos, "Add photo", :class=>"btn btn-primary" %>
+			</div>
+
+			<div class="field">
+				<% if program.new_record? %>
+					<td>	<%= f.submit 'create', :class=>'btn btn-primary' %> </td>
+				<% else %>
+					<td>	<%= f.submit 'update', :class=>'btn btn-primary' %> </td>
+				<% end %>
+			</div>
+
+		<% end %> <%# fields_for %>				
+		<% end %> <%# form_for %>
+	</div>
+
+	<% programs.each do |pg| %>
+	<div class="unit">
+		<div class="field">
+			<div class="title"> Name: </div> 
+			<div class="value"> <%= pg.name %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Degree: </div> 
+			<div class="value"> <%= pg.degree %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Level: </div> 
+			<div class="value"> <%= pg.level %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Description: </div> 
+			<div class="value-area"> <%= pg.desc %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Department: </div> 
+			<div class="value"> <%= pg.department %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Fax: </div> 
+			<div class="value"> <%= pg.fax %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Phone: </div> 
+			<div class="value"> <%= pg.phone %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> email: </div> 
+			<div class="value"> <%= pg.email %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> school: </div> 
+			<div class="value"> <%= pg.school.try(:name) %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Address1: </div> 
+			<div class="value"> <%= pg.address.try(:address1) %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> City: </div> 
+			<div class="value"> <%= pg.address.city.name if pg.address.city %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> State: </div> 
+			<div class="value"> <%= pg.address.state.name if pg.address.state %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Country: </div> 
+			<div class="value"> <%= pg.address.country.name if pg.address.country %> </div>
+		</div>
+
+		<div class="field">
+			<% pg.photos.each do |po| %>
+				<%= image_tag po.photo.url(:thumb) %>
+			<% end %>
+		</div>
+
+		<div class="field">
+			<div class="title"> 
+				<%= link_to "Edit", edit_admin_program_path(pg), :remote=>true, :class=>"btn btn-info" %> 
+			 </div> 
+			<div class="value"> 
+				<%= link_to "Delete", admin_program_path(pg), :remote=>true, :method=>:delete, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %> 
+			 </div>
+		</div>
+	</div>
+	<% end %> <%# each do %>
+
+</div>
+
+<script>
+	$('.field').on('change', '.photo-file', function(e){
+		e.preventDefault();
+
+		var files = e.target.files;
+		var c_target = $(this)
+
+		$.each(files, function(i, file){
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = function(e){
+
+				var imgtmp = '<img width="100px" src="' + e.target.result + '">';
+				c_target.after(imgtmp);
+			}
+		});
+
+		// $(this).after('<img src="' + $(this).val() + '">' );
+	})
+</script>
+

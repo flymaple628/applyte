@@ -1,0 +1,81 @@
+
+.admin-box{
+	.nav{
+		float: left;
+		height:1000px;
+		width:10%;
+		background-color: #7ee;
+		text-align: center;
+
+		ul{
+			text-align: center;
+
+			li{
+				margin-top:20px;
+				list-style: none;
+			
+				a{		
+					width:80%;
+				}	
+			}
+		}
+	}
+
+	.content{
+		float: left;
+		height: 1000px;
+		width:80%;
+		padding:20px 5%;
+
+		input[type="text"]{
+			width:100px;
+		}
+
+	}
+}
+
+.admin-box .content{
+	::after{
+		display:block;
+		clear:both;
+		content:"";
+	};
+
+	.unit{
+		float:left;
+		width: 280px;
+		margin: 10px;
+		border: 1px solid #aaa;
+
+		.field{
+			padding:10px;
+			::after{
+				display:block;
+				clear:both;
+				content:"";
+			};
+			
+			.title{
+				float: left;
+				width:90px;
+			}
+			
+			.value{
+				float:left;
+				width:150px;
+			}
+			
+			.value-area{
+				float:left;
+				width:150px;
+				max-height: 200px;
+				overflow: scroll;
+			}
+
+
+		}
+	}
+}
+
+
+

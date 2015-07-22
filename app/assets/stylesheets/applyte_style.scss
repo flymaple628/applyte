@@ -1,5 +1,5 @@
 
-h1, p, div{
+h1, h2, h3, p, div{
 	margin: 0px;
 }
 
@@ -96,7 +96,7 @@ h1, p, div{
 		border:1px solid #afa;
 		margin:5px;
 	
-		.unit {
+		.program_cell {
 			height: $program-unit-height;
 
 			>* {
@@ -137,15 +137,63 @@ h1, p, div{
 			}
 
 		}
+
+		.no-result {
+			width:50%;
+			text-align: center;
+			margin: 20px auto;
+		}
+
 	}
 }
 
 
 
 .single-program{
+	::after{
+		content:"";
+		display: block;
+		clear:both;
+	};
+
 	.info {
 		height: 100px;
+		padding: 10px;
 		background-color: #ffa;
+
+		>*{
+			float: left;
+		}
+
+		.logo{
+			width:10%;
+			padding:10px 10px 10px;
+			max-height: 40px;
+
+			img{
+				width:calc(90% - 10px);
+			}
+		}
+
+		.school-box{
+			width:80%;
+
+			h3{
+				padding: 10px
+			}
+
+			p{			
+				padding:10px;
+			}
+		}
+
+		.fav{
+			width:10%;
+			padding:20px;
+			font-size: 2em;
+			text-align: center;
+		}
+
 	}
 
 	$single-program-content-height:1000px;
@@ -161,7 +209,7 @@ h1, p, div{
 			list-style: none;
 
 			a {
-				width: 150px;
+				width: 80%;
 				word-break:break-all;
 			}
 		}
@@ -174,6 +222,47 @@ h1, p, div{
 		width:80%;
 		height: $single-program-content-height;
 		float: left;
+		padding:20px 2%;
+
+		.gallery{
+			width:95%;
+			padding-bottom: 20px;
+			border-bottom: 2px solid #999;
+			>*{
+				float: left;
+			}
+
+			.main-pic{
+				width:42%;
+				margin: 10px 2%;
+			}
+	
+			.sub-pic-box{
+				width:42%;
+				margin: 10px 2%;
+
+			 .sub-pic-row{
+					width:100%;	
+						
+					.sub-pic{
+						float: left;
+						width:40%;
+						margin: 3%;
+  				}
+				}
+			}
+
+			img{
+				width:100%;
+				max-height: 300px;
+			}
+		}
+
+	}
+
+	.map{
+		margin:30px auto;
+		text-align: center;
 	}
 }
 
@@ -185,7 +274,11 @@ h1, p, div{
 	.field{
 		margin-top: 10px;
 		.title{
-			width:300px;
+			width:200px;
+		}
+		.required{
+			font-size: 0.5em;
+			color: red;
 		}
 	}
 }

@@ -1,29 +1,23 @@
 
 
+<div class="logo">
+	<%= link_to "(A) APPLYTE", root_path, :class=>"label label-primary"%>
 
-<% if welcome %>
-<div class="header-box" id="wlecome-header-box">
-<% else %>
-<div class="header-box">
-<% end %>
-
-	<div class="logo">
-		<%= link_to "(A) APPLYTE", root_path, :class=>"label label-primary"%>
-
-	</div>
-
-	<div class="user-info">
-	<% if current_user %>
-		
-		<p class="label label-primary">Hi <%= current_user.username %> </p>
-		<%= link_to 'progress', progresses_path, :class=>"btn btn-primary" %>
-		<%= link_to 'sign-out', destroy_user_session_path, :method=>:delete, :class=>"btn btn-info" %>
-	<% else %>
-		<%= link_to 'sign-in', new_user_session_path, :class=>"btn btn-primary"%>
-		<%= link_to 'sign-up', new_user_registration_path, :class=>"btn btn-primary"%>
-	<% end %>
-	</div>
 </div>
+
+<div class="user-info">
+<% if current_user %>
+	
+	<p class="label label-primary">Hi <%= current_user.username %> </p>
+	<%= link_to 'progress', progresses_path, :class=>"btn btn-primary" %>
+	<%= link_to 'sign-out', destroy_user_session_path, :method=>:delete, :class=>"btn btn-info" %>
+	<%= link_to 'admin', admin_page_path, :class=>'btn btn-danger'%>
+<% else %>
+	<%= link_to 'sign-in', new_user_session_path, :class=>"btn btn-primary"%>
+	<%= link_to 'sign-up', new_user_registration_path, :class=>"btn btn-primary"%>
+<% end %>
+</div>
+
 
 
 

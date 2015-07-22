@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720064116) do
+ActiveRecord::Schema.define(version: 20150721015757) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -83,6 +83,32 @@ ActiveRecord::Schema.define(version: 20150720064116) do
 
   add_index "experiences", ["profile_id"], name: "index_experiences_on_profile_id"
 
+  create_table "faculties", force: :cascade do |t|
+    t.integer  "program_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "intro"
+    t.string   "link_url"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "faculties", ["program_id"], name: "index_faculties_on_program_id"
+
+  create_table "faculty_areas", force: :cascade do |t|
+    t.integer  "faculty_id"
+    t.integer  "area_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "faculty_areas", ["area_id"], name: "index_faculty_areas_on_area_id"
+  add_index "faculty_areas", ["faculty_id"], name: "index_faculty_areas_on_faculty_id"
+
   create_table "honors", force: :cascade do |t|
     t.integer  "profile_id"
     t.integer  "serial"
@@ -94,6 +120,17 @@ ActiveRecord::Schema.define(version: 20150720064116) do
   end
 
   add_index "honors", ["profile_id"], name: "index_honors_on_profile_id"
+
+  create_table "photos", force: :cascade do |t|
+    t.string   "photo_link_type"
+    t.integer  "photo_link_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id"

@@ -9,7 +9,6 @@ class CreatePrograms < ActiveRecord::Migration
       t.string :fax
       t.string :phone
       t.string :email
-      t.integer :address_id, :index=>true
       t.integer :school_id, :index=>true
 
       t.timestamps null: false

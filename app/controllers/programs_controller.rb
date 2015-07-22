@@ -1,14 +1,26 @@
 class ProgramsController < ApplicationController
+	before_action :show_search_bar
 
 	def index
-		@programs = Program.all
+		if params[:keyword]
+			@programs = Program.where(["name like ?","%#{params[:keyword]}%"])
+		else
+			@programs = Program.all
+		end
 
 	end
 
 	def show
 		@program = Program.find(params[:id])
-		
+		@pic_list = @program.photo_list
+		@address = @program.school.address.address1
+
 	end
 
+private
+
+	def show_search_bar
+		@search_show = true
+	end
 
 end
