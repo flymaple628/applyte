@@ -205,6 +205,17 @@ puts "program for every school"
 			}
 			Honor.create(honor)
 		end
+		puts "user_program"
+		UserProgramForm.destroy_all
+
+		3.times do |i|
+			puts "User_program: title#{i}"
+			user_program_forms={
+				user_id: user_id,
+    		program_id: Program.order("RANDOM()").first().id
+			}
+			UserProgramForm.create(user_program_forms)
+		end
 	end
 
 end
