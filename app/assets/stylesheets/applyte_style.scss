@@ -196,7 +196,7 @@ h1, h2, h3, p, div{
 
 	}
 
-	$single-program-content-height:1000px;
+	$single-program-content-height:3000px;
 
 	.nav{
 		background-color: #aff;
@@ -226,6 +226,7 @@ h1, h2, h3, p, div{
 
 		.gallery{
 			width:95%;
+			margin: 0 auto;
 			padding-bottom: 20px;
 			border-bottom: 2px solid #999;
 			>*{
@@ -258,12 +259,31 @@ h1, h2, h3, p, div{
 			}
 		}
 
+		.map{
+			margin:30px auto;
+			padding: 40px 0;
+			text-align: center;
+			border-bottom: 2px solid #999;
+		}
+		
+		.faculty{
+			padding: 20px 2%;
+			::after{
+				display:block;
+				content:"";
+				clear:both;
+			};
+
+			.unit{
+				display: inline-block;
+				width: 33%;
+				padding: 30px 5%;
+				text-align: center;	
+			}
+		}
 	}
 
-	.map{
-		margin:30px auto;
-		text-align: center;
-	}
+
 }
 
 

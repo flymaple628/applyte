@@ -35,7 +35,7 @@
 
 			<div class="field">
 				<% unless faculty.image.exists? %>
-					<%= f.file_field :image %>
+					<%= f.file_field :image, :class=>'photo-file upload' %>
 				<% else %>
 					<%= check_box_tag "destroy_image", "1" %> 刪除檔案
 					<%= image_tag faculty.image.url(:thumb)%>

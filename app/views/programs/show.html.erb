@@ -59,7 +59,15 @@
 		<%= render :partial=>"programs/program_map", :locals=>{:address=>@address} %>
 
 		<div class="faculty">
-			
+			<% @faculties.each do |fc| %>
+				<div class="unit">
+					<%= image_tag fc.image.url(:thumb) %>
+					<p> <%= fc.name %> </p>
+					<p> <%= fc.email %> </p>
+					<p> <%= fc.intro %> </p>
+					<p> <%= fc.link_url %> </p>
+				</div>
+			<% end %>
 		</div>
 
 		<div class="PAS"> <%# previous admitted student %>

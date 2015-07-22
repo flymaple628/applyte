@@ -14,7 +14,7 @@ class ProgramsController < ApplicationController
 		@program = Program.find(params[:id])
 		@pic_list = @program.photo_list
 		@address = @program.school.address.address1
-
+		@faculties = Faculty.all
 	end
 
 private
