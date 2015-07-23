@@ -1,8 +1,20 @@
 class UserProgramsController < ApplicationController
-	before_action :authenticate_user!	
+	before_action :authenticate_user!,:except=>[:index,:fevarite]
 
 	def index
-		@user_program_forms = current_user.user_program_forms
+		if current_user.nil?
+			@user_program_forms=Program.find(session[:myprogram])
+		else
+			if session[:myprogram]
+				session[:myprogram].each do |my|
+					if current_user.user_program_forms.find_by_program_id(my).nil?
+						current_user.user_program_forms.create({:program_id=>my})
+					end
+				end
+				session[:myprogram]=[]
+				@user_program_forms = current_user.user_program_forms
+			end
+		end
 	end
 
 	def show
@@ -20,10 +32,21 @@ class UserProgramsController < ApplicationController
 		redirect_to progress_path(@user_program_form)
 	end
 
+	def fevarite
+		if current_user && current_user.user_program_forms.find_by_program_id(params[:id]).nil?
+			current_user.user_program_forms.create({:program_id=>params[:id]})
+		else
+			(session[:myprogram] ||= []) << params[:id]
+		end
+		respond_to do |format|
+		  format.html	{ redirect_to myprograms_path}
+		  format.js
+		end
+	end
 
 
 private
-	
+
 	def user_program_form_params
 		params.require(:user_program_form).permit(:user_program_form_values_attributes=>[:id,:program_form_key_id,:check,:note])
 	end

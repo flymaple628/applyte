@@ -3,21 +3,40 @@ class ProfilesController < ApplicationController
 	before_action :get_profiles
 	#GET /profolio/
 	def show
-		@profile.publications
-		@profile.honors
-		@profile.research_experiences
-		@profile.work_experiences
-		@profile.alumn
-
+		# @profile.publications
+		# @profile.honors
+		# @profile.research_experiences
+		# @profile.work_experiences
 	end
 
 	def edit
-		@profile.publications.new if @profile.publications.empty?
-		@profile.honors.new if @profile.honors.empty?
-		@profile.research_experiences.new if @profile.research_experiences.empty?
-		@profile.work_experiences.new if @profile.work_experiences.empty?
-		@profile.build_alumn if @profile.alumn.nil?
+		# @profile.publications.new if @profile.publications.empty?
+		# @profile.honors.new if @profile.honors.empty?
+		# @profile.research_experiences.new if @profile.research_experiences.empty?
+		# @profile.work_experiences.new if @profile.work_experiences.empty?
+		# @profile.build_alumn if @profile.alumn.nil?
 	end
+
+	def alumnus
+		# @profile.publications
+		# @profile.honors
+		# @profile.research_experiences
+		# @profile.work_experiences
+		# @profile.alumn
+		@alumnus=true
+		render "show"
+	end
+
+	def edit_alumnus
+		# @profile.publications
+		# @profile.honors
+		# @profile.research_experiences
+		# @profile.work_experiences
+		# @profile.alumn
+		@alumnus=true
+		render "edit"
+	end
+
 	#POST /profolio/
 	def create
 		@profile = Profile.new(profile_params)

@@ -1,5 +1,9 @@
 <div class="profile">
-<%= link_to "edit", edit_profile_path() %>
+<% if @alumnus %>
+	<%= link_to "edit", edit_alumnus_profile_path() %>
+<% else%>
+	<%= link_to "edit", edit_profile_path() %>
+<% end%>
 </div>
 <div class="profile">
 		<p>profile</p>
@@ -122,6 +126,7 @@
 		</div>
 		</p>
 	</div>
+	<% if @alumnus %>
 	<div class="alumnus">
 		<div class="alumnus_item">
 			<p>alumnus</p>
@@ -144,5 +149,6 @@
 				description:<%= @profile.alumn.description%>
 			</p>
 		</div>
+		<% end %>
 	</div>
 
