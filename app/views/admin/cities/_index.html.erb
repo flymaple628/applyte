@@ -20,7 +20,8 @@
 
 			<tr>
 				<td> <%= f.text_field :name %> </td>
-				<td> <%= f.collection_select(:state_id, State.all, :id, :name) %>
+				<td> 
+						<%= f.select :state_id, State.all.map{ |s| ["#{s.name}-#{s.country.try(:name)}", s.id]} %>
 				<td> </td>
 
 			<% if city.new_record? %>
@@ -45,12 +46,6 @@
 			<% end %>
 
 	</table>
-
-
 	<% end %> <%# form_for %>
-
-
 </div>
-
-
 

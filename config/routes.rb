@@ -9,13 +9,19 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/page' => 'pages#index'
-    resources :programs
+    resources :programs do
+      resources :program_form_keys, :except=>[:index]
+      collection do
+        resources :program_form_keys, :only=>[:index]
+      end
+    end
     resources :schools
     resources :addresses
     resources :cities
     resources :states
     resources :countries
     resources :faculties
+
   end
 
   resource :profile
