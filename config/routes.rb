@@ -7,10 +7,8 @@ Rails.application.routes.draw do
   resources :programs do
     resources :program_forms
   end
+
   resources :progresses
-
-
-  resources :user_programs
 
   namespace :admin do
     get '/page' => 'pages#index'
