@@ -1,56 +1,22 @@
 
 namespace :dev do
-	# task :profolio => :environment do
-	# 	Profolio.destroy_all
-	# 	Experience.destroy_all
-	# 	Publication.destroy_all
-	# 	Honor.destroy_all
-	# 	User.destroy_all
 
-	# 	profolio_list={
-	# 	user_id: 1,
-	# 	name: 'name',
- #    birthday: '',
- #    major: 'major',
- #    research_area: 'research',
- #    toefl_read: 5,
- #    toefl_listen: 5,
- #    toefl_speak: 5,
- #    toefl_write: 5,
- #    toefl_total: 5,
- #    gre_verbal: 5,
- #    gre_guantitatiue: 'guantita' ,
- #    gre_awa: 5,
- #    gre_total: 5
-	# 	}
-	# 	Profolio.create(profolio_list)
-	# 	experience_list=[
-	# 		[1,1,'title1','','description1'],
-	# 		[1,2,'title2','','description1'],
-	# 		[1,3,'title3','','description1'],
-	# 		[1,4,'title4','','description1'],
-	# 		[1,5,'title5','','description1'],
-	# 	]
-	# 	experience_list.each do |ex|
-	# 		experience={
-	# 		user_id:ex[0],
- #    	serial: 1
- #    	title: 'fdsfdsfdsfds'
- #    	get_date: ''
- #    	description: 'dfdsfsdfwewerew'
-	# 	}
-	# 	end
-	# 	Experience.create
-	# end
 	task :data => :environment do
+		puts "Create User"
 		User.destroy_all
+		User.create!({:email => "guy@gmail.com",  :password => "12345678" })
+		user_id=User.first.id
 		User.create!({:email => "ac5@gmail.com",  :password => "12345678" })
+		user_id=User.first.id
 		Address.destroy_all
+
 
 		puts "country state city"
 		Country.destroy_all
 		State.destroy_all
 		City.destroy_all
+
+
 
 		Country.create(:id=>1, :name=>"USA")
 
@@ -161,9 +127,103 @@ puts "program for every school"
 				end
 				pg.save
 			end
-			
+
 		end
 
+		#profile
+
+		puts "profile"
+		Profile.destroy_all
+		Experience.destroy_all
+		Publication.destroy_all
+		Honor.destroy_all
+
+		profile_list={
+		user_id: user_id,
+		name: 'name',
+    birthday: '',
+    major: 'major',
+    research_area: 'research',
+    toefl_read: 5,
+    toefl_listen: 5,
+    toefl_speak: 5,
+    toefl_write: 5,
+    toefl_total: 5,
+    gre_verbal: 5,
+    gre_guantitatiue: 'guantita' ,
+    gre_awa: 5,
+    gre_total: 5
+		}
+		Profile.create(profile_list)
+		profile_id=User.first.profile.id
+		experience_list=[
+			[1,1,'institude','title','',''],
+			[1,3,'institude','title','',''],
+			[1,5,'institude','title','',''],
+			[1,7,'institude','title','',''],
+			[1,9,'institude','title','','']
+		]
+		experience_list.each do |ex|
+			puts "reaearch_experience: #{ex[3]}"
+			experience={
+			profile_id:profile_id,
+    	serial: ex[1],
+    	institude:ex[2],
+    	title: ex[3],
+    	date_from: Date.current,
+    	date_to: Date.current,
+    	etype: 'Research'
+			}
+			Experience.create(experience)
+			experience={
+			profile_id:profile_id,
+    	serial: ex[1]+1,
+    	institude:ex[2],
+    	title: ex[3],
+    	date_from: Date.current,
+    	date_to: Date.current,
+    	etype: 'Work'
+			}
+			Experience.create(experience)
+		end
+
+		puts "Publication"
+		10.times do |i|
+
+			puts "Publication: title#{i}"
+			publication={
+				profile_id: profile_id,
+    		serial: i,
+    		title: "title#{i}",
+    		url: "url#{i}"
+			}
+			Publication.create(publication)
+		end
+
+		puts "Honor"
+		10.times do |i|
+
+			puts "Honor: title#{i}"
+			honor={
+				profile_id: profile_id,
+    		serial: i,
+    		title: "title#{i}",
+    		get_date: Date.current,
+    		description: "description#{i}"
+			}
+			Honor.create(honor)
+		end
+		puts "user_program"
+		UserProgramForm.destroy_all
+
+		3.times do |i|
+			puts "User_program: title#{i}"
+			user_program_forms={
+				user_id: user_id,
+    		program_id: Program.order("RANDOM()").first().id
+			}
+			UserProgramForm.create(user_program_forms)
+		end
 	end
 end
 
