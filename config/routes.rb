@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :program_forms
   end
 
-  resources :progresses
+  resources :myprograms, :controller=>:user_programs
 
   namespace :admin do
     get '/page' => 'pages#index'
