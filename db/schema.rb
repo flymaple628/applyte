@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723011151) do
+ActiveRecord::Schema.define(version: 20150723021631) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -183,6 +183,12 @@ ActiveRecord::Schema.define(version: 20150723011151) do
   add_index "program_alumnships", ["program_id"], name: "index_program_alumnships_on_program_id"
   add_index "program_alumnships", ["user_id"], name: "index_program_alumnships_on_user_id"
 
+  create_table "program_form_key_categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "program_form_keys", force: :cascade do |t|
     t.string   "name"
     t.string   "desc"
@@ -190,11 +196,12 @@ ActiveRecord::Schema.define(version: 20150723011151) do
     t.integer  "program_id"
     t.string   "key_type"
     t.string   "list_value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "category"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "program_form_key_category_id"
   end
 
+  add_index "program_form_keys", ["program_form_key_category_id"], name: "index_program_form_keys_on_program_form_key_category_id"
   add_index "program_form_keys", ["program_id"], name: "index_program_form_keys_on_program_id"
 
   create_table "programs", force: :cascade do |t|

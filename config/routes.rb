@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   root 'welcomes#index'
 
-  resources :programs
+  resources :programs do
+    resources :program_forms
+  end
   resources :progresses
 
 

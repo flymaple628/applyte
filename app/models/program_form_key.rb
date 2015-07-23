@@ -1,5 +1,6 @@
 class ProgramFormKey < ActiveRecord::Base
-	belongs_to :programs
+	belongs_to :program
+	belongs_to :program_form_key_category
 	has_many :user_program_form_values
 
 	def value(program)

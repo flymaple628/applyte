@@ -21,6 +21,9 @@ class Program < ActiveRecord::Base
 	has_many :program_form_keys
   accepts_nested_attributes_for :program_form_keys, :allow_destroy => true, :reject_if => :all_blank
 
+  has_many :program_form_key_categories, :through=>:program_form_keys, :source=>:program_form_key_category
+
+
 	def check_address
 		self.build_address unless self.address
 	end
