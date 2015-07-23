@@ -2,7 +2,6 @@ class Program < ActiveRecord::Base
 	after_initialize :check_address
 
 	has_many :user_program_forms
-	has_many :program_form_keys
 	belongs_to :school
 	has_many :areas
 	has_many :faculties
@@ -19,6 +18,8 @@ class Program < ActiveRecord::Base
 	has_many :photos, :as=>:photo_link, :dependent => :destroy
 	accepts_nested_attributes_for :photos, allow_destroy: true
 
+	has_many :program_form_keys
+  accepts_nested_attributes_for :program_form_keys, :allow_destroy => true, :reject_if => :all_blank
 
 	def check_address
 		self.build_address unless self.address

@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150722133546) do
+=======
+ActiveRecord::Schema.define(version: 20150723011151) do
+>>>>>>> c486402a6b406850e66acc046582872bd3df8df1
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -192,6 +196,7 @@ ActiveRecord::Schema.define(version: 20150722133546) do
     t.string   "list_value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "category"
   end
 
   add_index "program_form_keys", ["program_id"], name: "index_program_form_keys_on_program_id"

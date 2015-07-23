@@ -1,0 +1,72 @@
+<%# programs, program %>
+<div class="admin-program-form-keys">
+	<h1> Program Form </h1>
+	
+	<% programs.each do |pg| %>
+		<h4> <%= pg.name %> </h4>
+		<p> <%= pg.school.try(:name) %> </p>
+
+		<% if @edit_program_key && @edit_program_key.program_id == pg.id %>		
+			<% url_hash = {:url=> admin_program_program_form_key_path(pg, @edit_program_key), :method=>:patch, :remote=>true} %>
+			<% program_key = @edit_program_key %>
+		<% else %>
+			<% url_hash = {:url=> admin_program_program_form_keys_path(pg), :remote=>true} %>
+			<% program_key = ProgramFormKey.new %>
+			<% program_key.program_id = pg.id %>
+		<% end %>
+
+		<%= form_for program_key, url_hash do |f| %>
+		
+		<table class="table table-bordered">
+			<tr>
+				<th> name </th>
+				<th> desc </th>
+				<th> key_type </th>
+				<th> list_value </th>
+				<th></th>
+				<th></th>
+			</tr>
+
+			<% pg.program_form_keys.each do |pk| %>
+				<% if pk != program_key %>
+					<tr>
+						<td> <%= pk.name %> </td>
+						<td> <%= pk.desc %> </td>
+						<td> <%= pk.key_type %> </td>
+						<td> <%= pk.list_value %> </td>
+						<td> <%= link_to "edit", edit_admin_program_program_form_key_path(pg,pk), :remote=>true, :class=>"btn btn-info" %>
+						</td>
+						<td> <%= link_to "delete", admin_program_program_form_key_path(pg,pk), :method=>:delete, :remote=>true, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %>
+						</td>
+					</tr>
+				<% else %>
+					<tr>
+						<td> <%= f.text_field :name %> </td>
+						<td> <%= f.text_field :desc %> </td>
+						<td> <%= f.text_field :key_type %> </td>
+						<td> <%= f.text_field :list_value %> </td>
+						<td> <%= f.submit "Update", :class=>"btn btn-primary" %> </td>
+						<td> <%= link_to "Cancel", admin_program_form_keys_path, :remote=>true, :class=>"btn btn-info" %> </td>
+					</tr>
+				<% end %>
+			<% end %>
+			
+			<% if program_key.new_record? %>
+				<tr>
+					<td> <%= f.text_field :name %> </td>
+					<td> <%= f.text_field :desc %> </td>
+					<td> <%= f.text_field :key_type %> </td>
+					<td> <%= f.text_field :list_value %> </td>
+					<td> <%= f.submit "Add", :class=>"btn btn-primary" %></td>
+					<td></td>
+				</tr>
+			<% end %>
+		</table>
+		<% end %> <%# form for %>
+
+	<% end %>
+
+
+
+</div>
+

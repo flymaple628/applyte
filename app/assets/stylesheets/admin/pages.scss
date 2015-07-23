@@ -42,7 +42,8 @@
 	};
 
 	.unit{
-		float:left;
+		display: inline-block;
+		vertical-align: top;
 		width: 280px;
 		margin: 10px;
 		border: 1px solid #aaa;
@@ -71,8 +72,6 @@
 				max-height: 200px;
 				overflow: scroll;
 			}
-
-
 		}
 	}
 }
