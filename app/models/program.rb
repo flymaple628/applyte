@@ -7,6 +7,12 @@ class Program < ActiveRecord::Base
 	has_many :areas
 	has_many :faculties
 
+	has_many :program_alumnships
+	has_many :profiles, :through=>:program_alumnships
+	has_many :alumns, :through=>:program_alumnships
+	has_many :users, :through=>:program_alumnships
+
+
 	has_one :address, :as=> :addressable, :dependent => :destroy
 	accepts_nested_attributes_for :address, allow_destroy: true
 

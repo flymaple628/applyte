@@ -1,5 +1,5 @@
 
-<div class="single-program">	
+<div class="single-program">
 	<div class="info">
 		<div class="logo">
 			<%= image_tag(@pic_list[0]) %>
@@ -8,7 +8,7 @@
 		<div class="school-box">
 			<h3> <%= @program.school.name %></h3>
 			<p>	<%= @program.desc %></p>
-			
+
 		</div>
 
 		<div class="fav">
@@ -21,7 +21,7 @@
 		<ul>
 			<li> <%= link_to "Campus","#", :class=>"btn btn-info" %> </li>
 			<li> <%= link_to "Weather","#", :class=>"btn btn-info" %> </li>
-			<li> <%= link_to "Location","#", :class=>"btn btn-info"  %> </li>		
+			<li> <%= link_to "Location","#", :class=>"btn btn-info"  %> </li>
 			<li> <%= link_to "Faculty Info","#", :class=>"btn btn-info"  %> </li>
 			<li> <%= link_to "Document requirement","#", :class=>"btn btn-info"  %> </li>
 			<li> <%= link_to "admitted student","#", :class=>"btn btn-info"  %> </li>
@@ -29,7 +29,7 @@
 
 	</div>
 	<div class="content">
-		
+
 		<div class="gallery">
 			<div class="main-pic">
 				<%= image_tag(@pic_list[1]) %>
@@ -52,18 +52,18 @@
 						<%= image_tag(@pic_list[5]) %>
 					</div>
 				</div>
-				
+
 			</div>
 		</div>
 
 		<%= render :partial=>"programs/program_map", :locals=>{:address=>@address} %>
 
 		<div class="faculty">
-			
+
 		</div>
 
 		<div class="PAS"> <%# previous admitted student %>
-		
+		<%= render :partial=>"programs/alumn", :locals=>{:profiles=>@profiles} %>
 		</div>
 
 

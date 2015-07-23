@@ -15,6 +15,12 @@ class ProgramsController < ApplicationController
 		@pic_list = @program.photo_list
 		@address = @program.school.address.address1
 
+		@users=@program.users
+		if @user
+			@profiles=@users.profile
+		else
+			@profiles={}
+		end
 	end
 
 private
