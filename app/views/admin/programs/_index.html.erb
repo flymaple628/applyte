@@ -14,6 +14,11 @@
 		<%= f.fields_for :address do |addr| %>
 
 			<div class="field">
+				<%= f.label :school_id, "school", :class=>'title' %>
+				<%= f.collection_select :school_id, School.all, :id, :name %>
+			</div>	
+
+			<div class="field">
 				<%= f.label :name, "name", :class=>'title' %> 
 				<%= f.text_field :name, :class=>'value' %>
 			</div>
@@ -54,11 +59,6 @@
 			</div>
 
 			<div class="field">
-				<%= f.label :school_id, "school", :class=>'title' %>
-				<%= f.collection_select :school_id, School.all, :id, :name %>
-			</div>	
-
-			<div class="field">
 				<%= addr.label :address1, "address1", :class=>'title' %>
 				<%= addr.text_field :address1, :class=>'value'  %>			
 			</div>
@@ -97,6 +97,11 @@
 		</div>
 
 		<div class="field">
+			<div class="title"> school: </div> 
+			<div class="value"> <%= pg.school.try(:name) %> </div>
+		</div>
+
+		<div class="field">
 			<div class="title"> Degree: </div> 
 			<div class="value"> <%= pg.degree %> </div>
 		</div>
@@ -129,11 +134,6 @@
 		<div class="field">
 			<div class="title"> email: </div> 
 			<div class="value"> <%= pg.email %> </div>
-		</div>
-
-		<div class="field">
-			<div class="title"> school: </div> 
-			<div class="value"> <%= pg.school.try(:name) %> </div>
 		</div>
 
 		<div class="field">

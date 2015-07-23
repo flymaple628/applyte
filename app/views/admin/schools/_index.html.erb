@@ -45,7 +45,7 @@
 
 			<div class="field">
 				<%= addr.label :city_id, "City", :class=>'title' %>
-				<%= addr.collection_select(:city_id, City.all, :id, :name, :class=>'value') %>			
+				<%= addr.select :city_id, City.all.map{ |c| ["#{c.name} - #{c.state.try(:name)}", c.id]}, :class=>'value' %>			
 			</div>
 
 			<div class="field">	
