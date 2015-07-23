@@ -14,7 +14,7 @@ class ProgramsController < ApplicationController
 		@program = Program.find(params[:id])
 		@pic_list = @program.photo_list
 		@address = @program.school.address.address1
-<<<<<<< HEAD
+
 
 		@users=@program.users
 		if @user
@@ -22,9 +22,8 @@ class ProgramsController < ApplicationController
 		else
 			@profiles={}
 		end
-=======
+
 		@faculties = Faculty.all
->>>>>>> c486402a6b406850e66acc046582872bd3df8df1
 	end
 
 private
