@@ -248,6 +248,17 @@ puts "program for every school"
 		}
 		ProgramAlumnship.create(program_alumns)
 
+		puts "Program_areaships"
+
+		ProgramAreaship.destroy_all
+
+		program_areas={
+			program_id: Program.first.id,
+    	area_id: Area.first.id
+		}
+
+		ProgramAreaship.create(program_areas)
+
 	end
 end
 

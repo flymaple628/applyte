@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :faculties
 
     resources :areas
+    resources :program_areaships
 
   end
 
