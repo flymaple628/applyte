@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     resources :countries
     resources :faculties
 
+    resources :areas
+
   end
 
  resource :profile
