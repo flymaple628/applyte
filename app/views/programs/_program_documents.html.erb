@@ -1,0 +1,7 @@
+<%# program %>
+
+	<% program.program_form_key_categories.group(:program_form_key_category_id).each do |pkc| %>
+		<h4><%= link_to pkc.name, program_program_forms_path(program), :class=>"btn btn-primary" %> </h4>
+	<% end %>
+
+

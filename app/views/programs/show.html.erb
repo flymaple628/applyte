@@ -71,6 +71,10 @@
 			<% end %>
 		</div>
 
+		<div class="Documents" %>
+		<%= render :partial=>"program_documents", :locals=>{:program => @program} %>
+		</div>
+
 		<div class="PAS"> <%# previous admitted student %>
 		<%= render :partial=>"programs/alumn", :locals=>{:alumns=>@alumns} %>
 		</div>
