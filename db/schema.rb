@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723011151) do
+ActiveRecord::Schema.define(version: 20150723023454) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -171,17 +171,13 @@ ActiveRecord::Schema.define(version: 20150723011151) do
 
   create_table "program_alumnships", force: :cascade do |t|
     t.integer  "program_id"
-    t.integer  "user_id"
-    t.integer  "profile_id"
     t.integer  "alumn_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "program_alumnships", ["alumn_id"], name: "index_program_alumnships_on_alumn_id"
-  add_index "program_alumnships", ["profile_id"], name: "index_program_alumnships_on_profile_id"
   add_index "program_alumnships", ["program_id"], name: "index_program_alumnships_on_program_id"
-  add_index "program_alumnships", ["user_id"], name: "index_program_alumnships_on_user_id"
 
   create_table "program_form_keys", force: :cascade do |t|
     t.string   "name"

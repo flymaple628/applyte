@@ -224,6 +224,30 @@ puts "program for every school"
 			}
 			UserProgramForm.create(user_program_forms)
 		end
+
+		puts "Alumn"
+		Alumn.destroy_all
+		alumns={
+			program_id: Program.first.id,
+	    profile_id: User.first.profile.id,
+	    program_degree: "program_degree",
+	    program_year: 2015,
+	    admission: "admission",
+	    background: "background",
+	    recommendation: "recommendation",
+	    description: "description",
+		}
+		Alumn.create(alumns)
+
+		puts "ProgramAlumnship"
+
+		ProgramAlumnship.destroy_all
+		program_alumns={
+			program_id: Program.first.id,
+    	alumn_id: Alumn.first.id
+		}
+		ProgramAlumnship.create(program_alumns)
+
 	end
 end
 
