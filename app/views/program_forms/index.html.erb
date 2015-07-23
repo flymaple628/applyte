@@ -1,0 +1,45 @@
+
+<div class="single-program">
+	<div class="info">
+		<div class="logo">
+			<%= image_tag(@pic_list[0]) %>
+		</div>
+
+		<div class="school-box">
+			<h3> <%= @program.school.name %></h3>
+			<p>	<%= @program.desc %></p>
+
+		</div>
+
+		<div class="fav">
+			<%= link_to "", program_path(@program),:class=>"glyphicon glyphicon-plus" %>
+		</div>
+
+	</div>
+
+	<div class="nav">
+		<ul>
+			<% @program_form_key_categories.each do |pkc| %>
+				<li> <%= link_to pkc.name, "#", :class=>"btn btn-primary" %> </li>
+			<% end %>
+		</ul>
+
+	</div>
+	<div class="content">
+		<% @program_form_key_categories.each do |pkc| %>
+			<div class="category">
+				<h4> <%= pkc.name %> </h4>
+				<table class="table table-bordered"> 
+				<% @program_keys.where(:program_form_key_category_id => pkc.id).each do |pk| %>
+					<tr>
+						<td> <%= pk.name %> </td>
+						<td> <%= pk.desc %> </td>
+					</tr>
+				<% end %>
+				</table>
+
+			</div>
+		<% end %>
+	</div>
+</div>
+

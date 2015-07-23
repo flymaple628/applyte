@@ -304,8 +304,43 @@ h1, h2, h3, p, div{
 }
 
 
+.my_programs-single-box{
+	
 
 
+
+}
+
+.my_programs-single-box{
+	.field{
+		margin-top:20px;
+	
+		ul{
+			li{
+				margin: 10px;
+				list-style: none;
+				>*{
+					display:inline-block;
+				}
+
+				.title{
+					width:200px;
+				}
+
+				.check{
+					width:40px;
+				}
+
+				.note{
+					width:100px;
+				}
+			}
+		}
+
+	}
+
+
+}
 
 
 

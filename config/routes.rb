@@ -4,11 +4,11 @@ Rails.application.routes.draw do
 
   root 'welcomes#index'
 
-  resources :programs
-  resources :progresses
+  resources :programs do
+    resources :program_forms
+  end
 
-
-  resources :user_programs
+  resources :myprograms, :controller=>:user_programs
 
   namespace :admin do
     get '/page' => 'pages#index'

@@ -5,34 +5,9 @@ namespace :dev do
 		puts "Create User"
 		User.destroy_all
 		User.create!({:email => "guy@gmail.com",  :password => "12345678" })
-		user_id=User.first.id
 		User.create!({:email => "ac5@gmail.com",  :password => "12345678" })
 		user_id=User.first.id
 		Address.destroy_all
-
-
-		puts "country state city"
-		Country.destroy_all
-		State.destroy_all
-		City.destroy_all
-
-
-
-		Country.create(:id=>1, :name=>"USA")
-
-		state_list = ['Florida', 'Georgia', 'Texas', 'New York', 'California', 'Indina', 'Massachusetts','Illinois']
-		state_list.each_with_index do |st, index|
-			State.create(:id=>index, :name=>st, :country_id=>1)
-		end
-
-		city_list = [[1, 'Palo Alto',4],
-								 [2,'West Lafayette',5],
-								 [3, 'Cambridge',6],
-								 [4, 'Chicago',7]]
-
-		city_list.each_with_index do |ct, index|
-			City.create(:id=>ct[0], :name=>ct[1], :state_id=>ct[2])
-		end
 
 		puts "school"
 		School.destroy_all
@@ -218,12 +193,51 @@ puts "program for every school"
 
 		3.times do |i|
 			puts "User_program: title#{i}"
-			user_program_forms={
-				user_id: user_id,
-    		program_id: Program.order("RANDOM()").first().id
-			}
-			UserProgramForm.create(user_program_forms)
+			User.all.each do |u|
+				user_program_forms={
+					user_id: u.id,
+	    		program_id: Program.order("RANDOM()").first().id
+				}
+				UserProgramForm.create(user_program_forms)
+			end
 		end
+
+		puts "program form key"
+		ProgramFormKey.destroy_all
+		program_keys = [["first name",1,"string"],
+										["middle name",1,"string"],
+										["last name",1,"string"],
+										["preferred name",1,"string"],
+										["Are you Hispanic or Latino?",2,"boolean"],
+										["United States Military or Veteran Status",3,"string"],
+										["address1",4,"string"],
+										["city",4,"string"],
+										["phone",4,"string"],
+										["program",5,"string"],
+										["Educational History",6,"text"],
+										["Test Information",6,"text"],
+										["Application Information",6,"text"],
+										["Financial Aid",6,"text"],
+										["Employment History & Languages",6,"text"],
+										["Supplemental Information",6,"text"],
+										["Register Your References",6,"text"],
+										["Document Uploads, Confirmation & Submission",6,"text"],
+										["GRE",7,"integer"],
+										["TOEFL",7,"integer"],
+										["Statement of Purpose",8,"text"],
+										["Letters of Recommendation",8,"text"],
+										["Transcripts (Academic Records)",8,"text"]]
+
+			ProgramFormKey.destroy_all
+      Program.all.each_with_index do |pg,index|
+      	program_keys.each_with_index do |pgk,i|
+	      	pg.program_form_keys.create(
+	      				:name=>pgk[0],
+	      				:program_form_key_category_id=>pgk[1],
+	      				:key_type=>pgk[2])
+
+      	end
+      end
 	end
 end
 

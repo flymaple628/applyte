@@ -1,0 +1,39 @@
+<div class="progress-single-box"%>
+	<h2> <%=@user_program_form.program.name %> </h2>
+
+	<% current_cat = "" %>
+	<%= form_for @user_program_form, :url=>progress_path(@user_program_form), :method=>:patch do |fu| %> 
+		<%= fu.fields_for :user_program_form_values do |fuv| %>
+
+			<% cat_name = fuv.object.program_form_key.program_form_key_category.name %>
+
+			<% if current_cat != cat_name %>
+				<%= raw("</ul>") if current_cat != "" %>
+				<div class="field">
+				<h3> <%= cat_name %> </h3>
+				<ul>
+				<% current_cat = cat_name %>
+			<% end %>
+
+				<li> 				
+					<span class="label label-default"> 
+						<%= fuv.object.program_form_key.name %>	
+						<%= fuv.hidden_field :program_form_key_id %>
+					</span>
+					<span>
+						<%= fuv.check_box :check %>
+						<%= fuv.text_field :note %>
+					</span>
+				</li>
+
+		<% end %>
+				</ul>
+				</div> <%# field %>
+
+		<%= fu.submit 'submit', :class=>"btn btn-primary" %>
+		<br>
+	<% end %>
+
+
+</div>
+
