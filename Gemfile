@@ -50,11 +50,11 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'awesome_rails_console'
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-	gem 'faker'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
