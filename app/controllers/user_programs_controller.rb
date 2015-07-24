@@ -1,6 +1,6 @@
 class UserProgramsController < ApplicationController
-	before_action :authenticate_user!,:except=>[:index,:fevarite]
-
+	before_action :authenticate_user!,:except=>[:index,:fevorite]
+	before_action :set_session,:only=>[:index,:fevorite]
 	def index
 		if current_user.nil?
 			@user_program_forms=Program.find(session[:myprogram])
@@ -32,11 +32,11 @@ class UserProgramsController < ApplicationController
 		redirect_to progress_path(@user_program_form)
 	end
 
-	def fevarite
+	def fevorite
 		if current_user && current_user.user_program_forms.find_by_program_id(params[:id]).nil?
 			current_user.user_program_forms.create({:program_id=>params[:id]})
 		else
-			(session[:myprogram] ||= []) << params[:id]
+			session[:myprogram] << params[:id]
 		end
 		respond_to do |format|
 		  format.html	{ redirect_to myprograms_path}
@@ -47,6 +47,9 @@ class UserProgramsController < ApplicationController
 
 private
 
+	def set_session
+		session[:myprogram] ||= []
+	end
 	def user_program_form_params
 		params.require(:user_program_form).permit(:user_program_form_values_attributes=>[:id,:program_form_key_id,:check,:note])
 	end
