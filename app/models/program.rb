@@ -1,5 +1,4 @@
 class Program < ActiveRecord::Base
-	after_initialize :check_address
 
 	has_many :user_program_forms
 	belongs_to :school
@@ -26,11 +25,6 @@ class Program < ActiveRecord::Base
 	has_many :areas, :through=>:program_areaships
 
   has_many :program_form_key_categories, :through=>:program_form_keys, :source=>:program_form_key_category
-
-
-	def check_address
-		self.build_address unless self.address
-	end
 
 	def photo_list
 		list = []

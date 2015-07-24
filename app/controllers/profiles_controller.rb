@@ -40,7 +40,7 @@ class ProfilesController < ApplicationController
 	#POST /profolio/
 	def create
 		@profile = Profile.new(profile_params)
-  	@profile.user_id=current_user.id
+  	@profile.user = current_user
   	@profile.save
 
   	redirect_to :back
