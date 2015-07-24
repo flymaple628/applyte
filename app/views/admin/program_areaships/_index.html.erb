@@ -1,0 +1,50 @@
+<%# program_areaship, program_areaships %>
+<div class="admin-program_areaships">
+	<h1> program_areaship </h1>
+	<% if program_areaship.new_record? %>
+		<% url_hash = {:url=>admin_program_areaships_path, :remote=>true} %>
+	<% else %>
+		<% url_hash = {:url=>admin_program_areaship_path(program_areaship), :method=>:patch, :remote=>true} %>
+	<% end %>
+
+
+	<%= form_for program_areaship, url_hash do |f| %>
+
+	<table class="table">
+			<tr>
+				<th>
+
+				</th>
+				<th></th>
+			</tr>
+
+			<tr>
+				<td>
+					<%= f.collection_select(:program_id, Program.all, :id, :name) %>
+
+					<%= f.collection_select(:area_id, Area.all, :id, :name) %>
+				</td>
+
+			<% if program_areaship.new_record? %>
+				<td>	<%= f.submit 'create', :class=>'btn btn-primary' %> </td>
+			<% else %>
+				<td>	<%= f.submit 'update', :class=>'btn btn-primary' %> </td>
+			<% end %>
+
+			</tr>
+
+			<% program_areaships.each do |pa| %>
+			<tr>
+				<td> <%=pa.area.name%>:<%=pa.program.name%> </td>
+
+				<td> <%= link_to "Edit", edit_admin_program_areaship_path(pa), :remote=>true, :class=>"btn btn-info" %>
+				</td>
+				<td> <%= link_to "Delete", admin_program_areaship_path(pa), :remote=>true, :method=>:delete, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %>
+				</td>
+			</tr>
+			<% end %>
+
+	</table>
+	<% end %> <%# form_for %>
+</div>
+

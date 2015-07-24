@@ -1,56 +1,56 @@
-<% profiles.each do |profile|%>
+<% alumns.each do |alumn|%>
 <div class="profile">
 		<p>profile</p>
 		<p class="form-group">
-			name:<%= @profile.name%>
+			name:<%= alumn.profile.name%>
 		</p>
 		<p class="form-group">
-			birthday:<%= @profile.birthday%>
+			birthday:<%= alumn.profile.birthday%>
 		</p>
 		<p class="form-group">
-			major:<%= @profile.major%>
+			major:<%= alumn.profile.major%>
 		</p>
 		<p class="form-group">
-			research_area:<%= @profile.research_area%>
+			research_area:<%= alumn.profile.research_area%>
 		</p>
 	</div>
 	<div class="toefl_score">
 		<p>toefl_score</p>
 		<p class="form-group">
-		toefl_read:<%= @profile.toefl_read%>
+		toefl_read:<%= alumn.profile.toefl_read%>
 		</p>
 		<p class="form-group">
-		toefl_listen:<%= @profile.toefl_listen%>
+		toefl_listen:<%= alumn.profile.toefl_listen%>
 		</p>
 		<p class="form-group">
-		toefl_speak:<%= @profile.toefl_speak%>
+		toefl_speak:<%= alumn.profile.toefl_speak%>
 		</p>
 		<p class="form-group">
-		toefl_write:<%= @profile.toefl_write%>
+		toefl_write:<%= alumn.profile.toefl_write%>
 		</p>
 		<p class="form-group">
-		toefl_total:<%= @profile.toefl_total%>
+		toefl_total:<%= alumn.profile.toefl_total%>
 		</p>
 	</div>
 	<div class="gre_score">
 		<p>gre_score</p>
 		<p class="form-group">
-			gre_verbal:<%= @profile.gre_verbal%>
+			gre_verbal:<%= alumn.profile.gre_verbal%>
 		</p>
 		<p class="form-group">
-			gre_guantitatiue:<%= @profile.gre_guantitatiue%>
+			gre_guantitatiue:<%= alumn.profile.gre_guantitatiue%>
 		</p>
 		<p class="form-group">
-			gre_awa:<%= @profile.gre_awa%>
+			gre_awa:<%= alumn.profile.gre_awa%>
 		</p>
 		<p class="form-group">
-			gre_total:<%= @profile.gre_total%>
+			gre_total:<%= alumn.profile.gre_total%>
 		</p>
 	</div>
 	<div class="publication">
 		<div class="publication_item">
 			<p>publication</p>
-			<%= @profile.publications.each do |pf| %>
+			<% alumn.profile.publications.each do |pf| %>
 				<p class="form-group">
 					title:<%= pf.title%>
 				</p>
@@ -64,7 +64,7 @@
 	<div class="honor">
 		<div class="honor-item">
 			<p>honor</p>
-			<% @profile.honors.each do |hf| %>
+			<% alumn.profile.honors.each do |hf| %>
 				<p class="form-group">
 					title:<%= hf.title%>
 				</p>
@@ -82,7 +82,7 @@
 		<div class="research_experience_item">
 			<p>research_experience</p>
 
-			<% @profile.research_experiences.each do |ef| %>
+			<% alumn.profile.research_experiences.each do |ef| %>
 				<p class="form-group">
 				institude:<%= ef.institude%>
 				</p>
@@ -103,7 +103,7 @@
 	<div class="work_experience">
 		<div class="work_experience_item">
 			<p>work_experience</p>
-			<% @profile.work_experiences.each do |ef| %>
+			<% alumn.profile.work_experiences.each do |ef| %>
 			<p class="form-group">
 				institude:<%= ef.institude%>
 			</p>
@@ -124,22 +124,22 @@
 		<div class="alumnus_item">
 			<p>alumnus</p>
 			<p class="form-group">
-				program_degree:<%=  @profile.alumn.program_degree%>
+				program_degree:<%=  alumn.program_degree%>
 			</p>
 			<p class="form-group">
-				program_year:<%= @profile.alumn.program_year%>
+				program_year:<%= alumn.program_year%>
 			</p>
 			<p class="form-group">
-				admission:<%= @profile.alumn.admission%>
+				admission:<%= alumn.admission%>
 			</p>
 			<p class="form-group">
-				background:<%= @profile.alumn.background%>
+				background:<%= alumn.background%>
 			</p>
 			<p class="form-group">
-				recommendation:<%= @profile.alumn.recommendation%>
+				recommendation:<%= alumn.recommendation%>
 			</p>
 			<p class="form-group">
-				description:<%= @profile.alumn.description%>
+				description:<%= alumn.description%>
 			</p>
 		</div>
 	</div>

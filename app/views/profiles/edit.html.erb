@@ -154,6 +154,7 @@
 		</div>
 		<p><%= f.add_nested_fields_link :work_experiences %></p>
 	</div>
+	<% if @alumnus %>
 	<div class="alumnus">
 		<div class="alumnus_item">
 			<p>alumnus</p>
@@ -185,6 +186,7 @@
 			<% end %>
 		</div>
 	</div>
+	<% end %>
 	<div class="button">
 		<%= f.submit :submit %>
 	</div>

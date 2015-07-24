@@ -8,7 +8,11 @@ Rails.application.routes.draw do
     resources :program_forms
   end
 
-  resources :myprograms, :controller=>:user_programs
+  resources :myprograms, :controller=>:user_programs do
+    member do
+    get :fevarite
+    end
+  end
 
   namespace :admin do
     get '/page' => 'pages#index'
@@ -25,9 +29,17 @@ Rails.application.routes.draw do
     resources :countries
     resources :faculties
 
+    resources :areas
+    resources :program_areaships
+
   end
 
- resource :profile
+  resource :profile do
+    member do
+      get :alumnus
+      get :edit_alumnus
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

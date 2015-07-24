@@ -171,17 +171,23 @@ ActiveRecord::Schema.define(version: 20150723094846) do
 
   create_table "program_alumnships", force: :cascade do |t|
     t.integer  "program_id"
-    t.integer  "user_id"
-    t.integer  "profile_id"
     t.integer  "alumn_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "program_alumnships", ["alumn_id"], name: "index_program_alumnships_on_alumn_id"
-  add_index "program_alumnships", ["profile_id"], name: "index_program_alumnships_on_profile_id"
   add_index "program_alumnships", ["program_id"], name: "index_program_alumnships_on_program_id"
-  add_index "program_alumnships", ["user_id"], name: "index_program_alumnships_on_user_id"
+
+  create_table "program_areaships", force: :cascade do |t|
+    t.integer  "area_id"
+    t.integer  "program_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "program_areaships", ["area_id"], name: "index_program_areaships_on_area_id"
+  add_index "program_areaships", ["program_id"], name: "index_program_areaships_on_program_id"
 
   create_table "program_form_key_categories", force: :cascade do |t|
     t.string   "name"

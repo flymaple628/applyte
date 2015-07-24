@@ -16,12 +16,7 @@ class ProgramsController < ApplicationController
 		@address = @program.school.address.address1
 
 
-		@users=@program.users
-		if @user
-			@profiles=@users.profile
-		else
-			@profiles={}
-		end
+		@alumns=@program.alumns
 
 		@faculties = Faculty.all
 	end

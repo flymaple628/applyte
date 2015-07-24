@@ -202,6 +202,42 @@ puts "program for every school"
 			end
 		end
 
+
+		puts "Alumn"
+		Alumn.destroy_all
+		alumns={
+			program_id: Program.first.id,
+	    profile_id: User.first.profile.id,
+	    program_degree: "program_degree",
+	    program_year: 2015,
+	    admission: "admission",
+	    background: "background",
+	    recommendation: "recommendation",
+	    description: "description",
+		}
+		Alumn.create(alumns)
+
+		puts "ProgramAlumnship"
+
+		ProgramAlumnship.destroy_all
+		program_alumns={
+			program_id: Program.first.id,
+    	alumn_id: Alumn.first.id
+		}
+		ProgramAlumnship.create(program_alumns)
+
+		puts "Program_areaships"
+
+		ProgramAreaship.destroy_all
+
+		program_areas={
+			program_id: Program.first.id,
+    	area_id: Area.first.id
+		}
+
+		ProgramAreaship.create(program_areas)
+
+
 		puts "program form key"
 		ProgramFormKey.destroy_all
 		program_keys = [["first name",1,"string"],
