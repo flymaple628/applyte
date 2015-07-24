@@ -6,51 +6,53 @@
 <% end%>
 </div>
 <div class="profile">
-		<p>profile</p>
+		<p><span class="label label-primary">profile</span></p>
 		<p class="form-group">
-			name:<%= @profile.name%>
+			<span class="label label-primary">name:</span><%= @profile.name%>
 		</p>
 		<p class="form-group">
-			birthday:<%= @profile.birthday%>
+			<span class="label label-primary">birthday:</span><%= @profile.birthday%>
 		</p>
 		<p class="form-group">
-			major:<%= @profile.major%>
+			<span class="label label-primary">major:</span><%= @profile.major%>
 		</p>
 		<p class="form-group">
-			research_area:<%= @profile.research_area%>
+			<span class="label label-primary">research_area:</span><%= @profile.research_area%>
 		</p>
 	</div>
 	<div class="toefl_score">
-		<p>toefl_score</p>
-		<p class="form-group">
-		toefl_read:<%= @profile.toefl_read%>
+		<p>
+			<span class="label label-primary">toefl_score</span>
 		</p>
 		<p class="form-group">
-		toefl_listen:<%= @profile.toefl_listen%>
+			<span class="label label-primary">toefl_read:</span><%= @profile.toefl_read%>
 		</p>
 		<p class="form-group">
-		toefl_speak:<%= @profile.toefl_speak%>
+			<span class="label label-primary">toefl_listen:</span><%= @profile.toefl_listen%>
 		</p>
 		<p class="form-group">
-		toefl_write:<%= @profile.toefl_write%>
+			<span class="label label-primary">toefl_speak:</span><%= @profile.toefl_speak%>
 		</p>
 		<p class="form-group">
-		toefl_total:<%= @profile.toefl_total%>
+			<span class="label label-primary">toefl_write:</span><%= @profile.toefl_write%>
+		</p>
+		<p class="form-group">
+			<span class="label label-primary">toefl_total:</span><%= @profile.toefl_total%>
 		</p>
 	</div>
 	<div class="gre_score">
 		<p>gre_score</p>
 		<p class="form-group">
-			gre_verbal:<%= @profile.gre_verbal%>
+			<span class="label label-primary">gre_verbal:</span><%= @profile.gre_verbal%>
 		</p>
 		<p class="form-group">
-			gre_guantitatiue:<%= @profile.gre_guantitatiue%>
+			<span class="label label-primary">gre_guantitatiue:</span><%= @profile.gre_guantitatiue%>
 		</p>
 		<p class="form-group">
-			gre_awa:<%= @profile.gre_awa%>
+			<span class="label label-primary">gre_awa:</span><%= @profile.gre_awa%>
 		</p>
 		<p class="form-group">
-			gre_total:<%= @profile.gre_total%>
+			<span class="label label-primary">gre_total:</span><%= @profile.gre_total%>
 		</p>
 	</div>
 	<div class="publication">
@@ -58,10 +60,10 @@
 			<p>publication</p>
 			<% @profile.publications.each do |pf| %>
 				<p class="form-group">
-					title:<%= pf.title%>
+					<span class="label label-primary">title:</span><%= pf.title%>
 				</p>
 				<p class="form-group">
-				url:<%= pf.url%>
+					<span class="label label-primary">url:</span><%= pf.url%>
 				</p>
 			<% end %>
 		</div>
@@ -72,13 +74,13 @@
 			<p>honor</p>
 			<% @profile.honors.each do |hf| %>
 				<p class="form-group">
-					title:<%= hf.title%>
+					<span class="label label-primary">title:</span><%= hf.title%>
 				</p>
 				<p class="form-group">
-				get_date:<%= hf.get_date%>
+					<span class="label label-primary">get_date:</span><%= hf.get_date%>
 				</p>
 				<p class="form-group">
-				description:<%=hf.description%>
+					<span class="label label-primary">description:</span><%=hf.description%>
 				</p>
 			<% end %>
 		</div>
@@ -90,16 +92,16 @@
 
 			<% @profile.research_experiences.each do |ef| %>
 				<p class="form-group">
-				institude:<%= ef.institude%>
+					<span class="label label-primary">institude:</span><%= ef.institude%>
 				</p>
 				<p class="form-group">
-				title:<%= ef.title%>
+					<span class="label label-primary">title:</span><%= ef.title%>
 				</p>
 				<p class="form-group">
-				date_from:<%= ef.date_from%>
+					<span class="label label-primary">date_from:</span><%= ef.date_from%>
 				</p>
 				<p class="form-group">
-				date_to:<%= ef.date_to%>
+					<span class="label label-primary">date_to:</span><%= ef.date_to%>
 				</p>
 			<% end %>
 
@@ -111,16 +113,16 @@
 			<p>work_experience</p>
 			<% @profile.work_experiences.each do |ef| %>
 			<p class="form-group">
-				institude:<%= ef.institude%>
+				<span class="label label-primary">institude:</span><%= ef.institude%>
 			</p>
 			<p class="form-group">
-				title:<%= ef.title%>
+				<span class="label label-primary">title:</span><%= ef.title%>
 			</p>
 			<p class="form-group">
-				date_from:<%= ef.date_from%>
+				<span class="label label-primary">date_from:</span><%= ef.date_from%>
 			</p>
 			<p class="form-group">
-				date_to:<%= ef.date_to%>
+				<span class="label label-primary">date_to:</span><%= ef.date_to%>
 			</p>
 			<% end %>
 		</div>
@@ -131,22 +133,22 @@
 		<div class="alumnus_item">
 			<p>alumnus</p>
 			<p class="form-group">
-				program_degree:<%=  @profile.alumn.program_degree%>
+				<span class="label label-primary">program_degree:</span><%=  @profile.alumn.program_degree%>
 			</p>
 			<p class="form-group">
-				program_year:<%= @profile.alumn.program_year%>
+				<span class="label label-primary">program_year:</span><%= @profile.alumn.program_year%>
 			</p>
 			<p class="form-group">
-				admission:<%= @profile.alumn.admission%>
+				<span class="label label-primary">admission:</span><%= @profile.alumn.admission%>
 			</p>
 			<p class="form-group">
-				background:<%= @profile.alumn.background%>
+				<span class="label label-primary">background:</span><%= @profile.alumn.background%>
 			</p>
 			<p class="form-group">
-				recommendation:<%= @profile.alumn.recommendation%>
+				<span class="label label-primary">recommendation:</span><%= @profile.alumn.recommendation%>
 			</p>
 			<p class="form-group">
-				description:<%= @profile.alumn.description%>
+				<span class="label label-primary">description:</span><%= @profile.alumn.description%>
 			</p>
 		</div>
 		<% end %>
