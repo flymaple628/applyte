@@ -8,17 +8,18 @@ class ProgramsController < ApplicationController
 			@programs = Program.all
 		end
 
+		@programs = @programs.includes(:address)
 	end
 
 	def show
-		@program = Program.find(params[:id])
+		@program = Program.includes(:photos).find(params[:id])
 		@pic_list = @program.photo_list
 		@address = @program.school.address.address1
 
 
 		@alumns=@program.alumns
 
-		@faculties = Faculty.all
+		@faculties = Faculty.all # FIXME
 	end
 
 private

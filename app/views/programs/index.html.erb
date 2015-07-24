@@ -3,9 +3,8 @@
 	<h1 class="title"> Computer Science </h1>
 
 	<div class="list-box">
-		<% @programs.each do |program| %>
-			<%= render :partial=>"/programs/program_row", :locals=>{:program=>program} %>
-		<% end %> <%# @programs.each %>
+
+		<%= render :partial=>"/programs/program_row", :collection => @programs, :as => :program %>
 
 		<% if @programs %>
 			<h2 class="no-result">Sorry no result </h2>
