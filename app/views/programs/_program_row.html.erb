@@ -2,7 +2,7 @@
 
 <div class="program_cell">
 	<div class="rank">
-		1
+		<span class="label label-danger"><%= program_counter+1 %></span>
 	</div>
 
 	<%= link_to program_path(program),:class=>"content" do %>
@@ -10,10 +10,10 @@
 		<div class="school-box">
 
 			<div class="name">
-				pudue school
+				<span class="label label-primary"> <%= program.school.try(:name) %> </span>
 			</div>
 			<div class="logo">
-				logo
+				<span class="label label-info"> <%= program.name %> </span>
 			</div>
 		</div>
 
