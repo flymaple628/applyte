@@ -29,7 +29,7 @@ class UserProgramsController < ApplicationController
 		@user_program_form = current_user.user_program_forms.find(params[:id])
 		@user_program_form.update(user_program_form_params)
 
-		redirect_to progress_path(@user_program_form)
+		redirect_to myprograms_path
 	end
 
 	def fevorite

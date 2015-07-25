@@ -50,12 +50,12 @@ h1, h2, h3, p, div{
 	$program-unit-height:120px;	
 	
 	.title{
-		border:1px solid #bbb;
+
 		margin:5px;
 	}
 	
 	.list-box{
-		border:1px solid #afa;
+
 		margin:5px;
 	
 		.program_cell {
@@ -67,7 +67,6 @@ h1, h2, h3, p, div{
 
 			.rank {
 				width:5%;
-				border:1px solid #aaa;
 				height: $program-unit-height;
 				text-align: center;
 			}
@@ -79,11 +78,9 @@ h1, h2, h3, p, div{
 				.school-box{
 					height: $program-unit-height * 0.4 - 5px;
 					.name {
-						border:1px solid #aaa;
 					}
 
 					.logo {
-						border:1px solid #aaa;
 					}
 				}
 
@@ -304,6 +301,36 @@ h1, h2, h3, p, div{
 
 }
 
+
+.my_programs-index-box{
+	
+	.field {
+		margin: 20px;
+		width: 600px;
+
+		a>*{
+			display: inline-block;
+			font-size: 20px;
+			height: 40px;
+		}
+		
+		.school{
+			width: 25%;
+		}
+
+		.program{
+			width: 60%;
+		}
+
+		.progresses{
+			width:10%;
+		}
+
+
+	}
+
+
+}
 
 
 

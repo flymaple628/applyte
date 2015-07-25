@@ -6,7 +6,7 @@
 
 		<%= render :partial=>"/programs/program_row", :collection => @programs, :as => :program %>
 
-		<% if @programs %>
+		<% if @programs.length ==0  %>
 			<h2 class="no-result">Sorry no result </h2>
 		<% end %>
 </div>

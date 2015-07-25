@@ -1,12 +1,18 @@
-<div class="my_programs-single-box">
+<div class="my_programs-index-box">
 	<h1> My Progress </h1>
 	<% @user_program_forms.each do |pf| %>
+		<p class="field">
+
 		<% if current_user%>
-		<p>
-		<%= link_to pf.program.name, myprogram_path(pf), :class=>"btn btn-primary" %>
-		</p>
+		<%= link_to myprogram_path(pf) do%> 
+				<span class="school label label-danger"> <%=pf.program.school.try(:name) %> </span>
+				<span class="program label label-primary"><%= pf.program.name %> </span>
+				<span class="progresses label label-warning"><%= "(? %)" %></span>
+		  <% end %>
 		<%else %>
-		<p><%= pf.name%></p>
+			<%= pf.name%>
 		<% end %>
+
+		</p>
 	<% end %>
 </div>
