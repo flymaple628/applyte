@@ -1,4 +1,5 @@
 class Address < ActiveRecord::Base
+	validates_presence_of :address1,:postal_code,:addressable_type
 
   has_many :schools
 	has_many :programs

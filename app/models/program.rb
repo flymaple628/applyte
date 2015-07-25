@@ -1,4 +1,6 @@
 class Program < ActiveRecord::Base
+	validates_presence_of :name,:degree,:department
+
 
 	has_many :user_program_forms
 	belongs_to :school
