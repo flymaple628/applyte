@@ -10,7 +10,7 @@
 
 
 	<div class="unit">
-		<%= form_for program, url_hash do |f| %>
+		<%= form_for setup_program(program), url_hash do |f| %>
 		<%= f.fields_for :address do |addr| %>
 
 			<div class="field">
@@ -93,12 +93,7 @@
 	<div class="unit">
 		<div class="field">
 			<div class="title"> Name: </div> 
-			<div class="value"> <%= pg.name %> </div>
-		</div>
-
-		<div class="field">
-			<div class="title"> school: </div> 
-			<div class="value"> <%= pg.school.try(:name) %> </div>
+			<div class="value"> <%= "#{pg.school.try(:name)} - #{pg.name}" %> </div>
 		</div>
 
 		<div class="field">

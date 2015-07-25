@@ -217,34 +217,38 @@ puts "program for every school"
 
 
 		puts "Alumn"
-		alumni_list = []
+		user_alumni_list = []
 		User.all.each do |u|
 			if u.email.include?("alumni")
-				alumni_list << u.id
+				user_alumni_list << u.id
 			end
 		end
 
 		Alumn.destroy_all
-		alumni_list.each do |al|
-			alumns={
-				program_id: Program.first.id,
-		    profile_id: User.find(al).profile.id,
-		    program_degree: "alumni program_degree value",
-		    program_year: 2015,
-		    admission: "alumni admission value",
-		    background: "alumni background value",
-		    recommendation: "alumni recommendation value",
-		    description: "alumni description value",
-			}
-			Alumn.create(alumns)
+		user_alumni_list.each do |user|
+			Program.all.each do |pg|
+				if rand(5)>3
+				alumns={
+					program_id: pg.id,
+			    profile_id: User.find(user).profile.id,
+			    program_degree: "alumni program_degree value",
+			    program_year: 2015,
+			    admission: "alumni admission value",
+			    background: "alumni background value",
+			    recommendation: "alumni recommendation value",
+			    description: "alumni description value",
+				}
+				Alumn.create(alumns)
+				end
+			end
 		end
 
 		puts "ProgramAlumnship"
 		ProgramAlumnship.destroy_all
-		alumni_list.each do |al|
+		Alumn.all.each do |al|
 			Program.all.each do |pg|
 				if rand(4) >1
-					ProgramAlumnship.create(program_id: pg.id, alumn_id: al)
+					ProgramAlumnship.create(program_id: pg.id, alumn_id: al.id)
 				end
 			end
 		end
