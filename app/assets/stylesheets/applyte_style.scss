@@ -1,4 +1,6 @@
-
+h1, h2, h3, p, div{
+	margin: 0px;
+}
 
 .header-box{
 	$header-height: 60px;
@@ -27,6 +29,22 @@
 
 }
 
+.search-box{
+	$search-box-height: 80px;
+
+	padding:20px 10%;
+	background-color: #5ff;
+	height: $search-box-height;
+
+	*{
+		display: inline-block;
+		margin-right: 20px;
+	}
+
+	input[type="text"]{
+		width:400px;
+	}
+}
 
 .program-list{
 	$program-unit-height:120px;	
