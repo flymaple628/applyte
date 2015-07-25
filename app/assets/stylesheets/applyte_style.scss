@@ -1,8 +1,6 @@
-
 h1, h2, h3, p, div{
 	margin: 0px;
 }
-
 
 .header-box{
 	$header-height: 60px;
@@ -31,13 +29,12 @@ h1, h2, h3, p, div{
 
 }
 
-
-.search-bar{
-	$search-bar-height: 80px;
+.search-box{
+	$search-box-height: 80px;
 
 	padding:20px 10%;
 	background-color: #5ff;
-	height: $search-bar-height;
+	height: $search-box-height;
 
 	*{
 		display: inline-block;
@@ -48,41 +45,6 @@ h1, h2, h3, p, div{
 		width:400px;
 	}
 }
-
-
-#wlecome-header-box{
-	background-color: #aaa;
-}
-
-.welcome-box{
-	background-color: #aaa;
-	height: 1000px;
-
-	.center-box{
-		margin:0 auto;
-		padding-top: 200px;
-		width:50%;
-		text-align: center;
-
-	  >*{
-			margin-top:30px;
-			margin-top:30px;
-	  }
-
-		input[type="text"]{
-			width:400px;
-			margin-left:20px;
-			margin-right: 20px;
-		}
-
-	
-
-	}
-
-}
-
-
-
 
 .program-list{
 	$program-unit-height:120px;	
