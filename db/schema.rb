@@ -219,11 +219,13 @@ ActiveRecord::Schema.define(version: 20150724060558) do
     t.string   "fax"
     t.string   "phone"
     t.string   "email"
+    t.integer  "address_id"
     t.integer  "school_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "programs", ["address_id"], name: "index_programs_on_address_id"
   add_index "programs", ["school_id"], name: "index_programs_on_school_id"
 
   create_table "publications", force: :cascade do |t|
@@ -244,12 +246,14 @@ ActiveRecord::Schema.define(version: 20150724060558) do
     t.string   "phone"
     t.string   "email"
     t.integer  "logo_id"
+    t.integer  "address_id"
     t.string   "link_name"
     t.string   "link_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "schools", ["address_id"], name: "index_schools_on_address_id"
   add_index "schools", ["logo_id"], name: "index_schools_on_logo_id"
 
   create_table "states", force: :cascade do |t|

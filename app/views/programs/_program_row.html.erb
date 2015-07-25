@@ -22,10 +22,9 @@
 		</div>
 
 	<% end %>
-
-	<% if program.user_program_forms.empty?%>
-		<%= link_to "add-fav", fevorite_myprogram_path(program), :class=>"btn btn-primary add-fav",:data => { :row_id => program.id },:remote=>true%>
-	<% else %>
+	<% if check_user_program_forms(program) %>
 		<%= link_to "added", fevorite_myprogram_path(program), :class=>"btn btn-primary add-fav",:data => { :row_id => program.id },:remote=>true%>
+	<% else %>
+		<%= link_to "add-fav", fevorite_myprogram_path(program), :class=>"btn btn-primary add-fav",:data => { :row_id => program.id },:remote=>true%>
 	<% end %>
 </div>
