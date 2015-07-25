@@ -17,3 +17,9 @@
 /tmp
 /public/system/photos/*
 /public/system/faculties/*
+/public/system/users/*
+
+/config/facebook.yml
+
+
+

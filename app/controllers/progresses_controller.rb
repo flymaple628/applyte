@@ -1,4 +1,0 @@
-class ProgressesController < ApplicationController
-
-
-end
