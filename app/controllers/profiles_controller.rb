@@ -51,6 +51,12 @@ class ProfilesController < ApplicationController
 			@profile=current_user.profile
 		else
 			@profile=Profile.new
+		end
+
+
+		if current_user.profile.alumn
+			@profile.alumn=current_user.profile.alumn
+		else
 			@profile.alumn=Alumn.new
 		end
 
