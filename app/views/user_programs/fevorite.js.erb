@@ -1,1 +1,5 @@
-ok
+<% if @add%>
+$("a[data-row-id=<%=params[:id]%>]").text('added');
+<% else %>
+$("a[data-row-id=<%=params[:id]%>]").text('add-fav');
+<% end %>

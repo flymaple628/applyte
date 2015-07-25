@@ -33,12 +33,9 @@ class UserProgramsController < ApplicationController
 	end
 
 	def fevorite
-		if current_user && current_user.user_program_forms.find_by_program_id(params[:id]).nil?
-			current_user.user_program_forms.create( :program_id => params[:id] )
-		else
-			session[:myprogram] << params[:id]
-		end
+		get_user_program_forms
 
+		@user_program_forms
 		respond_to do |format|
 		  format.html	{ redirect_to myprograms_path }
 		  format.js
@@ -46,6 +43,27 @@ class UserProgramsController < ApplicationController
 	end
 
 private
+
+	def get_user_program_forms
+		@add=false
+		if current_user
+			if current_user.user_program_forms.find_by_program_id(params[:id]).nil?
+				current_user.user_program_forms.create( :program_id => params[:id] )
+				@add=true
+			else
+				user_program_forms=current_user.user_program_forms.find_by_program_id(params[:id])
+				user_program_forms.destroy()
+			end
+		else
+			if session[:myprogram].include?(params[:id])
+				session[:myprogram].delete(params[:id])
+			else
+				session[:myprogram] << params[:id]
+				@add=true
+			end
+		end
+
+	end
 
 	def set_session
 		session[:myprogram] ||= []

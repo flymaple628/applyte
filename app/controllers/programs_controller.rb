@@ -8,7 +8,7 @@ class ProgramsController < ApplicationController
 			@programs = Program.all
 		end
 
-		@programs = @programs.includes(:address)
+		@programs = @programs.includes(:address,:user_program_forms)
 	end
 
 	def show

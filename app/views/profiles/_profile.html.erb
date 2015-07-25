@@ -1,0 +1,121 @@
+
+		<p>profile</p>
+		<p class="form-group">
+			name:<%= profile.name%>
+		</p>
+		<p class="form-group">
+			birthday:<%= profile.birthday%>
+		</p>
+		<p class="form-group">
+			major:<%= profile.major%>
+		</p>
+		<p class="form-group">
+			research_area:<%= profile.research_area%>
+		</p>
+	</div>
+	<div class="toefl_score">
+		<p>toefl_score</p>
+		<p class="form-group">
+		toefl_read:<%= profile.toefl_read%>
+		</p>
+		<p class="form-group">
+		toefl_listen:<%= profile.toefl_listen%>
+		</p>
+		<p class="form-group">
+		toefl_speak:<%= profile.toefl_speak%>
+		</p>
+		<p class="form-group">
+		toefl_write:<%= profile.toefl_write%>
+		</p>
+		<p class="form-group">
+		toefl_total:<%= profile.toefl_total%>
+		</p>
+	</div>
+	<div class="gre_score">
+		<p>gre_score</p>
+		<p class="form-group">
+			gre_verbal:<%= profile.gre_verbal%>
+		</p>
+		<p class="form-group">
+			gre_guantitatiue:<%= profile.gre_guantitatiue%>
+		</p>
+		<p class="form-group">
+			gre_awa:<%= profile.gre_awa%>
+		</p>
+		<p class="form-group">
+			gre_total:<%= profile.gre_total%>
+		</p>
+	</div>
+	<div class="publication">
+		<div class="publication_item">
+			<p>publication</p>
+			<% profile.publications.each do |pf| %>
+				<p class="form-group">
+					title:<%= pf.title%>
+				</p>
+				<p class="form-group">
+				url:<%= pf.url%>
+				</p>
+			<% end %>
+		</div>
+
+	</div>
+	<div class="honor">
+		<div class="honor-item">
+			<p>honor</p>
+			<% profile.honors.each do |hf| %>
+				<p class="form-group">
+					title:<%= hf.title%>
+				</p>
+				<p class="form-group">
+				get_date:<%= hf.get_date%>
+				</p>
+				<p class="form-group">
+				description:<%=hf.description%>
+				</p>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="research_experience">
+		<div class="research_experience_item">
+			<p>research_experience</p>
+
+			<% profile.research_experiences.each do |ef| %>
+				<p class="form-group">
+				institude:<%= ef.institude%>
+				</p>
+				<p class="form-group">
+				title:<%= ef.title%>
+				</p>
+				<p class="form-group">
+				date_from:<%= ef.date_from%>
+				</p>
+				<p class="form-group">
+				date_to:<%= ef.date_to%>
+				</p>
+			<% end %>
+
+			</div>
+	</div>
+
+	<div class="work_experience">
+		<div class="work_experience_item">
+			<p>work_experience</p>
+			<% profile.work_experiences.each do |ef| %>
+			<p class="form-group">
+				institude:<%= ef.institude%>
+			</p>
+			<p class="form-group">
+				title:<%= ef.title%>
+			</p>
+			<p class="form-group">
+				date_from:<%= ef.date_from%>
+			</p>
+			<p class="form-group">
+				date_to:<%= ef.date_to%>
+			</p>
+			<% end %>
+		</div>
+		</p>
+	</div>

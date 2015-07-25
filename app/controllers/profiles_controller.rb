@@ -3,38 +3,19 @@ class ProfilesController < ApplicationController
 	before_action :get_profiles
 	#GET /profolio/
 	def show
-		# @profile.publications
-		# @profile.honors
-		# @profile.research_experiences
-		# @profile.work_experiences
+
 	end
 
 	def edit
-		# @profile.publications.new if @profile.publications.empty?
-		# @profile.honors.new if @profile.honors.empty?
-		# @profile.research_experiences.new if @profile.research_experiences.empty?
-		# @profile.work_experiences.new if @profile.work_experiences.empty?
-		# @profile.build_alumn if @profile.alumn.nil?
+
 	end
 
 	def alumnus
-		# @profile.publications
-		# @profile.honors
-		# @profile.research_experiences
-		# @profile.work_experiences
-		# @profile.alumn
-		@alumnus=true
-		render "show"
+
 	end
 
 	def edit_alumnus
-		# @profile.publications
-		# @profile.honors
-		# @profile.research_experiences
-		# @profile.work_experiences
-		# @profile.alumn
-		@alumnus=true
-		render "edit"
+
 	end
 
 	#POST /profolio/
@@ -48,7 +29,12 @@ class ProfilesController < ApplicationController
 	#PATCH /profolio/
 	def update
 		@profile = current_user.profile.update(profile_params)
-		redirect_to :back
+
+		if params[:profile][:alumn_attributes].nil?
+			redirect_to profile_path
+		else
+			redirect_to alumnus_profile_path
+		end
 	end
 	#DELETE /profolio/
 	def delete
@@ -65,6 +51,7 @@ class ProfilesController < ApplicationController
 			@profile=current_user.profile
 		else
 			@profile=Profile.new
+			@profile.alumn=Alumn.new
 		end
 
 	end

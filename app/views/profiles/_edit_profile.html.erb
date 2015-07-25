@@ -1,0 +1,155 @@
+	<div class="profile">
+		<p>profile</p>
+		<p class="form-group">
+		<%= f.label :name,"name"%>
+		<%= f.text_field :name %>
+		</p>
+		<p class="form-group">
+		<%= f.label :birthday,"birthday"%>
+		<%= f.text_field :birthday,class:'datetimepicker' %>
+		</p>
+		<p class="form-group">
+		<%= f.label :major,"major"%>
+		<%= f.text_field :major %>
+		</p>
+		<p class="form-group">
+		<%= f.label :research_area,"research_area"%>
+		<%= f.text_field :research_area %>
+		</p>
+	</div>
+	<div class="toefl_score">
+		<p>toefl_score</p>
+		<p class="form-group">
+		<%= f.label :toefl_read,"toefl_read"%>
+		<%= f.text_field :toefl_read %>
+		</p>
+		<p class="form-group">
+		<%= f.label :toefl_listen,"toefl_listen"%>
+		<%= f.text_field :toefl_listen %>
+		</p>
+		<p class="form-group">
+		<%= f.label :toefl_speak,"toefl_speak"%>
+		<%= f.text_field :toefl_speak %>
+		</p>
+		<p class="form-group">
+		<%= f.label :toefl_write,"toefl_write"%>
+		<%= f.text_field :toefl_write %>
+		</p>
+		<p class="form-group">
+		<%= f.label :toefl_total,"toefl_total"%>
+		<%= f.text_field :toefl_total %>
+		</p>
+	</div>
+	<div class="gre_score">
+		<p>gre_score</p>
+		<p class="form-group">
+		<%= f.label :gre_verbal,"gre_verbal"%>
+		<%= f.text_field :gre_verbal %>
+		</p>
+		<p class="form-group">
+		<%= f.label :gre_guantitatiue,"gre_guantitatiue"%>
+		<%= f.text_field :gre_guantitatiue %>
+		</p>
+		<p class="form-group">
+		<%= f.label :gre_awa,"gre_awa"%>
+		<%= f.text_field :gre_awa %>
+		</p>
+		<p class="form-group">
+		<%= f.label :gre_total,"gre_total"%>
+		<%= f.text_field :gre_total %>
+		</p>
+	</div>
+	<div class="publication">
+		<div class="publication_item">
+			<p>publication</p>
+			<%= f.nested_fields_for :publications do |pf| %>
+			<p class="form-group">
+				<%= pf.label :title, "title" %>
+				<%= pf.text_field :title %>
+			</p>
+			<p class="form-group">
+				<%= pf.label :url, "url" %>
+				<%= pf.text_field :url %>
+				<%= pf.remove_nested_fields_link %>
+			</p>
+			<% end %>
+		</div>
+		<p><%= f.add_nested_fields_link :publications %></p>
+	</div>
+	<div class="honor">
+		<div class="honor-item">
+			<p>honor</p>
+			<%= f.nested_fields_for :honors do |hf| %>
+				<p class="form-group">
+					<%= hf.label :title, "title" %>
+					<%= hf.text_field :title %>
+				</p>
+				<p class="form-group">
+					<%= hf.label :get_date, "get_date" %>
+					<%= hf.text_field :get_date %>
+				</p>
+				<p class="form-group">
+					<%= hf.label :description, "description" %>
+					<%= hf.text_field :description %>
+					<%= hf.remove_nested_fields_link %>
+				</p>
+			<% end %>
+		</div>
+		<p><%= f.add_nested_fields_link :honors %></p>
+	</div>
+
+	<div class="research_experience">
+		<div class="research_experience_item">
+			<p>research_experience</p>
+
+			<%= f.nested_fields_for :research_experiences, :class_name => "Experience" do |ef| %>
+			<p class="form-group">
+				<%= ef.label :institude, "institude" %>
+				<%= ef.text_field :institude %>
+			</p>
+			<p class="form-group">
+				<%= ef.label :title, "title" %>
+				<%= ef.text_field :title %>
+			</p>
+			<p class="form-group">
+				<%= ef.label :date_from, "date_from" %>
+				<%= ef.text_field :date_from %>
+			</p>
+			<p class="form-group">
+				<%= ef.label :date_to, "date_to" %>
+				<%= ef.text_field :date_to %>
+				<%= ef.hidden_field :etype %>
+				<%= ef.remove_nested_fields_link %>
+			</p>
+			<% end %>
+
+			</div>
+			<p><%= f.add_nested_fields_link :research_experiences %></p>
+	</div>
+
+	<div class="work_experience">
+		<div class="work_experience_item">
+			<p>work_experience</p>
+			<%= f.nested_fields_for :work_experiences, :class_name => "Experience" do |ef| %>
+			<p class="form-group">
+				<%= ef.label :institude, "institude" %>
+				<%= ef.text_field :institude %>
+			</p>
+			<p class="form-group">
+				<%= ef.label :title, "title" %>
+				<%= ef.text_field :title %>
+			</p>
+			<p class="form-group">
+				<%= ef.label :date_from, "date_from" %>
+				<%= ef.text_field :date_from %>
+			</p>
+			<p class="form-group">
+				<%= ef.label :date_to, "date_to" %>
+				<%= ef.text_field :date_to %>
+				<%= ef.hidden_field :etype %>
+				<%= ef.remove_nested_fields_link %>
+			</p>
+			<% end %>
+		</div>
+		<p><%= f.add_nested_fields_link :work_experiences %></p>
+	</div>
