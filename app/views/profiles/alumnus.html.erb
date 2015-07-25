@@ -1,0 +1,8 @@
+<div class="profile">
+
+	<%= link_to "edit", edit_alumnus_profile_path() %>
+
+	<%= render :partial => "profile", :locals => { :profile=>@profile } %>
+	<%= render :partial => "alumnus", :locals => { :alumn=>@profile.alumn } %>
+</div>
+

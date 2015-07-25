@@ -1,0 +1,31 @@
+	<div class="alumnus">
+		<div class="alumnus_item">
+			<p>alumnus</p>
+			<%= f.fields_for :alumn, :class_name => "alumn" do |af| %>
+			<p class="form-group">
+				<%= af.label :program_degree, "program_degree" %>
+				<%= af.text_field :program_degree %>
+			</p>
+			<p class="form-group">
+				<%= af.label :program_year, "program_year" %>
+				<%= af.text_field :program_year %>
+			</p>
+			<p class="form-group">
+				<%= af.label :admission, "admission" %>
+				<%= af.text_field :admission %>
+			</p>
+			<p class="form-group">
+				<%= af.label :background, "background" %>
+				<%= af.text_field :background %>
+			</p>
+			<p class="form-group">
+				<%= af.label :recommendation, "recommendation" %>
+				<%= af.text_field :recommendation %>
+			</p>
+			<p class="form-group">
+				<%= af.label :description, "description" %>
+				<%= af.text_field :description %>
+			</p>
+			<% end %>
+		</div>
+	</div>
