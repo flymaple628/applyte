@@ -24,6 +24,8 @@ class ProgramsController < ApplicationController
 
 private
 
+
+
 	def show_search_bar
 		@search_show = true
 	end

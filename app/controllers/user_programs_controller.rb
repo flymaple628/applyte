@@ -1,6 +1,6 @@
 class UserProgramsController < ApplicationController
 	before_action :authenticate_user!,:except=>[:index,:fevorite]
-	before_action :set_session,:only=>[:index,:fevorite]
+
 	def index
 		if current_user.nil?
 			@user_program_forms = Program.find(session[:myprogram])
@@ -65,9 +65,6 @@ private
 
 	end
 
-	def set_session
-		session[:myprogram] ||= []
-	end
 	def user_program_form_params
 		params.require(:user_program_form).permit(:user_program_form_values_attributes=>[:id,:program_form_key_id,:check,:note])
 	end
