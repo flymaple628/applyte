@@ -1,16 +1,68 @@
 
-<div class="welcome-box">
-	
-	<div class="center-box">
-		<h2 class="main">Slogan</h2>
-		<div>
-			<%= form_tag programs_path, :method=>:get do %>
-				<%= text_field_tag 'keyword',nil, :placeholder=>"Enter program name", :class=>"search-input" %>
-				<%= submit_tag 'search', :class=>"btn btn-primary"%>
-			<% end %>
+<div class="wrapper">
+  <div class="main-area">
+    <div class="slogan-landing-01">
+      Slogan
+    </div>
+		<div class="slogan-landing-02">
+      Minor Slogan
+    </div>
+    <div class="search-bar">
+				<div class="icon"></div>
+				<div class="input-outer">
+					<%= form_tag programs_path, :method=>:get do %>
+						<%= text_field_tag 'keyword',nil, :placeholder=>"Your program", :class=>"input" %>
+						<%# submit_tag 'search'%>
+					<% end %>
+				</div>
+        <div class="submit"></div>
+    </div>
+    <div class="description">
+      [description] Description goes here description goes here description goes here description goes here.
+    </div>
+  </div>
+	<div class="lower-area">
+		<div class="label">
+			How to use
 		</div>
-		<h4 class="minor">minor slogan</h4>
-		<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet veritatis iure  eos, suscipit itaque quo consequaturculpa, iure pariatur!</p>
+		<div class="multiple-columns">
+			<div class="column">
+				<div class="column-item">
+					<div class="column-item-header">
+						Program List
+					</div>
+					<div class="column-item-body">
+						<div class"column-item-text">
+							Web Preview
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-item">
+					<div class="column-item-header">
+						Program Information
+					</div>
+					<div class="column-item-body">
+						<div class"column-item-text">
+							Web Preview
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-item">
+					<div class="column-item-header">
+						Program Progress
+					</div>
+					<div class="column-item-body">
+						<div class"column-item-text">
+							Web Preview
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
