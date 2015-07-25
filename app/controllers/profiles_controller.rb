@@ -47,6 +47,7 @@ class ProfilesController < ApplicationController
 	protected
 
 	def get_profiles
+
 		if current_user.profile
 			@profile=current_user.profile
 		else
