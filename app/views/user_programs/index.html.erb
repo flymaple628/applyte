@@ -8,9 +8,11 @@
 				<span class="school label label-danger"> <%=pf.program.school.try(:name) %> </span>
 				<span class="program label label-primary"><%= pf.program.title %> </span>
 				<span class="progresses label label-warning"><%= "(? %)" %></span>
+				<span label label-danger><%= link_to "remove-fav", fevorite_myprogram_path(pf.program), :class=>"label label-danger",:data => { :row_id => pf.program.id }%>
+				</span>
 		  <% end %>
 		<%else %>
-			<%= pf.name%>
+			<%= pf.title%>
 		<% end %>
 
 		</p>
