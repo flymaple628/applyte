@@ -1,9 +1,11 @@
 class School < ActiveRecord::Base
+	validates_presence_of :name
+
 	after_initialize :check_address
-	
+
 	has_many :programs
 
-	has_one :address, :as=> :addressable	
+	has_one :address, :as=> :addressable
 	accepts_nested_attributes_for :address, allow_destroy: true
 
 	has_many :photos, :as=>:photo_link, :dependent => :destroy
@@ -15,5 +17,5 @@ private
 		self.build_address unless self.address
 	end
 
-	
+
 end

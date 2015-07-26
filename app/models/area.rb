@@ -1,5 +1,6 @@
 class Area < ActiveRecord::Base
-	# belongs_to :program
+	validates_presence_of :name
+
 	has_many :area_to_area_categories
 	has_many :area_categories, :through=>:area_to_area_categories, :source=>:area_category
 

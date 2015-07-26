@@ -1,4 +1,6 @@
 class ProgramFormKey < ActiveRecord::Base
+	validates_presence_of :name,:order,:key_type,:list_value
+
 	belongs_to :program
 	belongs_to :program_form_key_category
 	has_many :user_program_form_values

@@ -1,4 +1,5 @@
 class Address < ActiveRecord::Base
+	validates_presence_of :address1,:postal_code,:addressable_type
 
 	belongs_to :city
 	belongs_to :state
