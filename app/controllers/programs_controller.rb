@@ -3,7 +3,7 @@ class ProgramsController < ApplicationController
 
 	def index
 		if params[:keyword]
-			@programs = Program.where(["name like ?","%#{params[:keyword]}%"])
+			@programs = Program.where(["title like ?","%#{params[:keyword]}%"])
 		else
 			@programs = Program.all
 		end

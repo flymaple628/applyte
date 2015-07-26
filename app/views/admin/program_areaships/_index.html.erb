@@ -35,7 +35,7 @@
 
 			<% program_areaships.each do |pa| %>
 			<tr>
-				<td> <%=pa.area.name%>:<%=pa.program.name%> </td>
+				<td> <%=pa.area.name%>:<%=pa.program.title%> </td>
 
 				<td> <%= link_to "Edit", edit_admin_program_areaship_path(pa), :remote=>true, :class=>"btn btn-info" %>
 				</td>

@@ -4,7 +4,7 @@ namespace :dev do
 	task :remove_all => :environment do
 		School.destroy_all
 		Program.destroy_all
-		
+
 	end
 
 	task :data => :environment do
@@ -94,7 +94,7 @@ puts "program for every school"
 								[0, 7, "Science department", "CS",['code','theory','Electrical']],
 								[0, 8, "Science department", "GB", ['theory','insect','medical']]]
 
-		pg_photos =	Dir.glob("public/example_pic/school/*")			
+		pg_photos =	Dir.glob("public/example_pic/school/*")
 
 		School.all.each do |sc|
 
@@ -134,7 +134,7 @@ puts "program for every school"
 						end
 					end
 				end
-				pg.save
+				pg.save!
 			end
 
 		end
@@ -146,7 +146,7 @@ puts "program for every school"
 			name = Faker::Name.name
 			email = "#{name}@#{pg.school.name}"
 			desc = Faker::Lorem.sentences
-			
+
 
 		end
 

@@ -1,5 +1,5 @@
 class Program < ActiveRecord::Base
-	validates_presence_of :name,:degree,:department
+	validates_presence_of :title,:degree,:department
 
 
 	has_many :user_program_forms

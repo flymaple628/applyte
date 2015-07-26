@@ -4,9 +4,9 @@
 		<p class="field">
 
 		<% if current_user%>
-		<%= link_to myprogram_path(pf) do%> 
+		<%= link_to myprogram_path(pf) do%>
 				<span class="school label label-danger"> <%=pf.program.school.try(:name) %> </span>
-				<span class="program label label-primary"><%= pf.program.name %> </span>
+				<span class="program label label-primary"><%= pf.program.title %> </span>
 				<span class="progresses label label-warning"><%= "(? %)" %></span>
 		  <% end %>
 		<%else %>
