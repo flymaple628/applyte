@@ -52,9 +52,9 @@ private
   end 
 
 	def program_params
-		params.require(:program).permit(:name, :degree, :level, :desc, :department,
-																	 :fax, :phone, :email, :address_id, :school_id,
-                                   :address_attributes=>[:address1, :city_id],
+		params.require(:program).permit(:title, :degree, :level, :desc, :department, :program_category_id,
+																	 :fax, :phone, :email, :address_id, :school_id, :tuition, :ranking, :deadline,
+                                   :address_attributes=>[:address1, :address2, :city_id],
                                    :photos_attributes =>[:photo, :_destroy, :id])
 	end
 

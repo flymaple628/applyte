@@ -1,7 +1,5 @@
 class Address < ActiveRecord::Base
 
-  has_many :schools
-	has_many :programs
 	belongs_to :city
 	belongs_to :state
 	belongs_to :country

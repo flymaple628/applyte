@@ -19,8 +19,13 @@
 			</div>	
 
 			<div class="field">
-				<%= f.label :name, "name", :class=>'title' %> 
-				<%= f.text_field :name, :class=>'value' %>
+				<%= f.label :program_category_id, "Program Category", :class=>'title' %>
+				<%= f.collection_select :program_category_id, ProgramCategory.all, :id, :name %>
+			</div>	
+
+			<div class="field">
+				<%= f.label :title, "title", :class=>'title' %> 
+				<%= f.text_field :title, :class=>'value' %>
 			</div>
 
 			<div class="field">
@@ -44,6 +49,21 @@
 			</div>
 
 			<div class="field">
+				<%= f.label :tuition, "tuition", :class=>'title' %>
+				<%= f.text_field :tuition, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :ranking, "ranking", :class=>'title' %>
+				<%= f.text_field :ranking, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :deadline, "deadline", :class=>'title' %>
+				<%= f.text_field :deadline, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
 				<%= f.label :fax, "fax", :class=>'title' %>
 				<%= f.text_field :fax, :class=>'value'  %>			
 			</div>
@@ -61,6 +81,11 @@
 			<div class="field">
 				<%= addr.label :address1, "address1", :class=>'title' %>
 				<%= addr.text_field :address1, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= addr.label :address2, "address2", :class=>'title' %>
+				<%= addr.text_field :address2, :class=>'value'  %>			
 			</div>
 
 			<div class="field">
@@ -92,8 +117,13 @@
 	<% programs.each do |pg| %>
 	<div class="unit">
 		<div class="field">
-			<div class="title"> Name: </div> 
-			<div class="value"> <%= "#{pg.school.try(:name)} - #{pg.name}" %> </div>
+			<div class="title"> Title: </div> 
+			<div class="value"> <%= pg.title %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Program Category: </div> 
+			<div class="value"> <%= pg.program_category.try(:name) %> </div>
 		</div>
 
 		<div class="field">
@@ -117,6 +147,21 @@
 		</div>
 
 		<div class="field">
+			<div class="title"> Tuition: </div> 
+			<div class="value"> <%= pg.tuition %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Ranking: </div> 
+			<div class="value"> <%= pg.ranking %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Deadline: </div> 
+			<div class="value"> <%= pg.deadline %> </div>
+		</div>
+
+		<div class="field">
 			<div class="title"> Fax: </div> 
 			<div class="value"> <%= pg.fax %> </div>
 		</div>
@@ -134,6 +179,11 @@
 		<div class="field">
 			<div class="title"> Address1: </div> 
 			<div class="value"> <%= pg.address.try(:address1) %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Address2: </div> 
+			<div class="value"> <%= pg.address.try(:address2) %> </div>
 		</div>
 
 		<div class="field">

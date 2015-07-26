@@ -30,7 +30,7 @@
 
 			<div class="field">
 				<%= f.label :program_id, "program", :class=>'title' %>
-				<%= f.select :program_id, Program.all.map{ |p| ["#{p.school.try(:name)} - #{p.name}", p.id]}, :class=>'value' %>
+				<%= f.select :program_id, Program.all.map{ |p| ["#{p.school.try(:name)}-#{p.program_category.try(:name)}", p.id]}, :class=>'value' %>
 			</div>
 
 			<div class="field">
@@ -63,7 +63,7 @@
 
 		<div class="field">
 			<div class="title"> Program: </div> 
-			<div class="value"> <%= fc.program.try(:name) %> </div>
+			<div class="value"> <%= fc.program.program_category.name %> </div>
 		</div>
 
 		<div class="field">

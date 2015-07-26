@@ -1,6 +1,12 @@
 
 namespace :dev do
 
+	task :remove_all => :environment do
+		School.destroy_all
+		Program.destroy_all
+		
+	end
+
 	task :data => :environment do
 		puts "Create User"
 		user_list = [["guy@gmail.com", "guy"],
@@ -42,8 +48,6 @@ namespace :dev do
 			sc.link_url = s[7]
 
 			ct = City.find s[1]
-
-
 			addr = Address.new
 			addr.address1 = s[6]
 			addr.city_id = ct.id
@@ -54,7 +58,6 @@ namespace :dev do
 			sc.save!
 		end
 
-
 		AreaCategory.destroy_all
 		area_categories = ["Science", "Education", "Engineering"]
 
@@ -62,43 +65,63 @@ namespace :dev do
 			AreaCategory.create(:id=>index, :name=>ac)
 		end
 
-		degree = ["graduate,master"]
+		ProgramCategory.destroy_all
+		puts "program category"
+		program_categories = [[1, "Chemical Engineering"],
+													[2, "Electrical Engineering"],
+													[3, "Social Studies Education"],
+													[4, "Computer Science"],
+													[5, "Genetic Biology"]]
+		program_categories.each do |pc|
+			ProgramCategory.create(:id=> pc[0],:name=>pc[1])
+		end
 
-#program for every schools
+#program for every school
 puts "program for every school"
 		Program.destroy_all
 		Area.destroy_all
 		AreaCategory.destroy_all
 		AreaToAreaCategory.destroy_all
 
-		programs = [[2, "Chemical Engineering", "Eng department", "CheE", ['number','business','atnomic']],
-								[2, "Computer Engineering", "Eng department", "CE", ['code','business','embedded']],
-								[2, "Electrical Engineering", "Eng department", "EE", ['communication','machincal','chip']],
-								[1, "Elementary Education", "Edu department", "EEdu", ['math','eng','social','physics']],
-								[1, "Social Studies Education", "Edu department", "Soc", ['nation','human','history']],
-								[0, "Chemistry", "Science department", "CheS", ['theory','business','che']],
-								[0, "Computer Science", "Science department", "CS",['code','theory','Electrical']],
-								[0, "Genetic Biology", "Science department", "GB", ['theory','insect','medical']]]
+		degree = ["graduate","master"]
 
+		programs = [[2, 1, "Eng department", "CheE", ['number','business','atnomic']],
+								[2, 2, "Eng department", "CE", ['code','business','embedded']],
+								[2, 3, "Eng department", "EE", ['communication','machincal','chip']],
+								[1, 4, "Edu department", "EEdu", ['math','eng','social','physics']],
+								[1, 5, "Edu department", "Soc", ['nation','human','history']],
+								[0, 6, "Science department", "CheS", ['theory','business','che']],
+								[0, 7, "Science department", "CS",['code','theory','Electrical']],
+								[0, 8, "Science department", "GB", ['theory','insect','medical']]]
 
+		pg_photos =	Dir.glob("public/example_pic/school/*")			
 
 		School.all.each do |sc|
 
 			puts "school: #{sc.name}"
-
 			programs.each_with_index do |p, index|
 
 				pg = sc.programs.new
-				pg.name = p[1]
-				pg.desc = Faker::Lorem.paragraph(2)
+				pg.program_category_id = p[1]
+				pg.title = "#{sc.name} #{p[2]}"
+				pg.desc = "#{pg.title} belongs to #{sc.desc}"
 				pg.degree = degree[rand(1)]
 				pg.level = rand(3)
 				pg.department = p[1]
 				pg.phone = sc.phone
 				pg.email = sc.email
+				pg.ranking = rand(20)+1
+				pg.tuition = rand(200)*100 +10000
+				pg.deadline = Faker::Date.between(Date.new(2015,10,10),Date.new(2015,12,10))
 				pg.build_address
 				pg.address.address1 = sc.address.address1
 				pg.address.city_id = sc.address.city_id
+
+				puts 'program pictures'
+				4.times do |t|
+					pic = pg_photos[rand(pg_photos.count)]
+					pg.photos.new(:photo=>File.open(Dir.glob(pic)[0]))
+				end
 
 				puts "#{p} #{index} #{sc}"
 
@@ -115,6 +138,19 @@ puts "program for every school"
 			end
 
 		end
+
+
+		puts "faculty"
+		Faculty.destroy_all
+		Program.all.each do |pg|
+			name = Faker::Name.name
+			email = "#{name}@#{pg.school.name}"
+			desc = Faker::Lorem.sentences
+			
+
+		end
+
+
 
 		#profile
 
@@ -215,7 +251,6 @@ puts "program for every school"
 			end
 		end
 
-
 		puts "Alumn"
 		user_alumni_list = []
 		User.all.each do |u|
@@ -229,7 +264,6 @@ puts "program for every school"
 			Program.all.each do |pg|
 				if rand(5)>3
 				alumns={
-					program_id: pg.id,
 			    profile_id: User.find(user).profile.id,
 			    program_degree: "alumni program_degree value",
 			    program_year: 2015,

@@ -1,0 +1,59 @@
+
+<div class="admin-dash">
+	
+	<table class="table table-bordered">
+		<tr>
+			<th></th>
+			<th> Model </th>
+			<th> Attributes </th>
+			<th> has_many </th>
+			<th> has_one </th>
+			<th> belongs_to </th>
+		</tr>
+			<% @models.each_with_index do |m,index| %> 					
+					<% has_many_list = [] %>
+					<% has_one_list = [] %>
+					<% belongs_to_list = [] %>
+					<% m.reflections.select do |association,reflection| %>
+						<% if reflection.macro == :has_many %>
+							<% has_many_list << association %>
+						<% elsif reflection.macro == :belongs_to %>
+							<% belongs_to_list << association %>
+						<% elsif  reflection.macro == :has_one %>
+							<% has_one_list << association %>
+						<% end %>
+					<% end %>
+
+				<tr>
+ 					<td><%= index+1%> </td>
+					<td> <span class="label label-primary"><%= m.name %></span> <span class="label label-danger"><%= m.all.count %> </span></td>
+					<td> 
+						<% m.column_names.each do |c| %>
+							<span class="label label-primary"><%= c %></span>
+						<% end %>
+							<span class="label label-warning"><%= m.column_names.count %> </span>
+					</td>
+					<td> 
+						<% has_many_list.each do |m| %>
+							<span class="label label-primary"><%= m %></span>
+						<% end %>
+					</td>
+					<td>
+						<% has_one_list.each do |m| %>
+							<span class="label label-primary"><%= m %></span>
+						<% end %>						
+					</td>
+					<td>
+						<% belongs_to_list.each do |m| %>
+							<span class="label label-primary"><%= m %></span>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</th>
+	</table>
+
+
+</div>
+
+

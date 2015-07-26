@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150724060558) do
+ActiveRecord::Schema.define(version: 20150725102126) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20150724060558) do
   add_index "addresses", ["state_id"], name: "index_addresses_on_state_id"
 
   create_table "alumns", force: :cascade do |t|
-    t.integer  "program_id"
     t.integer  "profile_id"
     t.string   "program_degree"
     t.string   "program_year"
@@ -44,7 +43,6 @@ ActiveRecord::Schema.define(version: 20150724060558) do
   end
 
   add_index "alumns", ["profile_id"], name: "index_alumns_on_profile_id"
-  add_index "alumns", ["program_id"], name: "index_alumns_on_program_id"
 
   create_table "area_categories", force: :cascade do |t|
     t.string   "name"
@@ -189,6 +187,12 @@ ActiveRecord::Schema.define(version: 20150724060558) do
   add_index "program_areaships", ["area_id"], name: "index_program_areaships_on_area_id"
   add_index "program_areaships", ["program_id"], name: "index_program_areaships_on_program_id"
 
+  create_table "program_categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "program_form_key_categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -211,7 +215,6 @@ ActiveRecord::Schema.define(version: 20150724060558) do
   add_index "program_form_keys", ["program_id"], name: "index_program_form_keys_on_program_id"
 
   create_table "programs", force: :cascade do |t|
-    t.string   "name"
     t.string   "degree"
     t.string   "level"
     t.string   "desc"
@@ -219,13 +222,17 @@ ActiveRecord::Schema.define(version: 20150724060558) do
     t.string   "fax"
     t.string   "phone"
     t.string   "email"
-    t.integer  "address_id"
     t.integer  "school_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "program_category_id"
+    t.string   "title"
+    t.integer  "ranking"
+    t.integer  "tuition"
+    t.date     "deadline"
   end
 
-  add_index "programs", ["address_id"], name: "index_programs_on_address_id"
+  add_index "programs", ["program_category_id"], name: "index_programs_on_program_category_id"
   add_index "programs", ["school_id"], name: "index_programs_on_school_id"
 
   create_table "publications", force: :cascade do |t|
@@ -246,14 +253,12 @@ ActiveRecord::Schema.define(version: 20150724060558) do
     t.string   "phone"
     t.string   "email"
     t.integer  "logo_id"
-    t.integer  "address_id"
     t.string   "link_name"
     t.string   "link_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "schools", ["address_id"], name: "index_schools_on_address_id"
   add_index "schools", ["logo_id"], name: "index_schools_on_logo_id"
 
   create_table "states", force: :cascade do |t|

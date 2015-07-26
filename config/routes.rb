@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     resources :states
     resources :countries
     resources :faculties
-
+    resources :program_categories
     resources :areas
     resources :program_areaships
 
