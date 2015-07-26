@@ -1,8 +1,6 @@
 class Address < ActiveRecord::Base
 	validates_presence_of :address1,:postal_code,:addressable_type
 
-  has_many :schools
-	has_many :programs
 	belongs_to :city
 	belongs_to :state
 	belongs_to :country

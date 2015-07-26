@@ -4,6 +4,7 @@ class Program < ActiveRecord::Base
 
 	has_many :user_program_forms
 	belongs_to :school
+	belongs_to :program_category
 	# has_many :areas
 	has_many :faculties
 

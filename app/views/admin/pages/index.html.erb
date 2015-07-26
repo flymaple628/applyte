@@ -2,10 +2,12 @@
 <div class="admin-box">
 	<div class="nav">
 		<ul>
+			<li> <%= link_to "Models", admin_page_path, :class=>"btn btn-primary" %> </li>
 			<li> <%= link_to "Countries", admin_countries_path,:remote=>true, :class=>"btn btn-primary" %> </li>
 			<li> <%= link_to "States", admin_states_path,:remote=>true, :class=>"btn btn-primary" %> </li>
 			<li> <%= link_to "Cities", admin_cities_path,:remote=>true, :class=>"btn btn-primary" %> </li>
 			<li> <%= link_to "Schools", admin_schools_path,:remote=>true, :class=>"btn btn-primary" %> </li>
+			<li> <%= link_to "Program Category", admin_program_categories_path,:remote=>true, :class=>"btn btn-primary" %> </li>
 			<li> <%= link_to "Programs", admin_programs_path,:remote=>true, :class=>"btn btn-primary" %> </li>
 			<li> <%= link_to "Faculties", admin_faculties_path, :remote=>true, :class=>"btn btn-primary" %></li>
 			<li> <%= link_to "Forms", admin_program_form_keys_path, :remote=>true, :class=>"btn btn-primary" %></li>
@@ -16,7 +18,7 @@
 
 	<div class="content">
 
-		<%= render :partial=>"admin/programs/index", :locals=>{:program=>@program, :programs=>@programs} %>
+		<%= render :partial=>"admin/pages/dash" %>
 	</div>
 </div>
 

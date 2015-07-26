@@ -1,0 +1,54 @@
+<%# program_category, program_categories %>
+<div class="admin-program-categories">
+	<h1> Program Categories </h1>
+	<% if program_category.new_record? %>
+		<% url_hash = {:url=>admin_program_categories_path, :remote=>true} %>
+	<% else %>
+		<% url_hash = {:url=>admin_program_category_path(program_category), :method=>:patch, :remote=>true} %>
+	<% end %>
+
+	<%= form_for program_category, url_hash do |f| %>
+	<table class="table">
+			<tr>
+				<th> <%= f.label :name, "name" %> </th>
+				<th> Programs </th>
+				<th></th>
+				<th></th>
+			</tr>				
+
+			<tr>
+				<td> <%= f.text_field :name%> </td>
+				<td></td>
+
+			<% if program_category.new_record? %>
+				<td>	<%= f.submit 'create', :class=>'btn btn-primary' %> </td>
+			<% else %>
+				<td>	<%= f.submit 'update', :class=>'btn btn-primary' %> </td>
+			<% end %>
+
+			</tr>
+
+			<% program_categories.each do |c| %>
+			<tr>
+				<td> <%= c.name %> </td>
+				<td> <%= c.programs.count %></td>
+				<td> <%= link_to "Edit", edit_admin_program_category_path(c), :remote=>true, :class=>"btn btn-info" %> 
+				</td>
+				<td> 
+					<% if c.programs.count ==0 %>
+						<%= link_to "Delete", admin_program_category_path(c), :remote=>true, :method=>:delete, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %> 
+					<% end %>
+				</td>
+			</tr>
+			<% end %>
+
+	</table>
+
+
+	<% end %> <%# form_for %>
+
+
+</div>
+
+
+

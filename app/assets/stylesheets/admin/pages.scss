@@ -34,43 +34,40 @@
 	}
 }
 
-.admin-box .content{
-	::after{
-		display:block;
-		clear:both;
-		content:"";
-	};
+.admin-box{
+	.content{
+		.unit{
+			display: inline-block;
+			vertical-align: top;
+			width: 280px;
+			margin: 10px;
+			border: 1px solid #aaa;
 
-	.unit{
-		display: inline-block;
-		vertical-align: top;
-		width: 280px;
-		margin: 10px;
-		border: 1px solid #aaa;
-
-		.field{
-			padding:10px;
-			::after{
+			.field::after{
 				display:block;
 				clear:both;
 				content:"";
-			};
-
-			.title{
-				float: left;
-				width:90px;
 			}
 
-			.value{
-				float:left;
-				width:150px;
-			}
+			.field{
+				padding:10px;
 
-			.value-area{
-				float:left;
-				width:150px;
-				max-height: 200px;
-				overflow: scroll;
+				.title{
+					float: left;
+					width:90px;
+				}
+
+				.value{
+					float:left;
+					width:150px;
+				}
+
+				.value-area{
+					float:left;
+					width:150px;
+					max-height: 200px;
+					overflow: scroll;
+				}
 			}
 		}
 	}
