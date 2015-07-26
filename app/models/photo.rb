@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
-	validates_presence_of :photo_link_type,:photo_link_id
+
 
 	belongs_to :photo_link, polymorphic: true
   has_attached_file :photo,

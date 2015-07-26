@@ -1,49 +1,49 @@
 
 		<p>profile</p>
 		<p class="form-group">
-			name:<%= profile.name%>
+			<span class="label label-primary">name:</span><%= @profile.name%><%= profile.name%>
 		</p>
 		<p class="form-group">
-			birthday:<%= profile.birthday%>
+			<span class="label label-primary">birthday:</span><%= @profile.name%><%= profile.birthday%>
 		</p>
 		<p class="form-group">
-			major:<%= profile.major%>
+			<span class="label label-primary">major:</span><%= @profile.name%><%= profile.major%>
 		</p>
 		<p class="form-group">
-			research_area:<%= profile.research_area%>
+			<span class="label label-primary">research_area:</span><%= @profile.name%><%= profile.research_area%>
 		</p>
 	</div>
 	<div class="toefl_score">
 		<p>toefl_score</p>
 		<p class="form-group">
-		toefl_read:<%= profile.toefl_read%>
+		<span class="label label-primary">toefl_read:</span><%= @profile.name%><%= profile.toefl_read%>
 		</p>
 		<p class="form-group">
-		toefl_listen:<%= profile.toefl_listen%>
+		<span class="label label-primary">toefl_listen:</span><%= @profile.name%><%= profile.toefl_listen%>
 		</p>
 		<p class="form-group">
-		toefl_speak:<%= profile.toefl_speak%>
+		<span class="label label-primary">toefl_speak:</span><%= @profile.name%><%= profile.toefl_speak%>
 		</p>
 		<p class="form-group">
-		toefl_write:<%= profile.toefl_write%>
+		<span class="label label-primary">toefl_write:</span><%= @profile.name%><%= profile.toefl_write%>
 		</p>
 		<p class="form-group">
-		toefl_total:<%= profile.toefl_total%>
+		<span class="label label-primary">toefl_total:</span><%= @profile.name%><%= profile.toefl_total%>
 		</p>
 	</div>
 	<div class="gre_score">
 		<p>gre_score</p>
 		<p class="form-group">
-			gre_verbal:<%= profile.gre_verbal%>
+			<span class="label label-primary">gre_verbal:</span><%= @profile.name%><%= profile.gre_verbal%>
 		</p>
 		<p class="form-group">
-			gre_guantitatiue:<%= profile.gre_guantitatiue%>
+			<span class="label label-primary">gre_guantitatiue:</span><%= @profile.name%><%= profile.gre_guantitatiue%>
 		</p>
 		<p class="form-group">
-			gre_awa:<%= profile.gre_awa%>
+			<span class="label label-primary">gre_awa:</span><%= @profile.name%><%= profile.gre_awa%>
 		</p>
 		<p class="form-group">
-			gre_total:<%= profile.gre_total%>
+			<span class="label label-primary">gre_total:</span><%= @profile.name%><%= profile.gre_total%>
 		</p>
 	</div>
 	<div class="publication">
@@ -51,10 +51,10 @@
 			<p>publication</p>
 			<% profile.publications.each do |pf| %>
 				<p class="form-group">
-					title:<%= pf.title%>
+					<span class="label label-primary">title:</span><%= @profile.name%><%= pf.title%>
 				</p>
 				<p class="form-group">
-				url:<%= pf.url%>
+					<span class="label label-primary">url:</span><%= @profile.name%><%= pf.url%>
 				</p>
 			<% end %>
 		</div>
@@ -65,13 +65,13 @@
 			<p>honor</p>
 			<% profile.honors.each do |hf| %>
 				<p class="form-group">
-					title:<%= hf.title%>
+					<span class="label label-primary">title:</span><%= @profile.name%><%= hf.title%>
 				</p>
 				<p class="form-group">
-				get_date:<%= hf.get_date%>
+				<span class="label label-primary">get_date:</span><%= @profile.name%><%= hf.get_date%>
 				</p>
 				<p class="form-group">
-				description:<%=hf.description%>
+				<span class="label label-primary">description:</span><%= @profile.name%><%=hf.description%>
 				</p>
 			<% end %>
 		</div>
@@ -83,16 +83,16 @@
 
 			<% profile.research_experiences.each do |ef| %>
 				<p class="form-group">
-				institude:<%= ef.institude%>
+				<span class="label label-primary">institude:</span><%= @profile.name%><%= ef.institude%>
 				</p>
 				<p class="form-group">
-				title:<%= ef.title%>
+				<span class="label label-primary">title:</span><%= @profile.name%><%= ef.title%>
 				</p>
 				<p class="form-group">
-				date_from:<%= ef.date_from%>
+				<span class="label label-primary">date_from:</span><%= @profile.name%><%= ef.date_from%>
 				</p>
 				<p class="form-group">
-				date_to:<%= ef.date_to%>
+				<span class="label label-primary">date_to:</span><%= @profile.name%><%= ef.date_to%>
 				</p>
 			<% end %>
 
@@ -104,16 +104,16 @@
 			<p>work_experience</p>
 			<% profile.work_experiences.each do |ef| %>
 			<p class="form-group">
-				institude:<%= ef.institude%>
+				<span class="label label-primary">institude:</span><%= @profile.name%><%= ef.institude%>
 			</p>
 			<p class="form-group">
-				title:<%= ef.title%>
+				<span class="label label-primary">title:</span><%= @profile.name%><%= ef.title%>
 			</p>
 			<p class="form-group">
-				date_from:<%= ef.date_from%>
+				<span class="label label-primary">date_from:</span><%= @profile.name%><%= ef.date_from%>
 			</p>
 			<p class="form-group">
-				date_to:<%= ef.date_to%>
+				<span class="label label-primary">date_to:</span><%= @profile.name%><%= ef.date_to%>
 			</p>
 			<% end %>
 		</div>
