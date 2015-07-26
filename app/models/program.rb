@@ -30,12 +30,15 @@ class Program < ActiveRecord::Base
   before_create :save_default_program_key
   before_destroy :check_subclasses
 
+  def get_photo_list()
+  	photo_list()
+  end
 
 private
 
 	def check_subclasses
 		destroy = true
-		if self.users.count >0 
+		if self.users.count >0
 			errors[:base] << "user_program_forms more than 0 "
 			destroy = false
 		end
@@ -47,7 +50,7 @@ private
 
 		if self.alumns.count >0
 			errors[:base] << "alumnus more than 0 "
-			destroy = false			
+			destroy = false
 		end
 
 		destroy

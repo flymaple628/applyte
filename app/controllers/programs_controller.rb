@@ -13,7 +13,7 @@ class ProgramsController < ApplicationController
 
 	def show
 		@program = Program.includes(:photos).find(params[:id])
-		@pic_list = @program.photo_list
+		@pic_list = @program.get_photo_list
 		@address = @program.school.address.address1
 
 
