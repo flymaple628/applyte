@@ -1,6 +1,12 @@
-<%# programs, program %>
+<%# programs, program, edit_program_key %>
 <div class="admin-program-form-keys">
-	<h1> Program Form </h1>
+	<h1> Program Form <span class="label label-info"> <%=programs.count %> </span> </h1>
+	<h4>
+		<% if notice %>
+			<span class="label label-success"><%= notice[:success] if notice[:success] %></span>
+			<span class="label label-danger"><%= notice[:fail] if notice[:fail] %></span>
+		<% end %>
+	</h4>
 	
 	<% programs.each do |pg| %>
 		<h4> 
@@ -10,7 +16,7 @@
 
 		<% if @edit_program_key && @edit_program_key.program_id == pg.id %>		
 			<% url_hash = {:url=> admin_program_program_form_key_path(pg, @edit_program_key), :method=>:patch, :remote=>true} %>
-			<% program_key = @edit_program_key %>
+			<% program_key = edit_program_key %>
 		<% else %>
 			<% url_hash = {:url=> admin_program_program_form_keys_path(pg), :remote=>true} %>
 			<% program_key = ProgramFormKey.new %>
@@ -21,10 +27,12 @@
 		
 		<table class="table table-bordered">
 			<tr>
-				<th> name </th>
-				<th> desc </th>
-				<th> key_type </th>
-				<th> list_value </th>
+				<th> Category </th>
+				<th> Name </th>
+				<th> Key_type </th>
+				<th> order </th>
+				<th> Desc </th>
+				<th> List_value </th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -32,9 +40,11 @@
 			<% pg.program_form_keys.each do |pk| %>
 				<% if pk != program_key %>
 					<tr>
+						<td> <%= pk.program_form_key_category.try(:name)%> </td>
 						<td> <%= pk.name %> </td>
-						<td> <%= pk.desc %> </td>
 						<td> <%= pk.key_type %> </td>
+						<td> <%= pk.order %> </td>
+						<td> <%= pk.desc %> </td>
 						<td> <%= pk.list_value %> </td>
 						<td> <%= link_to "edit", edit_admin_program_program_form_key_path(pg,pk), :remote=>true, :class=>"btn btn-info" %>
 						</td>
@@ -43,9 +53,11 @@
 					</tr>
 				<% else %>
 					<tr>
+						<td> <%= f.collection_select :program_form_key_category_id, ProgramFormKeyCategory.all, :id, :name %> </td>
 						<td> <%= f.text_field :name %> </td>
+						<td> <%= f.select :key_type, [[:boolean,:boolean],[:integer,:integer],[:string,:string],[:text,:text]] %> </td>
+						<td> <%= f.number_field :order %> </td>
 						<td> <%= f.text_field :desc %> </td>
-						<td> <%= f.text_field :key_type %> </td>
 						<td> <%= f.text_field :list_value %> </td>
 						<td> <%= f.submit "Update", :class=>"btn btn-primary" %> </td>
 						<td> <%= link_to "Cancel", admin_program_form_keys_path, :remote=>true, :class=>"btn btn-info" %> </td>
@@ -55,9 +67,11 @@
 			
 			<% if program_key.new_record? %>
 				<tr>
+					<td> <%= f.collection_select :program_form_key_category_id, ProgramFormKeyCategory.all, :id, :name %> </td>
 					<td> <%= f.text_field :name %> </td>
-					<td> <%= f.text_field :desc %> </td>
 					<td> <%= f.text_field :key_type %> </td>
+					<td> <%= f.number_field :order %> </td>
+					<td> <%= f.text_field :desc %> </td>
 					<td> <%= f.text_field :list_value %> </td>
 					<td> <%= f.submit "Add", :class=>"btn btn-primary" %></td>
 					<td></td>

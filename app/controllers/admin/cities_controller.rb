@@ -11,11 +11,11 @@ class Admin::CitiesController < ApplicationController
   	@city = City.new(city_params)
   	if @city.save
   		@notice = {:success=>"#{@city.name} has been created successfully"}
+      @city = City.new
   	else
   		@notice = {:fail=>@city.errors.full_messages}
   	end
 
-    @city = City.new
     refresh
   end
 
@@ -27,11 +27,11 @@ class Admin::CitiesController < ApplicationController
   def update
   	if @city.update(city_params)
       @notice = {:success=>"#{@city.name} has been updated successfully"}
+      @city = City.new
   	else
       @notice = {:fail=>@city.errors.full_messages}
   	end
 
-    @city = City.new
     refresh
   end
 

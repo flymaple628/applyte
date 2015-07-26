@@ -11,11 +11,11 @@ class Admin::StatesController < ApplicationController
     @state = State.new(state_params)
     if @state.save
       @notice = {:success=>"#{@state.name} has been created successfuly"}
+      @state = State.new
     else
       @notice = {:fail=>@state.errors.full_messages}
     end
 
-    @state = State.new
     refresh
   end
 
@@ -27,11 +27,11 @@ class Admin::StatesController < ApplicationController
   def update
     if @state.update(state_params)
       @notice = {:success=>"#{@state.name} has been updated successfuly"}
+      @state = State.new
     else
       @notice = {:fail=>@state.errors.full_messages}
     end
 
-    @state = State.new
     refresh
   end
 

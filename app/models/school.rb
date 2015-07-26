@@ -21,7 +21,7 @@ private
 
 	def check_programs
 		if self.programs.length >0
-			errors[:base] << "#{self.name} can't be deleted due to have more than one programs"
+			errors[:base] << "#{self.name} can't be deleted due to have more than 0 programs"
 			return false
 		end
 	end

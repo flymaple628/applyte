@@ -1,5 +1,6 @@
 class ProgramFormKey < ActiveRecord::Base
-	validates_presence_of :name,:order,:key_type,:list_value
+	validates_presence_of :name,:order,:key_type
+	#list_value could be without validating (Derek)
 
 	belongs_to :program
 	belongs_to :program_form_key_category

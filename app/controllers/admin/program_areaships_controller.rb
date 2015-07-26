@@ -12,11 +12,11 @@ class Admin::ProgramAreashipsController < ApplicationController
 
   	if ProgramAreaship.find_by(program_areaship_params).nil? and @program_areaship.save
   		@notice = "program_areaship success to created"
+      @program_areaship = ProgramAreaship.new
   	else
   		@notice = @program_areaship.errors.full_messages
   	end
 
-    @program_areaship = ProgramAreaship.new
     refresh
   end
 
@@ -28,17 +28,21 @@ class Admin::ProgramAreashipsController < ApplicationController
   def update
   	if @program_areaship.update(program_areaship_params)
   		@notice = "program_areaship success to updated"
+      @program_areaship = ProgramAreaship.new
   	else
   		@notice = @program_areaship.errors.full_messages
   	end
 
-    @program_areaship = ProgramAreaship.new
     refresh
   end
 
 
   def destroy
-  	@program_areaship.destroy
+  	if @program_areaship.destroy
+
+    else
+
+    end
     @program_areaship = ProgramAreaship.new
     refresh
   end

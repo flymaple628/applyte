@@ -20,9 +20,9 @@
 
 			<tr>
 				<td>
-					<%= f.collection_select(:program_id, Program.all, :id, :name) %>
+					<%= f.collection_select(:program_id, Program.all, :id, :title) %>
 
-					<%= f.collection_select(:area_id, Area.all, :id, :name) %>
+					<%= f.collection_select(:area_id, Area.all, :id, :title) %>
 				</td>
 
 			<% if program_areaship.new_record? %>
@@ -35,7 +35,7 @@
 
 			<% program_areaships.each do |pa| %>
 			<tr>
-				<td> <%=pa.area.name%>:<%=pa.program.name%> </td>
+				<td> <%=pa.area.name%>:<%=pa.program.title%> </td>
 
 				<td> <%= link_to "Edit", edit_admin_program_areaship_path(pa), :remote=>true, :class=>"btn btn-info" %>
 				</td>

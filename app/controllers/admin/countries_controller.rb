@@ -11,11 +11,11 @@ class Admin::CountriesController < ApplicationController
     @country = Country.new(country_params)
     if @country.save
       @notice = {:success=>"#{@country.name} success to created"}
+      @country = Country.new
     else
       @notice = {:fail=>@country.errors.full_messages}
     end
 
-    @country = Country.new
     refresh
   end
 
@@ -27,11 +27,11 @@ class Admin::CountriesController < ApplicationController
   def update
     if @country.update(country_params)
       @notice = {:success=>"#{@country.name} is successful updated"}
+      @country = Country.new
     else
       @notice = {:fail=>@country.errors.full_messages}
     end
 
-    @country = Country.new
     refresh
   end
 
@@ -42,7 +42,7 @@ class Admin::CountriesController < ApplicationController
     else
       @notice = {:fail=>@country.errors.full_messages}
     end
-
+    
     @country = Country.new
     refresh
   end

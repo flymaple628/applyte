@@ -1,6 +1,6 @@
 <%# school, schools, notice %>
 <div class="admin-schools">
-	<h1> Schools </h1 >
+	<h1> Schools <span class="label label-info"> <%=schools.count %> </span> </h1>
 	<h4>
 		<% if notice %>
 			<span class="label label-success"><%= notice[:success] if notice[:success] %></span>

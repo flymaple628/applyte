@@ -11,11 +11,11 @@ class Admin::SchoolsController < ApplicationController
     @school = School.new(school_params)
     if @school.save
       @notice = {:success=>"#{@school.name} has been created successfully"}
+      @school = School.new
     else
       @notice = {:fail=>@school.errors.full_messages}
     end
 
-    @school = School.new
     refresh
   end
 
@@ -27,11 +27,11 @@ class Admin::SchoolsController < ApplicationController
   def update
     if @school.update(school_params)
       @notice = {:success=>"#{@school.name} has been updated successfully"}
+      @school = School.new
     else
       @notice = {:fail=>@school.errors.full_messages}
     end
 
-    @school = School.new
     refresh
   end
 

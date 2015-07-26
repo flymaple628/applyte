@@ -5,7 +5,7 @@ class ProgramCategory < ActiveRecord::Base
 private
 	def check_programs
 		if self.programs.length >0
-			errors[:base] << "can't delete due to have programs"
+			errors[:base] << "#{self.name} can't be deleted due to have more than 0 programs"
 			return false
 		end
 	end

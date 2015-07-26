@@ -1,16 +1,16 @@
 class Program < ActiveRecord::Base
-	validates_presence_of :name,:degree,:department
+	validates_presence_of :title,:degree,:department
 
 	has_many :user_program_forms
+	has_many :users, :through=>:user_program_forms
+
 	belongs_to :school
 	belongs_to :program_category
 	# has_many :areas
 	has_many :faculties
 
 	has_many :program_alumnships
-	has_many :profiles, :through=>:program_alumnships
 	has_many :alumns, :through=>:program_alumnships
-	has_many :users, :through=>:program_alumnships
 
 
 	has_one :address, :as=> :addressable, :dependent => :destroy
@@ -22,14 +22,38 @@ class Program < ActiveRecord::Base
 	has_many :program_form_keys, :dependent => :destroy
   accepts_nested_attributes_for :program_form_keys, :allow_destroy => true, :reject_if => :all_blank
 
-  has_many :program_areaships
+  has_many :program_areaships, :dependent => :destroy
 	has_many :areas, :through=>:program_areaships
 
   has_many :program_form_key_categories, :through=>:program_form_keys, :source=>:program_form_key_category
 
   before_create :save_default_program_key
+  before_destroy :check_subclasses
+
 
 private
+
+	def check_subclasses
+		destroy = true
+		if self.users.count >0 
+			errors[:base] << "user_program_forms more than 0 "
+			destroy = false
+		end
+
+		if self.faculties.count >0
+			errors[:base] << "faculties more than 0 "
+			destroy = false
+		end
+
+		if self.alumns.count >0
+			errors[:base] << "alumnus more than 0 "
+			destroy = false			
+		end
+
+		destroy
+	end
+
+
   def save_default_program_key
 		program_keys = [["first name",1,"string"],
 										["middle name",1,"string"],
@@ -55,10 +79,11 @@ private
 										["Letters of Recommendation",8,"text"],
 										["Transcripts (Academic Records)",8,"text"]]
 
-		program_keys.each do |pk|
+		program_keys.each_with_index do |pk,index|
 			self.program_form_keys.new(
 					:name=>pk[0],
 					:program_form_key_category_id=>pk[1],
+					:order=> index+1,
 					:key_type=>pk[2]
 					)
 		end
