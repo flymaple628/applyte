@@ -1,12 +1,16 @@
 
-<div class="program-list">
-	<h1 class="title"> Computer Science </h1>
+<div class="wrapper">
+  <div class="main-area">
+		<%= render :partial=>"layouts/search_bar" %>
 
-	<div class="list-box">
-
-		<%= render :partial=>"/programs/program_row", :collection => @programs, :as => :program %>
-
-		<% if @programs.length ==0  %>
-			<h2 class="no-result">Sorry no result </h2>
-		<% end %>
+    <div class="search-result-area">
+      <div class="search-result-body">
+				<%= render :partial=>"/programs/program_row", :collection => @programs, :as => :program %>
+				<% if @programs.length ==0  %>
+					<h2 class="no-result">Sorry no result </h2>
+				<% end %>				
+			</div>
+		</div>
+	</div>
 </div>
+

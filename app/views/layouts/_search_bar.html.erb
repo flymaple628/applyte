@@ -1,14 +1,20 @@
 
 
-<div class="search-box">
-	<%= link_to "back", programs_path, :class=>"btn btn-warning" %>
+<div class="search-bar">
+	<div class="icon"></div>
 	<%= form_tag programs_path, :method=>:get do %>
-		<%= text_field_tag 'keyword',nil, :placeholder=>"Enter program name", :class=>"search-input" %>
-		<%= submit_tag 'search', :class=>"btn btn-primary"%>
+		<div class="input-outer">
+			<%= text_field_tag 'keyword',nil, :placeholder=>"Computer Science", :class=>"input" %>
+		</div>
+      <div class="submit"></div>
 	<% end %>
+</div>
 
-	<%= link_to "Rank", programs_path, :class=>"btn btn-info" %>
-
+<div class="search-filter-area">
+	<div>Sort by </div>
+	<div class="filter-item">Ranking</div>
+	<div class="filter-item">Tuition</div>
+	<div class="filter-item">Deadline</div>
 </div>
 
 

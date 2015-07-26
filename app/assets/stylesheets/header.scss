@@ -1,0 +1,57 @@
+.main-body{
+  padding: 0px;
+  margin: 0px;
+  min-width: 900px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f2f2f2;
+
+  .header {
+      width: 100%;
+      min-width: 650px;
+      height: 100px; /* kane 70px */
+      padding-top: 30px;
+      padding-left: 20px;
+      background-color: #ffffff;
+  }
+
+  .wrapper {
+      width: 100%;
+  }
+
+  .header .header-logo {
+    float: left;
+    width: 210px;
+    height: 55px;
+    background-image: url("../img/logo_programlist.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+
+  .header .header-buttons {
+    float: right;
+    line-height: 40px;
+    width: 310px;
+  }
+
+  .header-buttons .header-buttons-button {
+    float: left;
+    color: #00AFA3;
+    text-align: center;
+    vertical-align: middle;
+
+    width: 140px;
+  }
+
+  .header-buttons .header-buttons-button:hover {
+    float: left;
+    background-image: url("../img/bt01_bg_hover.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+    color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+
+    width: 140px;
+  }
+}
