@@ -59,7 +59,6 @@ describe "#association" do
       address = Address.new(address1: nil)
       address.valid?
       expect(address.errors[:address1]).to include("can't be blank")
-      expect(address.errors[:postal_code]).to include("can't be blank")
       expect(address.errors[:addressable_type]).to include("can't be blank")
     end
   end
