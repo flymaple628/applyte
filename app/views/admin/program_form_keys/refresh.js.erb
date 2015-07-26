@@ -1,4 +1,4 @@
 
-$(".admin-box .content").html("<%= j (render :partial=>'admin/program_form_keys/index', :locals=>{:program=>@program, :programs=>@programs}) %>")
+$(".admin-box .content").html("<%= j (render :partial=>'admin/program_form_keys/index', :locals=>{:program=>@program, :programs=>@programs, :edit_program_key=>@edit_program_key, :notice=>@notice}) %>")
 
 

@@ -1,6 +1,13 @@
-<%# school, schools %>
+<%# school, schools, notice %>
 <div class="admin-schools">
-	<h1> Schools </h1>
+	<h1> Schools <span class="label label-info"> <%=schools.count %> </span> </h1>
+	<h4>
+		<% if notice %>
+			<span class="label label-success"><%= notice[:success] if notice[:success] %></span>
+			<span class="label label-danger"><%= notice[:fail] if notice[:fail] %></span>
+		<% end %>
+	</h4>
+
 	<% if school.new_record? %>
 		<% url_hash = {:url=>admin_schools_path, :remote=>true} %>
 	<% else %>
@@ -38,12 +45,17 @@
 
 			<div class="field">
 				<%= addr.label :address1, "address1", :class=>'title' %>
-				<%= addr.text_field :address1, :class=>'value'  %>			
+				<%= addr.text_field :address1, :class=>'value', :required=>true  %>			
 			</div>
 
 			<div class="field">
 				<%= addr.label :address2, "address2", :class=>'title' %>
 				<%= addr.text_field :address2, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= addr.label :postal_code, "postal_code", :class=>'title' %>
+				<%= addr.text_field :postal_code, :class=>'value', :required=>true  %>			
 			</div>
 
 			<div class="field">
@@ -87,6 +99,10 @@
 				<div class="value-area"> <%= c.desc %> </div>
 			</div>
 			<div class="field">
+				<div class="title"> Programs </div>
+				<div class="value"> <span class="label label-info"><%= c.programs.count %></span></div>
+			</div>
+			<div class="field">
 				<div class="title"> Phone: </div>
 				<div class="value"> <%= c.phone %> </div>
 			</div>
@@ -103,6 +119,11 @@
 			<div class="field">
 				<div class="title"> Address: </div>
 				<div class="value"> <%= c.address.try(:address2) %> </div>
+			</div>
+
+			<div class="field">
+				<div class="title"> Postal Code: </div>
+				<div class="value"> <%= c.address.try(:postal_code) %> </div>
 			</div>
 
 			<div class="field">

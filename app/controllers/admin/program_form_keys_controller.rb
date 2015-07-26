@@ -1,6 +1,7 @@
 class Admin::ProgramFormKeysController < ApplicationController
   before_action :set_programs
   before_action :set_program, :only=>[:create, :edit ,:update ,:destroy]
+  before_action :set_program_key, :only=>[:edit,:update,:destroy]
 
   def index
 
@@ -10,25 +11,24 @@ class Admin::ProgramFormKeysController < ApplicationController
   def create
     @program_key = @program.program_form_keys.new(program_form_key_params)
     if @program_key.save
-      @notice = "program success to created"
+      @notice = {:success=>"#{@program_key.name} has been created successfully"}
     else
-      @notice = @program_key.errors.full_messages
+      @notice = {:fail=>@program_key.errors.full_messages}
     end
 
     refresh
   end
 
   def edit
-    @edit_program_key = @program.program_form_keys.find params[:id]
+    @edit_program_key = @program_key
     refresh
   end
 
   def update
-    @program_key = @program.program_form_keys.find params[:id]
     if @program_key.update(program_form_key_params)
-      @notice = "program success to updated"
+      @notice = {:success=>"#{@program_key.name} has been updated successfully"}
     else
-      @notice = @program.errors.full_messages      
+      @notice = {:fail=>@program_key.errors.full_messages}
     end
 
     refresh
@@ -36,8 +36,12 @@ class Admin::ProgramFormKeysController < ApplicationController
 
 
   def destroy
-    @program_key = @program.program_form_keys.find params[:id]
-    @program_key.destroy
+    if @program_key.destroy
+      @notice = {:success=>"#{@program_key.name} has been deleted successfully"}      
+    else
+      @notice = {:fail=>@program_key.errors.full_messages}
+    end
+
     refresh
   end
 
@@ -48,6 +52,10 @@ private
 
   def set_program
     @program = Program.find params[:program_id]
+  end
+
+  def set_program_key
+    @program_key = @program.program_form_keys.find params[:id]
   end
 
 	def program_form_key_params

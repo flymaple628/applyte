@@ -1,6 +1,13 @@
-<%# city, cities %>
+<%# city, cities, notice %>
 <div class="admin-cities">
 	<h1> Cities </h1>
+	<h4>
+		<% if notice %>
+			<span class="label label-success"><%= notice[:success] if notice[:success] %></span>
+			<span class="label label-danger"><%= notice[:fail] if notice[:fail] %></span>
+		<% end %>
+	</h4>
+
 	<% if city.new_record? %>
 		<% url_hash = {:url=>admin_cities_path, :remote=>true} %>
 	<% else %>
@@ -15,6 +22,9 @@
 				<th> <%= f.label :name, "name" %> </th>
 				<th> <%= f.label :state_id, "state" %></th>
 				<th> <%= f.label :country_id, "country" %></th>
+				<th> schools </th>
+				<th> programs </th>
+				<th></th>
 				<th></th>
 			</tr>
 
@@ -23,12 +33,15 @@
 				<td>
 						<%= f.select :state_id, State.all.map{ |s| ["#{s.name}-#{s.country.try(:name)}", s.id]} %>
 				<td> </td>
+				<td></td>
+				<td></td>
 
 			<% if city.new_record? %>
 				<td>	<%= f.submit 'create', :class=>'btn btn-primary' %> </td>
 			<% else %>
 				<td>	<%= f.submit 'update', :class=>'btn btn-primary' %> </td>
 			<% end %>
+				<td></td>
 
 			</tr>
 
@@ -37,6 +50,8 @@
 				<td> <%= c.name %> </td>
 				<td> <%= c.state.try(:name) %> </td>
 				<td> <%= c.state.country.try(:name) if c.state %> </td>
+				<td> <%= c.schools.count %> </td>
+				<td> <%= c.programs.count %> </td>
 
 				<td> <%= link_to "Edit", edit_admin_city_path(c), :remote=>true, :class=>"btn btn-info" %>
 				</td>

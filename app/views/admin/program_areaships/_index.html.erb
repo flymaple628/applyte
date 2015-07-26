@@ -20,9 +20,9 @@
 
 			<tr>
 				<td>
-					<%= f.collection_select(:program_id, Program.all, :id, :name) %>
+					<%= f.collection_select(:program_id, Program.all, :id, :title) %>
 
-					<%= f.collection_select(:area_id, Area.all, :id, :name) %>
+					<%= f.collection_select(:area_id, Area.all, :id, :title) %>
 				</td>
 
 			<% if program_areaship.new_record? %>

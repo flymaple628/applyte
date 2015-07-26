@@ -10,12 +10,12 @@ class Admin::CountriesController < ApplicationController
   def create
     @country = Country.new(country_params)
     if @country.save
-      @notice = "country success to created"
+      @notice = {:success=>"#{@country.name} success to created"}
+      @country = Country.new
     else
-      @notice = @country.errors.full_messages
+      @notice = {:fail=>@country.errors.full_messages}
     end
 
-    @country = Country.new
     refresh
   end
 
@@ -26,18 +26,23 @@ class Admin::CountriesController < ApplicationController
 
   def update
     if @country.update(country_params)
-      @notice = "country success to updated"
+      @notice = {:success=>"#{@country.name} is successful updated"}
+      @country = Country.new
     else
-      @notice = @country.errors.full_messages      
+      @notice = {:fail=>@country.errors.full_messages}
     end
 
-    @country = Country.new
     refresh
   end
 
 
   def destroy
-    @country.destroy
+    if @country.destroy
+      @notice = {:success=>"#{@country.name} is successful destroyed"}
+    else
+      @notice = {:fail=>@country.errors.full_messages}
+    end
+    
     @country = Country.new
     refresh
   end

@@ -1,6 +1,13 @@
 <%# state, states %>
 <div class="admin-states">
 	<h1> States </h1>
+	<h4>
+		<% if notice %>
+			<span class="label label-success"><%= notice[:success] if notice[:success] %></span>
+			<span class="label label-danger"><%= notice[:fail] if notice[:fail] %></span>
+		<% end %>
+	</h4>
+
 	<% if state.new_record? %>
 		<% url_hash = {:url=>admin_states_path, :remote=>true} %>
 	<% else %>
@@ -14,6 +21,7 @@
 			<tr>
 				<th> <%= f.label :name, "name" %> </th>
 				<th> <%= f.label :country_id, "country" %> </th>
+				<th> cities</th>
 				<th></th>
 				<th></th>
 			</tr>				
@@ -21,8 +29,7 @@
 			<tr>
 				<td> <%= f.text_field :name %> </td>
 				<td> <%= f.collection_select(:country_id, Country.all, :id, :name) %> </td>
-
-
+				<td> </td>
 			<% if state.new_record? %>
 				<td>	<%= f.submit 'create', :class=>'btn btn-primary' %> </td>
 			<% else %>
@@ -35,6 +42,7 @@
 			<tr>
 				<td> <%= c.name %> </td>
 				<td> <%= c.country.try(:name) %></td>
+				<td> <%= c.cities.count %> </td>
 				<td> <%= link_to "Edit", edit_admin_state_path(c), :remote=>true, :class=>"btn btn-info" %> 
 				</td>
 				<td> <%= link_to "Delete", admin_state_path(c), :remote=>true, :method=>:delete, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %> 

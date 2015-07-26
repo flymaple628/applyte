@@ -25,27 +25,27 @@
 					<% end %>
 
 				<tr>
- 					<td><%= index+1%> </td>
+ 					<td> <span class="label label-info"> <%= index+1%> </span> </td>
 					<td> <span class="label label-primary"><%= m.name %></span> <span class="label label-danger"><%= m.all.count %> </span></td>
 					<td> 
 						<% m.column_names.each do |c| %>
-							<span class="label label-primary"><%= c %></span>
+							<span class="label label-success"><%= c %></span>
 						<% end %>
 							<span class="label label-warning"><%= m.column_names.count %> </span>
 					</td>
 					<td> 
 						<% has_many_list.each do |m| %>
-							<span class="label label-primary"><%= m %></span>
+							<span class="label label-success"><%= m %></span>
 						<% end %>
 					</td>
 					<td>
 						<% has_one_list.each do |m| %>
-							<span class="label label-primary"><%= m %></span>
+							<span class="label label-success"><%= m %></span>
 						<% end %>						
 					</td>
 					<td>
 						<% belongs_to_list.each do |m| %>
-							<span class="label label-primary"><%= m %></span>
+							<span class="label label-success"><%= m %></span>
 						<% end %>
 					</td>
 				</tr>

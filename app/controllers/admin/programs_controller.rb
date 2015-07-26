@@ -10,12 +10,13 @@ class Admin::ProgramsController < ApplicationController
   def create
     @program = Program.new(program_params)
     if @program.save
-      @notice = "program success to created"
+      @notice = {:success=>"#{@program.title} has been created successfully"}
+      @program = Program.new
     else
-      @notice = @program.errors.full_messages
+      @notice = {:fail=>@program.errors.full_messages}
     end
 
-    @program = Program.new
+
     refresh
   end
 
@@ -26,18 +27,23 @@ class Admin::ProgramsController < ApplicationController
 
   def update
     if @program.update(program_params)
-      @notice = "program success to updated"
+      @notice = {:success=>"#{@program.title} has been updated successfully"}
+      @program = Program.new
     else
-      @notice = @program.errors.full_messages      
+      @notice = {:fail=>@program.errors.full_messages}
     end
 
-    @program = Program.new
     refresh
   end
 
 
   def destroy
-    @program.destroy
+    if @program.destroy
+      @notice = {:success=>"#{@program.title} has been updated successfully"}
+    else
+      @notice = {:fail=>@program.errors.full_messages}
+    end
+    
     @program = Program.new
     refresh
   end
@@ -54,7 +60,7 @@ private
 	def program_params
 		params.require(:program).permit(:title, :degree, :level, :desc, :department, :program_category_id,
 																	 :fax, :phone, :email, :address_id, :school_id, :tuition, :ranking, :deadline,
-                                   :address_attributes=>[:address1, :address2, :city_id],
+                                   :address_attributes=>[:address1, :address2, :postal_code, :city_id],
                                    :photos_attributes =>[:photo, :_destroy, :id])
 	end
 

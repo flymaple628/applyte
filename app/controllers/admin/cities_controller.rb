@@ -10,12 +10,12 @@ class Admin::CitiesController < ApplicationController
   def create
   	@city = City.new(city_params)
   	if @city.save
-  		@notice = "city success to created"
+  		@notice = {:success=>"#{@city.name} has been created successfully"}
+      @city = City.new
   	else
-  		@notice = @city.errors.full_messages
+  		@notice = {:fail=>@city.errors.full_messages}
   	end
 
-    @city = City.new
     refresh
   end
 
@@ -26,18 +26,23 @@ class Admin::CitiesController < ApplicationController
 
   def update
   	if @city.update(city_params)
-  		@notice = "city success to updated"
+      @notice = {:success=>"#{@city.name} has been updated successfully"}
+      @city = City.new
   	else
-  		@notice = @city.errors.full_messages  		
+      @notice = {:fail=>@city.errors.full_messages}
   	end
 
-    @city = City.new
     refresh
   end
 
-
   def destroy
-  	@city.destroy
+    name = @city.name
+    if @city.destroy
+      @notice = {:success=>"#{@city.name} has been destroyed successfully"}
+    else
+      @notice = {:fail=>@city.errors.full_messages}
+    end
+
     @city = City.new
     refresh
   end
