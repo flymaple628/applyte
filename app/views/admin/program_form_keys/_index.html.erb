@@ -3,8 +3,10 @@
 	<h1> Program Form </h1>
 	
 	<% programs.each do |pg| %>
-		<h4> <%= pg.program_category.name %> </h4>
-		<p> <%= pg.school.try(:name) %> </p>
+		<h4> 
+			<span class="label label-primary"> <%= pg.school.try(:name) %></span>
+			<span class="label label-warning"> <%= pg.program_category.name %></span>
+		</h4>
 
 		<% if @edit_program_key && @edit_program_key.program_id == pg.id %>		
 			<% url_hash = {:url=> admin_program_program_form_key_path(pg, @edit_program_key), :method=>:patch, :remote=>true} %>

@@ -298,42 +298,7 @@ puts "program for every school"
 		ProgramAreaship.create(program_areas)
 
 
-		puts "program form key"
-		ProgramFormKey.destroy_all
-		program_keys = [["first name",1,"string"],
-										["middle name",1,"string"],
-										["last name",1,"string"],
-										["preferred name",1,"string"],
-										["Are you Hispanic or Latino?",2,"boolean"],
-										["United States Military or Veteran Status",3,"string"],
-										["address1",4,"string"],
-										["city",4,"string"],
-										["phone",4,"string"],
-										["program",5,"string"],
-										["Educational History",6,"text"],
-										["Test Information",6,"text"],
-										["Application Information",6,"text"],
-										["Financial Aid",6,"text"],
-										["Employment History & Languages",6,"text"],
-										["Supplemental Information",6,"text"],
-										["Register Your References",6,"text"],
-										["Document Uploads, Confirmation & Submission",6,"text"],
-										["GRE",7,"integer"],
-										["TOEFL",7,"integer"],
-										["Statement of Purpose",8,"text"],
-										["Letters of Recommendation",8,"text"],
-										["Transcripts (Academic Records)",8,"text"]]
 
-			ProgramFormKey.destroy_all
-      Program.all.each_with_index do |pg,index|
-      	program_keys.each_with_index do |pgk,i|
-	      	pg.program_form_keys.create(
-	      				:name=>pgk[0],
-	      				:program_form_key_category_id=>pgk[1],
-	      				:key_type=>pgk[2])
-
-      	end
-      end
 	end
 end
 

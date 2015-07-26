@@ -10,9 +10,9 @@ class Admin::FacultiesController < ApplicationController
   def create
     @faculty = Faculty.new(faculty_params)
     if @faculty.save
-      @notice = "faculty success to created"
+      @notice = {:success=>"#{@faculty.name} is successfuly created"}
     else
-      @notice = @faculty.errors.full_messages
+      @notice = {:fail=>@faculty.errors.full_messages}
     end
 
     @faculty = Faculty.new
@@ -29,9 +29,9 @@ class Admin::FacultiesController < ApplicationController
   	@faculty.image = nil if params[:destroy_image] == "1"
 
     if @faculty.update(faculty_params)
-      @notice = "faculty success to updated"
+      @notice = {:success=>"#{@faculty.name} is successfuly updated"}
     else
-      @notice = @faculty.errors.full_messages      
+      @notice = {:fail=>@faculty.errors.full_messages}
     end
 
     @faculty = Faculty.new
@@ -40,7 +40,12 @@ class Admin::FacultiesController < ApplicationController
 
 
   def destroy
-    @faculty.destroy
+    if @faculty.destroy
+      @notice = {:success=>"#{@faculty.name} is successfuly destroyed"}
+    else
+      @notice = {:fail=>@faculty.errors.full_messages}
+    end
+
     @faculty = Faculty.new
     refresh
   end

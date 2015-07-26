@@ -1,6 +1,12 @@
 <%# faculties, faculty %>
 <div class="admin-faculties">
 	<h1> faculties </h1>
+	<h4>
+		<% if notice %>
+			<span class="label label-success"><%= notice[:success] if notice[:success] %></span>
+			<span class="label label-danger"><%= notice[:fail] if notice[:fail] %></span>
+		<% end %>
+	</h4>
 	
 	<% if faculty.new_record? %>
 		<% url_hash = {:url=>admin_faculties_path, :authenticity_token => true , :remote=>true} %>
@@ -57,6 +63,16 @@
 	<% faculties.each do |fc| %>
 	<div class="unit">
 		<div class="field">
+			<%= image_tag fc.image.url(:thumb) if fc.image.exists? %>
+
+		</div>
+
+		<div class="field">
+			<div class="title"> Name: </div> 
+			<div class="value"> <%= fc.name %> </div>
+		</div>
+
+		<div class="field">
 			<div class="title"> School: </div> 
 			<div class="value"> <%= fc.program.school.try(:name) if fc.program.school %> </div>
 		</div>
@@ -67,11 +83,6 @@
 		</div>
 
 		<div class="field">
-			<div class="title"> Name: </div> 
-			<div class="value"> <%= fc.name %> </div>
-		</div>
-
-		<div class="field">
 			<div class="title"> intro: </div> 
 			<div class="value-area"> <%= fc.intro %> </div>
 		</div>
@@ -79,11 +90,6 @@
 		<div class="field">
 			<div class="title"> email: </div> 
 			<div class="value"> <%= fc.email %> </div>
-		</div>
-
-		<div class="field">
-			<%= image_tag fc.image.url(:thumb) if fc.image.exists? %>
-
 		</div>
 
 

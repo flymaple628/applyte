@@ -1,4 +1,4 @@
 
-$(".admin-box .content").html("<%= j (render :partial=>'admin/states/index', :locals=>{:state=>@state, :states=>@states}) %>")
+$(".admin-box .content").html("<%= j (render :partial=>'admin/states/index', :locals=>{:state=>@state, :states=>@states, :notice=>@notice }) %>")
 
 

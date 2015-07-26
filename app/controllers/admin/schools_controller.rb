@@ -10,9 +10,9 @@ class Admin::SchoolsController < ApplicationController
   def create
     @school = School.new(school_params)
     if @school.save
-      @notice = "school success to created"
+      @notice = {:success=>"#{@school.name} has been created successfully"}
     else
-      @notice = @school.errors.full_messages
+      @notice = {:fail=>@school.errors.full_messages}
     end
 
     @school = School.new
@@ -26,9 +26,9 @@ class Admin::SchoolsController < ApplicationController
 
   def update
     if @school.update(school_params)
-      @notice = "school success to updated"
+      @notice = {:success=>"#{@school.name} has been updated successfully"}
     else
-      @notice = @school.errors.full_messages      
+      @notice = {:fail=>@school.errors.full_messages}
     end
 
     @school = School.new
@@ -37,7 +37,12 @@ class Admin::SchoolsController < ApplicationController
 
 
   def destroy
-    @school.destroy
+    if @school.destroy
+      @notice = {:success=>"#{@school.name} has been destroyed successfully"}
+    else
+      @notice = {:fail=>@school.errors.full_messages}
+    end
+
     @school = School.new
     refresh
   end
@@ -54,7 +59,7 @@ private
   def school_params
     params.require(:school).permit(:name, :campus, :desc, :phone, :email, :logo_id,
                                    :city_id, :link_name, :link_url,
-                                   :address_attributes=>[:address1, :address2, :city_id],
+                                   :address_attributes=>[:address1, :address2, :city_id, :postal_code],
                                    :photos_attributes =>[:photo, :_destroy, :id])
 
   end

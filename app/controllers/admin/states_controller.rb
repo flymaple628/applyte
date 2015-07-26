@@ -10,9 +10,9 @@ class Admin::StatesController < ApplicationController
   def create
     @state = State.new(state_params)
     if @state.save
-      @notice = "state success to created"
+      @notice = {:success=>"#{@state.name} has been created successfuly"}
     else
-      @notice = @state.errors.full_messages
+      @notice = {:fail=>@state.errors.full_messages}
     end
 
     @state = State.new
@@ -26,9 +26,9 @@ class Admin::StatesController < ApplicationController
 
   def update
     if @state.update(state_params)
-      @notice = "state success to updated"
+      @notice = {:success=>"#{@state.name} has been updated successfuly"}
     else
-      @notice = @state.errors.full_messages      
+      @notice = {:fail=>@state.errors.full_messages}
     end
 
     @state = State.new
@@ -37,7 +37,12 @@ class Admin::StatesController < ApplicationController
 
 
   def destroy
-    @state.destroy
+    if @state.destroy
+      @notice = {:success=>"#{@state.name} has been destroyed successfuly"}
+    else
+      @notice = {:fail=>@state.errors.full_messages}
+    end
+
     @state = State.new
     refresh
   end
