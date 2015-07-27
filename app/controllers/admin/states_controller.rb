@@ -11,6 +11,7 @@ class Admin::StatesController < ApplicationController
     @state = State.new(state_params)
     if @state.save
       @notice = {:success=>"#{@state.name} has been created successfuly"}
+      current_user.user_updates.save_update(@state,"create")
       @state = State.new
     else
       @notice = {:fail=>@state.errors.full_messages}
@@ -27,6 +28,7 @@ class Admin::StatesController < ApplicationController
   def update
     if @state.update(state_params)
       @notice = {:success=>"#{@state.name} has been updated successfuly"}
+      current_user.user_updates.save_update(@state,"update")
       @state = State.new
     else
       @notice = {:fail=>@state.errors.full_messages}
@@ -39,6 +41,7 @@ class Admin::StatesController < ApplicationController
   def destroy
     if @state.destroy
       @notice = {:success=>"#{@state.name} has been destroyed successfuly"}
+      current_user.user_updates.save_update(@state,"destroy")
     else
       @notice = {:fail=>@state.errors.full_messages}
     end
@@ -65,4 +68,5 @@ private
       format.js { render 'admin/states/refresh'}
     end
   end
+
 end

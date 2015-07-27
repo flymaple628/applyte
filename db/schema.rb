@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150725102126) do
+ActiveRecord::Schema.define(version: 20150727063439) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -222,7 +222,6 @@ ActiveRecord::Schema.define(version: 20150725102126) do
     t.string   "fax"
     t.string   "phone"
     t.string   "email"
-    t.integer  "address_id"
     t.integer  "school_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -233,7 +232,6 @@ ActiveRecord::Schema.define(version: 20150725102126) do
     t.date     "deadline"
   end
 
-  add_index "programs", ["address_id"], name: "index_programs_on_address_id"
   add_index "programs", ["program_category_id"], name: "index_programs_on_program_category_id"
   add_index "programs", ["school_id"], name: "index_programs_on_school_id"
 
@@ -255,14 +253,12 @@ ActiveRecord::Schema.define(version: 20150725102126) do
     t.string   "phone"
     t.string   "email"
     t.integer  "logo_id"
-    t.integer  "address_id"
     t.string   "link_name"
     t.string   "link_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "schools", ["address_id"], name: "index_schools_on_address_id"
   add_index "schools", ["logo_id"], name: "index_schools_on_logo_id"
 
   create_table "states", force: :cascade do |t|
@@ -295,6 +291,18 @@ ActiveRecord::Schema.define(version: 20150725102126) do
 
   add_index "user_program_forms", ["program_id"], name: "index_user_program_forms_on_program_id"
   add_index "user_program_forms", ["user_id"], name: "index_user_program_forms_on_user_id"
+
+  create_table "user_updates", force: :cascade do |t|
+    t.string   "user_updatable_type"
+    t.integer  "user_updatable_id"
+    t.integer  "user_id"
+    t.string   "action"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "user_updates", ["user_id"], name: "index_user_updates_on_user_id"
+  add_index "user_updates", ["user_updatable_id"], name: "index_user_updates_on_user_updatable_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

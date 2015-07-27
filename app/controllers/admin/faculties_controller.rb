@@ -11,11 +11,12 @@ class Admin::FacultiesController < ApplicationController
     @faculty = Faculty.new(faculty_params)
     if @faculty.save
       @notice = {:success=>"#{@faculty.name} is successfuly created"}
+      current_user.user_updates.save_update(@faculty,"create")
+      @faculty = Faculty.new
     else
       @notice = {:fail=>@faculty.errors.full_messages}
     end
 
-    @faculty = Faculty.new
     refresh
   end
 
@@ -30,11 +31,12 @@ class Admin::FacultiesController < ApplicationController
 
     if @faculty.update(faculty_params)
       @notice = {:success=>"#{@faculty.name} is successfuly updated"}
+      current_user.user_updates.save_update(@faculty,"update")
+      @faculty = Faculty.new
     else
       @notice = {:fail=>@faculty.errors.full_messages}
     end
 
-    @faculty = Faculty.new
     refresh
   end
 
@@ -42,11 +44,12 @@ class Admin::FacultiesController < ApplicationController
   def destroy
     if @faculty.destroy
       @notice = {:success=>"#{@faculty.name} is successfuly destroyed"}
+      current_user.user_updates.save_update(@faculty,"destroy")
+      @faculty = Faculty.new
     else
       @notice = {:fail=>@faculty.errors.full_messages}
     end
 
-    @faculty = Faculty.new
     refresh
   end
 
@@ -68,6 +71,5 @@ private
       format.js { render 'admin/faculties/refresh'}
     end
   end
-
 
 end

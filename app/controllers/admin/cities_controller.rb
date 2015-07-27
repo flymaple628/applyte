@@ -11,6 +11,7 @@ class Admin::CitiesController < ApplicationController
   	@city = City.new(city_params)
   	if @city.save
   		@notice = {:success=>"#{@city.name} has been created successfully"}
+      current_user.user_updates.save_update(@city,"create")
       @city = City.new
   	else
   		@notice = {:fail=>@city.errors.full_messages}
@@ -27,6 +28,7 @@ class Admin::CitiesController < ApplicationController
   def update
   	if @city.update(city_params)
       @notice = {:success=>"#{@city.name} has been updated successfully"}
+      current_user.user_updates.save_update(@city,"update")
       @city = City.new
   	else
       @notice = {:fail=>@city.errors.full_messages}
@@ -39,6 +41,7 @@ class Admin::CitiesController < ApplicationController
     name = @city.name
     if @city.destroy
       @notice = {:success=>"#{@city.name} has been destroyed successfully"}
+      current_user.user_updates.save_update(@city,"destroy")
     else
       @notice = {:fail=>@city.errors.full_messages}
     end
@@ -65,4 +68,5 @@ private
       format.js { render 'admin/cities/refresh'}
     end
   end
+
 end

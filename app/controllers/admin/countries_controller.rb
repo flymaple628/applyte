@@ -11,6 +11,7 @@ class Admin::CountriesController < ApplicationController
     @country = Country.new(country_params)
     if @country.save
       @notice = {:success=>"#{@country.name} success to created"}
+      current_user.user_updates.save_update(@country,"create")
       @country = Country.new
     else
       @notice = {:fail=>@country.errors.full_messages}
@@ -27,6 +28,7 @@ class Admin::CountriesController < ApplicationController
   def update
     if @country.update(country_params)
       @notice = {:success=>"#{@country.name} is successful updated"}
+      current_user.user_updates.save_update(@country,"update")
       @country = Country.new
     else
       @notice = {:fail=>@country.errors.full_messages}
@@ -39,6 +41,7 @@ class Admin::CountriesController < ApplicationController
   def destroy
     if @country.destroy
       @notice = {:success=>"#{@country.name} is successful destroyed"}
+      current_user.user_updates.save_update(@country,"destroy")
     else
       @notice = {:fail=>@country.errors.full_messages}
     end

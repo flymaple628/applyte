@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :programs, :through=>:user_program_forms
 
   has_one :profile
+  has_many :user_updates
+
   serialize :auth_raw_data
 
   has_attached_file :avatar,

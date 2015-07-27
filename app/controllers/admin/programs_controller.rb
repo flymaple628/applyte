@@ -11,6 +11,7 @@ class Admin::ProgramsController < ApplicationController
     @program = Program.new(program_params)
     if @program.save
       @notice = {:success=>"#{@program.title} has been created successfully"}
+      current_user.user_updates.save_update(@program,"create")
       @program = Program.new
     else
       @notice = {:fail=>@program.errors.full_messages}
@@ -28,6 +29,7 @@ class Admin::ProgramsController < ApplicationController
   def update
     if @program.update(program_params)
       @notice = {:success=>"#{@program.title} has been updated successfully"}
+      current_user.user_updates.save_update(@program,"update")
       @program = Program.new
     else
       @notice = {:fail=>@program.errors.full_messages}
@@ -40,6 +42,7 @@ class Admin::ProgramsController < ApplicationController
   def destroy
     if @program.destroy
       @notice = {:success=>"#{@program.title} has been updated successfully"}
+      current_user.user_updates.save_update(@program,"destroy")
     else
       @notice = {:fail=>@program.errors.full_messages}
     end
@@ -69,4 +72,5 @@ private
       format.js { render 'admin/programs/refresh'}
     end
   end
+
 end
