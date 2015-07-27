@@ -1,8 +1,6 @@
 class School < ActiveRecord::Base
 	validates_presence_of :name
 
-	after_initialize :check_address
-
 	has_many :programs
 
 	has_one :address, :as=> :addressable, :dependent => :destroy
@@ -15,9 +13,6 @@ class School < ActiveRecord::Base
 
 private
 
-	def check_address
-		self.build_address unless self.address
-	end
 
 	def check_programs
 		if self.programs.length >0
