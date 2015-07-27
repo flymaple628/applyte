@@ -1,0 +1,64 @@
+<%# form_key, form_keys, notice %>
+<div class="admin-form-keys">
+	<h1> Form Keys (Template for each programs) </h1>
+	<h4>
+		<% if notice %>
+			<span class="label label-success"><%= notice[:success] if notice[:success] %></span>
+			<span class="label label-danger"><%= notice[:fail] if notice[:fail] %></span>
+		<% end %>
+	</h4>
+
+	<% if form_key.new_record? %>
+		<% url_hash = {:url=>admin_form_keys_path, :remote=>true} %>
+	<% else %>
+		<% url_hash = {:url=>admin_form_key_path(form_key), :method=>:patch, :remote=>true} %>
+	<% end %>
+
+
+	<%= form_for form_key, url_hash do |f| %>
+
+	<table class="table">
+			<tr>
+				<th> <%= f.label :form_key_category_id, "Form Key Category" %></th>
+				<th> <%= f.label :name, "name" %> </th>
+				<th> <%= f.label :note, "note" %> </th>
+				<th> Program Form Keys </th>
+				<th></th>
+				<th></th>
+			</tr>
+
+			<tr>
+				<td>
+						<%= f.select :form_key_category_id, FormKeyCategory.all.map{ |s| ["#{s.name}", s.id]} %> </td>
+				<td> <%= f.text_field :name %> </td>
+				<td> <%= f.text_field :note %> </td>
+				<td> </td>
+				<td></td>
+
+			<% if form_key.new_record? %>
+				<td>	<%= f.submit 'create', :class=>'btn btn-primary' %> </td>
+			<% else %>
+				<td>	<%= f.submit 'update', :class=>'btn btn-primary' %> </td>
+			<% end %>
+				<td></td>
+
+			</tr>
+
+			<% form_keys.each do |fk| %>
+			<tr>
+				<td> <%= fk.form_key_category.try(:name) %> </td>
+				<td> <%= fk.name %> </td>
+				<td> <%= fk.note %> </td>
+				<td> <%= fk.program_form_keys.count %> </td>
+
+				<td> <%= link_to "Edit", edit_admin_form_key_path(fk), :remote=>true, :class=>"btn btn-info" %>
+				</td>
+				<td> <%= link_to "Delete", admin_form_key_path(fk), :remote=>true, :method=>:delete, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %>
+				</td>
+			</tr>
+			<% end %>
+
+	</table>
+	<% end %> <%# form_for %>
+</div>
+

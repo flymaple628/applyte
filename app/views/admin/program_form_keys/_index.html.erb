@@ -27,9 +27,9 @@
 		
 		<table class="table table-bordered">
 			<tr>
-				<th> Category </th>
+				<th> Form Key </th>
 				<th> Name </th>
-				<th> Key_type </th>
+				<th> Key type </th>
 				<th> order </th>
 				<th> Desc </th>
 				<th> List_value </th>
@@ -40,7 +40,7 @@
 			<% pg.program_form_keys.each do |pk| %>
 				<% if pk != program_key %>
 					<tr>
-						<td> <%= pk.program_form_key_category.try(:name)%> </td>
+						<td> <%= pk.form_key.try(:name)%> </td>
 						<td> <%= pk.name %> </td>
 						<td> <%= pk.key_type %> </td>
 						<td> <%= pk.order %> </td>

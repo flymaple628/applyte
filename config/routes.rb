@@ -30,7 +30,8 @@ Rails.application.routes.draw do
     resources :program_categories
     resources :areas
     resources :program_areaships
-
+    resources :form_keys
+    resources :form_key_categories
   end
 
   resource :profile do
