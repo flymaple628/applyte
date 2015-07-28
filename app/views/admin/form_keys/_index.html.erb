@@ -36,7 +36,7 @@
 				<td> <%= f.text_field :note %> </td>
 				<td> <%= f.select :key_type, [[:boolean,:boolean],[:integer,:integer],[:string,:string],[:text,:text]] %>
 				<td><td>
-					<%= select("form_key_category", "profile_column", @profile.each {|p| p }, { include_blank: true }) %>
+					<%= select("form_key", "profile_column", @profile.each {|p| p }, { include_blank: true }) %>
 				</td> </td>
 				<td> </td>
 				<td></td>
