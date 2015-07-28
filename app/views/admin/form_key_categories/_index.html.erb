@@ -19,7 +19,6 @@
 
 	<table class="table">
 			<tr>
-				<th> <%= f.label :profile_column, "profile_column" %> </th>
 				<th> <%= f.label :name, "name" %> </th>
 				<th> <%= f.label :note, "note" %> </th>
 				<th> Form Keys</th>
@@ -27,9 +26,6 @@
 			</tr>
 
 			<tr>
-				<td>
-					<%= select("form_key_category", "profile_column", @profile.each {|p| p }) %>
-				</td>
 				<td> <%= f.text_field :name %> </td>
 				<td> <%= f.text_field :note %> </td>
 				<td></td>
@@ -43,7 +39,6 @@
 
 			<% form_key_categories.each do |fkc| %>
 			<tr>
-				<td> <%= fkc.profile_column %> </td>
 				<td> <%= fkc.name %> </td>
 				<td> <%= fkc.note %> </td>
 				<td> <%= fkc.form_keys.try(:count) %> </td>

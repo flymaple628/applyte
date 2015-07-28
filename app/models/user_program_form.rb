@@ -6,9 +6,11 @@ class UserProgramForm < ActiveRecord::Base
 
 	def initialize_values
 		self.program.program_form_keys.each do |k|
-			if(k.form_key.form_key_category.profile_column)
+			byebug
+			if(k.form_key.profile_column)
 				# puts "key:"+self.user.profile.("#{k.form_key.form_key_category.profile_column}")
-				if	self.user.profile.try("#{k.form_key.form_key_category.profile_column}")
+				byebug
+				if	self.user.profile.try("#{k.form_key.profile_column}")
 					check = true
 				end
 				byebug
