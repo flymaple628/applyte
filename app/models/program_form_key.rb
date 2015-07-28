@@ -1,5 +1,5 @@
 class ProgramFormKey < ActiveRecord::Base
-	validates_presence_of :name,:order,:key_type
+	validates_presence_of :name
 	#list_value could be without validating (Derek)
 
 	belongs_to :program

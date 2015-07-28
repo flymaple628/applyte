@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20150728083748) do
 
+
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
     t.string   "address2"
@@ -137,6 +138,7 @@ ActiveRecord::Schema.define(version: 20150728083748) do
     t.integer  "form_key_category_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.string   "key_type"
   end
 
   add_index "form_keys", ["form_key_category_id"], name: "index_form_keys_on_form_key_category_id"
@@ -222,7 +224,6 @@ ActiveRecord::Schema.define(version: 20150728083748) do
     t.string   "desc"
     t.integer  "order"
     t.integer  "program_id"
-    t.string   "key_type"
     t.string   "list_value"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
