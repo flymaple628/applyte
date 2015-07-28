@@ -22,6 +22,7 @@
 				<th> <%= f.label :form_key_category_id, "Form Key Category" %></th>
 				<th> <%= f.label :name, "name" %> </th>
 				<th> <%= f.label :note, "note" %> </th>
+				<th> <%= f.label :key_type, "key type" %> </th>
 				<th> Program Form Keys </th>
 				<th></th>
 				<th></th>
@@ -32,6 +33,7 @@
 						<%= f.select :form_key_category_id, FormKeyCategory.all.map{ |s| ["#{s.name}", s.id]} %> </td>
 				<td> <%= f.text_field :name %> </td>
 				<td> <%= f.text_field :note %> </td>
+				<td> <%= f.select :key_type, [[:boolean,:boolean],[:integer,:integer],[:string,:string],[:text,:text]] %>
 				<td> </td>
 				<td></td>
 
@@ -49,6 +51,7 @@
 				<td> <%= fk.form_key_category.try(:name) %> </td>
 				<td> <%= fk.name %> </td>
 				<td> <%= fk.note %> </td>
+				<td> <%= fk.key_type %> </td>
 				<td> <%= fk.program_form_keys.count %> </td>
 
 				<td> <%= link_to "Edit", edit_admin_form_key_path(fk), :remote=>true, :class=>"btn btn-info" %>

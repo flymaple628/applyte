@@ -61,7 +61,7 @@ private
 	end
 
 	def form_key_params
-		params.require(:form_key).permit(:name, :note, :form_key_category_id)
+		params.require(:form_key).permit(:name, :note, :key_type, :form_key_category_id)
 	end	
 
 	def refresh

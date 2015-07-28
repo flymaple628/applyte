@@ -75,12 +75,12 @@
 .admin-box .content{
 	.unit-program-form-key{
 		margin: 10px 0;
-		width:700px;
+		width:800px;
 		border:1px solid #ccc;
 		padding:10px;
 
 		.field-program-form-key-category{
-			margin: 5px 0;
+			margin: 5px;
 
 		}
 
@@ -89,12 +89,33 @@
 			color: #aaa;
 
 			.key{
-				width: 200px;
+				display: inline-block;
+				width: 150px;
 			}
+
+			.key-type{
+				display: inline-block;
+				width: 100px;
+			}
+
 			.check{
+				display: inline-block;
 				width: 50px;
 			}
+
+			.show-unit{
+				display: inline-block;
+				width:180px;
+			}
+
+			.name-value, .desc-value{
+				color:black;
+			}
+
+
+
 		}
+
 	}
 }
 
