@@ -5,4 +5,10 @@ module Admin::PagesHelper
 		program
 	end
 
+	def setup_school(school)
+		school.build_address unless school.address
+		school.build_logo unless school.logo
+		school
+	end
+
 end

@@ -10,4 +10,18 @@ module ApplicationHelper
 		(current_user && program.user_program_forms.any?)
 	end
 
+	def shorten(text, w_len)
+		if text.length > w_len
+			p = w_len
+			loop do
+				p+=1
+				break if text[p] = " "
+				break if p>= w_len
+			end
+			text = text[0, p] + "..."			
+		end
+		text
+	end
+
+
 end
