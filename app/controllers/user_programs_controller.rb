@@ -15,6 +15,10 @@ class UserProgramsController < ApplicationController
 				@user_program_forms = current_user.user_program_forms
 			end
 		end
+
+		if 	@user_program_forms.nil?
+			@user_program_forms=[]
+		end
 	end
 
 	def show

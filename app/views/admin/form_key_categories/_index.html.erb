@@ -28,7 +28,7 @@
 
 			<tr>
 				<td>
-					<%= select("form_key_category", "profile_column", Profile.column_names.each {|p| p }) %>
+					<%= select("form_key_category", "profile_column", @profile.each {|p| p }) %>
 				</td>
 				<td> <%= f.text_field :name %> </td>
 				<td> <%= f.text_field :note %> </td>

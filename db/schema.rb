@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150728083748) do
 
-
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
     t.string   "address2"

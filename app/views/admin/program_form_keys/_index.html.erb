@@ -7,18 +7,18 @@
 			<span class="label label-danger"><%= notice[:fail] if notice[:fail] %></span>
 		<% end %>
 	</h4>
-	
+
 
 	<% programs.each do |pg| %>
 		<% if pg == edit_program %>
 			<%= form_for pg, :url=>admin_program_form_key_path(pg), :method=>:patch, :remote=>true do |f| %>
 			<div class="unit-program-form-key">
-				<h4> 
+				<h4>
 					<span class=""> <%= pg.school.try(:name) %></span>
-					<span class=""> <%= pg.program_category.name %></span>
+					<span class=""> <%= pg.program_category.try( :name) %></span>
 					<span><%= f.submit "Update form", :class=>"btn btn-info btn-xs" %></span>
 				</h4>
-			
+
 				<% FormKeyCategory.includes(:form_keys).each do |fkc| %>
 					<h4 class="field-program-form-key-category"> <%= fkc.name %> </h4>
 					<% fkc.form_keys.all.each do |fk| %>
@@ -34,7 +34,7 @@
 							<%= label_tag "program_form_key_#{fk.id}_name]", "name" %>
 							<%= text_field_tag "program_form_key[#{fk.id}][name]",program_form_key.try(:name), :class=>"name-value" %>
 							<%= label_tag "program_form_key_#{fk.id}_desc]", "desc" %>
-							<%= text_field_tag "program_form_key[#{fk.id}][desc]",program_form_key.try(:desc), :class=>"desc-value" %>			
+							<%= text_field_tag "program_form_key[#{fk.id}][desc]",program_form_key.try(:desc), :class=>"desc-value" %>
 						</div>
 					<%end %> <%# form key each %>
 				<% end %> <%# for key category each %>
@@ -43,26 +43,19 @@
 
 		<% else %> <%# if pg == edit_program %>
 			<div class="unit-program-form-key">
-				<h4> 
+				<h4>
 					<span class=""> <%= pg.school.try(:name) %></span>
-					<span class=""> <%= pg.program_category.name %></span>
+					<span class=""> <%= pg.program_category.try(:name) %></span>
 					<span><%= link_to "Edit form", admin_program_form_keys_path(:edit_id=>pg.id), :remote=>true, :class=>"btn btn-warning btn-xs" %></span>
 				</h4>
-		
+
 				<% FormKeyCategory.includes(:form_keys => :program_form_keys).each do |fkc| %>
 					<h4 class="field-program-form-key-category"> <%= fkc.name %> </h4>
 					<% pg.program_form_keys.each do |pfk| %>
-						<% if pfk.form_key.form_key_category.name == fkc.name %>
-							<div class="field-program-form-key">
-								<div class="show-unit"><%= pfk.form_key.name %></div>
-								<div class="show-unit"><%= pfk.form_key.key_type %></div>
-								<div class="show-unit"> (<%= pfk.name %>)</div>
-								<div class="show-unit"><%= pfk.desc %></div>
-							</div>
-						<% end %>
+
 					<%end %> <%# kfc form key each %>
-				<% end %> <%# for key category each %>					
-				
+				<% end %> <%# for key category each %>
+
 			</div>
 
 		<% end %> <%# if pg == edit_program %>

@@ -6,7 +6,18 @@ class UserProgramForm < ActiveRecord::Base
 
 	def initialize_values
 		self.program.program_form_keys.each do |k|
-			self.user_program_form_values.new(:program_form_key => k )
+			if(k.form_key.form_key_category.profile_column)
+				# puts "key:"+self.user.profile.("#{k.form_key.form_key_category.profile_column}")
+				if	self.user.profile.try("#{k.form_key.form_key_category.profile_column}")
+					check = true
+				end
+				byebug
+			else
+
+			check=false
+
+			end
+			self.user_program_form_values.new(:program_form_key => k,:check=> check )
 		end
 		self.user_program_form_values
 	end

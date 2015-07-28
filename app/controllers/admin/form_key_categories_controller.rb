@@ -3,7 +3,11 @@ class Admin::FormKeyCategoriesController < ApplicationController
 	before_action :set_form_key_category, :only=>[:edit, :update,:destroy]
 
 	def index
-		@form_key_category = FormKeyCategory.new
+    @form_key_category = FormKeyCategory.new
+    @profile = []
+
+    @profile = Profile.column_names
+    @profile <<nil
 		refresh
 	end
 

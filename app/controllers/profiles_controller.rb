@@ -50,16 +50,15 @@ class ProfilesController < ApplicationController
 
 		if current_user.profile
 			@profile=current_user.profile
+			if current_user.profile.alumn
+			@profile.alumn=current_user.profile.alumn
+			else
+				@profile.alumn=Alumn.new
+			end
 		else
 			@profile=Profile.new
 		end
 
-
-		if current_user.profile.alumn
-			@profile.alumn=current_user.profile.alumn
-		else
-			@profile.alumn=Alumn.new
-		end
 
 	end
 
