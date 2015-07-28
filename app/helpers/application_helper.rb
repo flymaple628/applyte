@@ -23,5 +23,16 @@ module ApplicationHelper
 		text
 	end
 
+	def convertFormKey(form_keys)
+		form_key_result = {}
+		FormKeyCategory.includes(:form_keys).each do |form_key_cat|
+			form_key_result[form_key_cat.name] = []
+			form_keys.each do |form_key|
+				if form_key_cat.form_key_ids.includes(form_key.id)
+					form_key_result[form_key_cat.name] << form_key
+				end
+			end
+		end
+	end
 
 end

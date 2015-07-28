@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :myprograms, :controller=>:user_programs do
     member do
-    get :fevorite
+      post :fevorite
     end
   end
 
