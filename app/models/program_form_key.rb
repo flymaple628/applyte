@@ -3,7 +3,7 @@ class ProgramFormKey < ActiveRecord::Base
 	#list_value could be without validating (Derek)
 
 	belongs_to :program
-	belongs_to :program_form_key_category
+	belongs_to :form_key
 	has_many :user_program_form_values
 
 	def user_value(user)

@@ -1,6 +1,6 @@
-<%# programs, program, edit_program_key %>
+<%# programs, program, edit_program %>
 <div class="admin-program-form-keys">
-	<h1> Program Form <span class="label label-info"> <%=programs.count %> </span> </h1>
+	<h1> Form Format for Each Program <span class="label label-info"> <%=programs.count %> </span> </h1>
 	<h4>
 		<% if notice %>
 			<span class="label label-success"><%= notice[:success] if notice[:success] %></span>
@@ -8,80 +8,65 @@
 		<% end %>
 	</h4>
 	
+
 	<% programs.each do |pg| %>
-		<h4> 
-			<span class="label label-primary"> <%= pg.school.try(:name) %></span>
-			<span class="label label-warning"> <%= pg.program_category.name %></span>
-		</h4>
-
-		<% if @edit_program_key && @edit_program_key.program_id == pg.id %>		
-			<% url_hash = {:url=> admin_program_program_form_key_path(pg, @edit_program_key), :method=>:patch, :remote=>true} %>
-			<% program_key = edit_program_key %>
-		<% else %>
-			<% url_hash = {:url=> admin_program_program_form_keys_path(pg), :remote=>true} %>
-			<% program_key = ProgramFormKey.new %>
-			<% program_key.program_id = pg.id %>
-		<% end %>
-
-		<%= form_for program_key, url_hash do |f| %>
-		
-		<table class="table table-bordered">
-			<tr>
-				<th> Category </th>
-				<th> Name </th>
-				<th> Key_type </th>
-				<th> order </th>
-				<th> Desc </th>
-				<th> List_value </th>
-				<th></th>
-				<th></th>
-			</tr>
-
-			<% pg.program_form_keys.each do |pk| %>
-				<% if pk != program_key %>
-					<tr>
-						<td> <%= pk.program_form_key_category.try(:name)%> </td>
-						<td> <%= pk.name %> </td>
-						<td> <%= pk.key_type %> </td>
-						<td> <%= pk.order %> </td>
-						<td> <%= pk.desc %> </td>
-						<td> <%= pk.list_value %> </td>
-						<td> <%= link_to "edit", edit_admin_program_program_form_key_path(pg,pk), :remote=>true, :class=>"btn btn-info" %>
-						</td>
-						<td> <%= link_to "delete", admin_program_program_form_key_path(pg,pk), :method=>:delete, :remote=>true, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %>
-						</td>
-					</tr>
-				<% else %>
-					<tr>
-						<td> <%= f.collection_select :program_form_key_category_id, ProgramFormKeyCategory.all, :id, :name %> </td>
-						<td> <%= f.text_field :name %> </td>
-						<td> <%= f.select :key_type, [[:boolean,:boolean],[:integer,:integer],[:string,:string],[:text,:text]] %> </td>
-						<td> <%= f.number_field :order %> </td>
-						<td> <%= f.text_field :desc %> </td>
-						<td> <%= f.text_field :list_value %> </td>
-						<td> <%= f.submit "Update", :class=>"btn btn-primary" %> </td>
-						<td> <%= link_to "Cancel", admin_program_form_keys_path, :remote=>true, :class=>"btn btn-info" %> </td>
-					</tr>
-				<% end %>
-			<% end %>
+		<% if pg == edit_program %>
+			<%= form_for pg, :url=>admin_program_form_key_path(pg), :method=>:post, :remote=>true do |f| %>
+			<div class="unit-program-form-key">
+				<h4> 
+					<span class=""> <%= pg.school.try(:name) %></span>
+					<span class=""> <%= pg.program_category.name %></span>
+					<span><%= f.submit "Update form", :class=>"btn btn-info btn-xs" %></span>
+				</h4>
 			
-			<% if program_key.new_record? %>
-				<tr>
-					<td> <%= f.collection_select :program_form_key_category_id, ProgramFormKeyCategory.all, :id, :name %> </td>
-					<td> <%= f.text_field :name %> </td>
-					<td> <%= f.text_field :key_type %> </td>
-					<td> <%= f.number_field :order %> </td>
-					<td> <%= f.text_field :desc %> </td>
-					<td> <%= f.text_field :list_value %> </td>
-					<td> <%= f.submit "Add", :class=>"btn btn-primary" %></td>
-					<td></td>
-				</tr>
-			<% end %>
-		</table>
-		<% end %> <%# form for %>
+				<% index = 1 %>
+				<% FormKeyCategory.all.each do |fkc| %>
+					<h4 class="field-program-form-key-category"> <%= fkc.name %> </h4>
+					<% fkc.form_keys.all.each do |fk| %>
+						<div class="field-program-form-key">
+							<%= label_tag "program_form_key_#{index}_form_key_id]", "#{fk.name}", :class=>"key" %>
+							<% if pg.program_form_key_ids.include?(fk.id) %>
+								<%= check_box_tag "program_form_key[#{index}][form_key_id]", "1",true, :class=>"check" %>
+							<% else %>
+								<%= check_box_tag "program_form_key[#{index}][form_key_id]","1",true, :class=>"check" %>
+							<% end %> <%# if %>
 
+							<%= label_tag "program_form_key_#{index}_name]", "name" %>
+							<%= text_field_tag "program_form_key[#{index}][name]","", :class=>"name" %>
+							<%= label_tag "program_form_key_#{index}_desc]", "desc" %>
+							<%= text_field_tag "program_form_key[#{index}][desc]","", :class=>"desc" %>			
+						</div>
+						<% index +=1 %>
+					<%end %> <%# form key each %>
+				<% end %> <%# for key category each %>
+			</div>
+			<% end %> <%# form for %>
+
+		<% else %> <%# if pg == edit_program %>
+			<div class="unit-program-form-key">
+				<h4> 
+					<span class=""> <%= pg.school.try(:name) %></span>
+					<span class=""> <%= pg.program_category.name %></span>
+					<span><%= link_to "Edit form", admin_program_form_keys_path(:edit_id=>pg.id), :remote=>true, :class=>"btn btn-warning btn-xs" %></span>
+				</h4>
+
+				<% index = 1 %>				
+				<% FormKeyCategory.all.each do |fkc| %>
+					<h4 class="field-program-form-key-category"> <%= fkc.name %> </h4>
+					<% pg.program_form_keys.all.each do |pfk| %>
+						<% if pfk.form_key.form_key_category.name == fkc.name %>
+							<div class="field-program-form-key">
+								<div class="key"><%= pfk.name %></div>
+							</div>
+						<% end %>
+						<% index +=1 %>
+					<%end %> <%# kfc form key each %>
+				<% end %> <%# for key category each %>					
+				
+			</div>
+
+		<% end %> <%# if pg == edit_program %>
 	<% end %>
-
 
 
 </div>
