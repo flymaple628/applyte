@@ -22,7 +22,7 @@ class UserProgramsController < ApplicationController
 	end
 
 	def show
-		@user_program_form = current_user.user_program_forms.includes(:user_program_form_values => { :program_form_key => :program_form_key_category } ).find(params[:id])
+		@user_program_form = current_user.user_program_forms.includes(:user_program_form_values => { :program_form_key => :program_form_key_category } ).find_by_program_id(params[:id])
 
 		if @user_program_form.user_program_form_values.empty?
 	  		@user_program_form.initialize_values
