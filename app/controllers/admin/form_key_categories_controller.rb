@@ -43,8 +43,8 @@ class Admin::FormKeyCategoriesController < ApplicationController
       @notice = {:success=>"#{@form_key_category.name} has been destroyed successfully"}
       current_user.user_updates.save_update(@form_key_category,"destroy")
     else
-      @notice = {:fail=>@form_key_category.errors.full_messages}      
-    end      
+      @notice = {:fail=>@form_key_category.errors.full_messages}
+    end
     @form_key_category = FormKeyCategory.new
     refresh
   end
@@ -61,8 +61,8 @@ private
 	end
 
 	def form_key_category_params
-		params.require(:form_key_category).permit(:name, :note)
-	end	
+		params.require(:form_key_category).permit(:name, :note, :profile_column)
+	end
 
 	def refresh
 		respond_to do |format|

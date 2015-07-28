@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727093407) do
+ActiveRecord::Schema.define(version: 20150728083748) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -126,8 +126,9 @@ ActiveRecord::Schema.define(version: 20150727093407) do
   create_table "form_key_categories", force: :cascade do |t|
     t.string   "name"
     t.string   "note"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "profile_column"
   end
 
   create_table "form_keys", force: :cascade do |t|
