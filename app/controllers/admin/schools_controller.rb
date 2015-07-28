@@ -11,6 +11,7 @@ class Admin::SchoolsController < ApplicationController
     @school = School.new(school_params)
     if @school.save
       @notice = {:success=>"#{@school.name} has been created successfully"}
+      current_user.user_updates.save_update(@school,"create")
       @school = School.new
     else
       @notice = {:fail=>@school.errors.full_messages}
@@ -27,6 +28,7 @@ class Admin::SchoolsController < ApplicationController
   def update
     if @school.update(school_params)
       @notice = {:success=>"#{@school.name} has been updated successfully"}
+      current_user.user_updates.save_update(@school,"update")
       @school = School.new
     else
       @notice = {:fail=>@school.errors.full_messages}
@@ -39,6 +41,7 @@ class Admin::SchoolsController < ApplicationController
   def destroy
     if @school.destroy
       @notice = {:success=>"#{@school.name} has been destroyed successfully"}
+      current_user.user_updates.save_update(@school,"destroy")
     else
       @notice = {:fail=>@school.errors.full_messages}
     end
@@ -69,4 +72,5 @@ private
       format.js { render 'admin/schools/refresh'}
     end
   end
+
 end

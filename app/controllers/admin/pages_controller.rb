@@ -4,7 +4,7 @@ class Admin::PagesController < ApplicationController
 
   def index
   	@models = [Country, State, City, School, Photo, Address,
-  						 Program, ProgramFormKey, ProgramFormKeyCategory,
+  						 Program, ProgramFormKey, FormKey, FormKeyCategory,
   						 ProgramCategory, Faculty, FacultyArea, ProgramAreaship,
   						 Area, AreaCategory, AreaToAreaCategory, 
   						 User, Profile, Experience, Honor, Publication, Alumn, ProgramAlumnship,

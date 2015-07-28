@@ -28,20 +28,7 @@
 		City.create(:id=>ct[0], :name=>ct[1], :state_id=>ct[2])
 	end
 
+	
 
-	puts "program form key categories"
-	ProgramFormKeyCategory.destroy_all
-	key_cates = ["Biographical Information",
-							 "Ethnicity Information",
-							 "Military Status",
-							 "Contact Information",
-							 "Program Selection",
-							 "Academic Interests & Specialization",
-							 "APPLICATION INSTRUCTIONS",
-							 "Required Exams",
-							 "Required Application Documents"]
 
-	key_cates.each_with_index do |kc,index|
-		ProgramFormKeyCategory.create(:name=>kc,:id=>index+1)
-	end
 
