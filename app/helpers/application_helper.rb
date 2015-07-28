@@ -6,11 +6,8 @@ module ApplicationHelper
 
 	def check_user_program_forms(program)
 		session[:myprogram] ||= []
-		if session[:myprogram].include?(program.id.to_s)|| (current_user&&program.user_program_forms.exists?)
-			true
-		else
-			false
-		end
+		session[:myprogram].include?(program.id.to_s) ||
+		(current_user && program.user_program_forms.any?)
 	end
 
 end
