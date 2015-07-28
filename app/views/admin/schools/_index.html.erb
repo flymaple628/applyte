@@ -14,9 +14,8 @@
 		<% url_hash = {:url=>admin_school_path(school), :method=>:patch, :remote=>true} %>
 	<% end %>
 
-
 	<div class="unit">
-		<%= form_for school, url_hash do |f| %>
+		<%= form_for setup_school(school), url_hash do |f| %>
 		<%= f.fields_for :address do |addr| %>
 			<div class="field">
 				<%= f.label :name, "name", :class=>"title" %>
@@ -63,7 +62,15 @@
 				<%= addr.select :city_id, City.all.map{ |c| ["#{c.name} - #{c.state.try(:name)}", c.id]}, :class=>'value' %>			
 			</div>
 
+			<div class="field">
+				<%= f.fields_for :logo do |lg| %>
+					<%= lg.label :logo , "logo",:class=>"title"%>
+					<%= lg.file_field :photo, :class=>"value photo-file" %>
+				<% end %>
+			</div>
+
 			<div class="field">	
+				<%= f.label :photo, "Photos", :class=>"title" %>
 				<%= f.nested_fields_for :photos do |p| %>
 						<%= p.file_field :photo, :class=>'photo-file' %>
 						<%= p.remove_nested_fields_link %>			
@@ -141,7 +148,13 @@
 				<div class="value"> <%= c.address.country.name if c.address.country %> </div>
 			</div>
 
-			<div class="field">
+			<div class="field field-pic">
+				<div class="title"> Logo: </div>
+				<div class="value"> <%= image_tag c.logo.photo.url(:thumb) if c.logo %> </div>
+			</div>
+
+			<div class="field field-pic">
+				<div class="title"> Picture: </div>
 				<% c.photos.each do |po| %>
 					<%= image_tag po.photo.url(:thumb) %>
 				<% end %>
@@ -162,10 +175,9 @@
 <script>
 	$('.field').on('change', '.photo-file', function(e){
 		e.preventDefault();
-
 		var files = e.target.files;
 		var c_target = $(this)
-
+		console.log(c_target);
 		$.each(files, function(i, file){
 			var reader = new FileReader();
 			reader.readAsDataURL(file);
@@ -175,9 +187,9 @@
 				c_target.after(imgtmp);
 			}
 		});
-
 		// $(this).after('<img src="' + $(this).val() + '">' );
 	})
+
 </script>
 
 

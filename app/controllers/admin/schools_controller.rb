@@ -60,9 +60,10 @@ private
   end 
 
   def school_params
-    params.require(:school).permit(:name, :campus, :desc, :phone, :email, :logo_id,
+    params.require(:school).permit(:name, :campus, :desc, :phone, :email,
                                    :city_id, :link_name, :link_url,
-                                   :address_attributes=>[:address1, :address2, :city_id, :postal_code],
+                                   :logo_attributes => [:photo, :id],
+                                   :address_attributes=>[:address1, :address2, :city_id, :postal_code, :id],
                                    :photos_attributes =>[:photo, :_destroy, :id])
 
   end
