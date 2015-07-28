@@ -4,18 +4,22 @@ class Admin::ProgramFormKeysController < ApplicationController
   before_action :set_program_key, :only=>[:edit,:update,:destroy]
 
   def index
-
+    if params[:edit_id]
+      @edit_program = Program.find(params[:edit_id])
+    else
+      @edit_program = nil
+    end
     refresh
   end 
 
   def create
     @program_key = @program.program_form_keys.new(program_form_key_params)
-    if @program_key.save
-      @notice = {:success=>"#{@program_key.name} has been created successfully"}
-      current_user.user_updates.save_update(@program_key,"create")
-    else
-      @notice = {:fail=>@program_key.errors.full_messages}
-    end
+    # if @program_key.save
+    #   @notice = {:success=>"#{@program_key.name} has been created successfully"}
+    #   current_user.user_updates.save_update(@program_key,"create")
+    # else
+    #   @notice = {:fail=>@program_key.errors.full_messages}
+    # end
 
     refresh
   end

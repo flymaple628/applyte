@@ -21,14 +21,13 @@ class Program < ActiveRecord::Base
 
 	has_many :program_form_keys, :dependent => :destroy
   accepts_nested_attributes_for :program_form_keys, :allow_destroy => true, :reject_if => :all_blank
+  has_many :form_keys, :through=>:program_form_keys
 
   has_many :program_areaships, :dependent => :destroy
 	has_many :areas, :through=>:program_areaships
 
-  has_many :program_form_key_categories, :through=>:program_form_keys, :source=>:program_form_key_category
-
-  before_create :save_default_program_key
   before_destroy :check_subclasses
+  before_create :check_program_form_keys
 
   def get_photo_list()
   	photo_list()
@@ -56,42 +55,13 @@ private
 		destroy
 	end
 
-
-  def save_default_program_key
-		program_keys = [["first name",1,"string"],
-										["middle name",1,"string"],
-										["last name",1,"string"],
-										["preferred name",1,"string"],
-										["Are you Hispanic or Latino?",2,"boolean"],
-										["United States Military or Veteran Status",3,"string"],
-										["address1",4,"string"],
-										["city",4,"string"],
-										["phone",4,"string"],
-										["program",5,"string"],
-										["Educational History",6,"text"],
-										["Test Information",6,"text"],
-										["Application Information",6,"text"],
-										["Financial Aid",6,"text"],
-										["Employment History & Languages",6,"text"],
-										["Supplemental Information",6,"text"],
-										["Register Your References",6,"text"],
-										["Document Uploads, Confirmation & Submission",6,"text"],
-										["GRE",7,"integer"],
-										["TOEFL",7,"integer"],
-										["Statement of Purpose",8,"text"],
-										["Letters of Recommendation",8,"text"],
-										["Transcripts (Academic Records)",8,"text"]]
-
-		program_keys.each_with_index do |pk,index|
-			self.program_form_keys.new(
-					:name=>pk[0],
-					:program_form_key_category_id=>pk[1],
-					:order=> index+1,
-					:key_type=>pk[2]
-					)
-		end
-  end
-
+	def check_program_form_keys
+		if self.program_form_keys.count ==0
+			FormKey.all.each do |fk|
+				self.program_form_keys.new(:form_key_id=>fk.id, :name=>fk.name)
+			end
+		end	
+	end
 
 	def photo_list #temp method
 		list = []

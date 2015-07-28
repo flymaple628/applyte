@@ -72,5 +72,29 @@
 	}
 }
 
+.admin-box .content{
+	.unit-program-form-key{
+		margin: 10px 0;
+		width:700px;
+		border:1px solid #ccc;
+		padding:10px;
 
+		.field-program-form-key-category{
+			margin: 5px 0;
+
+		}
+
+		.field-program-form-key{
+			margin-left: 20px;
+			color: #aaa;
+
+			.key{
+				width: 200px;
+			}
+			.check{
+				width: 50px;
+			}
+		}
+	}
+}
 
