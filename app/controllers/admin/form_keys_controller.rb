@@ -4,6 +4,7 @@ class Admin::FormKeysController < ApplicationController
 
 	def index
 		@form_key = FormKey.new
+
 		refresh
 	end
 
@@ -43,8 +44,8 @@ class Admin::FormKeysController < ApplicationController
       @notice = {:success=>"#{@form_key.name} has been destroyed successfully"}
       current_user.user_updates.save_update(@form_key,"destroy")
     else
-      @notice = {:fail=>@form_key.errors.full_messages}      
-    end      
+      @notice = {:fail=>@form_key.errors.full_messages}
+    end
     @form_key = FormKey.new
     refresh
   end
@@ -54,6 +55,7 @@ private
 
 	def set_form_keys
 		@form_keys = FormKey.all.order(:form_key_category_id)
+    @profile = Profile.column_names
 	end
 
 	def set_form_key
@@ -61,8 +63,8 @@ private
 	end
 
 	def form_key_params
-		params.require(:form_key).permit(:name, :note, :key_type, :form_key_category_id)
-	end	
+		params.require(:form_key).permit(:name, :note, :key_type, :form_key_category_id,:profile_column)
+	end
 
 	def refresh
 		respond_to do |format|

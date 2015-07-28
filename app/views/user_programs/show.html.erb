@@ -16,7 +16,7 @@
 		<%= form_for @user_program_form, :url=>myprogram_path(@user_program_form), :method=>:patch do |fu| %>
 			<%= fu.fields_for :user_program_form_values do |fuv| %>
 
-				<% cat_name = fuv.object.program_form_key.form_key.form_key_category.name %>
+				<% cat_name = fuv.object.program_form_key.form_key.name %>
 
 				<% if current_cat != cat_name %>
 					<%= raw("</ul>") if current_cat != "" %>

@@ -4,11 +4,7 @@ class Admin::FormKeyCategoriesController < ApplicationController
 
 	def index
     @form_key_category = FormKeyCategory.new
-    @profile = []
-
-    @profile = Profile.column_names
-    @profile <<nil
-		refresh
+    refresh
 	end
 
   def create

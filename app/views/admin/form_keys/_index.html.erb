@@ -24,6 +24,7 @@
 				<th> <%= f.label :note, "note" %> </th>
 				<th> <%= f.label :key_type, "key type" %> </th>
 				<th> Program Form Keys </th>
+				<th> Profile_name </th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -34,6 +35,9 @@
 				<td> <%= f.text_field :name %> </td>
 				<td> <%= f.text_field :note %> </td>
 				<td> <%= f.select :key_type, [[:boolean,:boolean],[:integer,:integer],[:string,:string],[:text,:text]] %>
+				<td><td>
+					<%= select("form_key_category", "profile_column", @profile.each {|p| p }, { include_blank: true }) %>
+				</td> </td>
 				<td> </td>
 				<td></td>
 
@@ -53,6 +57,7 @@
 				<td> <%= fk.note %> </td>
 				<td> <%= fk.key_type %> </td>
 				<td> <%= fk.program_form_keys.count %> </td>
+				<td> <%= fk.profile_column %> </td>
 
 				<td> <%= link_to "Edit", edit_admin_form_key_path(fk), :remote=>true, :class=>"btn btn-info" %>
 				</td>

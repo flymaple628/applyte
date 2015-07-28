@@ -4,7 +4,7 @@
 	<%= link_to program_path(program), :class=>"search-result-link" do %>
 	  <div class="search-result-item-index"> <%= program_counter+1 %> </div>
 		<div class="search-result-item-title"> <%= program.school.name %> </div>
-	  <div class="search-result-item-logo"> <%= image_tag program.school.logo.photo.url(:thumb) %></div>
+	  <div class="search-result-item-logo"> <%= image_tag program.school.logo.photo.url(:thumb) if program.school.logo%></div>
 		<div class="search-result-item-desciption">
 	    <div class="title"> <%= program.title %> </div>
 			<div class="content">
