@@ -1,0 +1,54 @@
+.my_programs-index-box{
+
+	.program-list{
+
+		height: 148px;
+		border-top-style:solid;
+		border-bottom-style:solid;
+		border-color: #dbdbdb;
+	}
+	.continue{
+		height: 30px;
+		margin-top: 10px;
+
+		a{
+			padding: 6px 28px;
+			font-size: 14px;
+			border:#00afa3 solid;
+			color: #00afa3;
+		}
+	}
+	.left{
+		margin-top: 16px;
+		.logo img{
+			height: 80px;
+			width: 80px;
+		}
+	}
+	.right{
+		margin-top: 16px;
+		.program_info{
+			color: #9b9b9b;
+			.school_info{
+				font-size :28px;
+				height: 56px;
+			}
+			.dateline{
+				font-size :36px;
+			}
+		}
+		.progress_rate{
+			.line{
+				margin-top: 30px;
+				progress{
+					width: 100%;
+					color: #d8d8d8;
+				}
+			}
+			.percen{
+				margin-top: 10px;
+				font-size: 48px;
+			}
+		}
+	}
+}
