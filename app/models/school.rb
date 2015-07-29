@@ -1,8 +1,6 @@
 class School < ActiveRecord::Base
 	validates_presence_of :name
 
-	after_initialize :check_address
-
 	has_many :programs
 
 	has_one :address, :as=> :addressable, :dependent => :destroy
@@ -11,13 +9,16 @@ class School < ActiveRecord::Base
 	has_many :photos, :as=>:photo_link, :dependent => :destroy
 	accepts_nested_attributes_for :photos, allow_destroy: true
 
+	has_one :logo, -> { where :photo_link_type=> "SchoolLogo"},
+								 :foreign_key=>:photo_link_id, 
+								 :class_name=>'Photo', 
+								 :dependent=>:destroy
+	accepts_nested_attributes_for :logo, allow_destroy: true
+
 	before_destroy :check_programs
 
 private
 
-	def check_address
-		self.build_address unless self.address
-	end
 
 	def check_programs
 		if self.programs.length >0

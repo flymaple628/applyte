@@ -1,0 +1,65 @@
+#program-intro {
+        line-height: 1.8em;
+}
+
+#program-name-short {
+    font-weight: 700;
+    font-size: 1.8em;
+}
+
+#program-ranking {
+    font-weight: 700;
+    font-size: 2.2em;
+    color: rgb(201, 201, 199);
+}
+
+#add-to-cart {
+    margin-left: 1.6em;
+    padding: 0.2em 1.6em;
+    vertical-align: 0.7em;
+    font-size: 0.75em;
+    line-height: 1.8em;
+    color: rgb(0, 175, 163);
+    border: 0.2em solid rgb(0, 175, 163);
+    display: inline;
+}
+
+#add-to-cart:hover {
+    background-color: rgb(0, 175, 163);
+    color: white;
+}
+
+#school-logo {
+    margin-top: 1.6em;
+}
+
+#program-headings {
+    line-height: 1.5em;
+}
+
+#school-name {
+    color: rgb(160, 160, 160);
+    font-weight: 300;
+    font-size: 1.9em;
+}
+
+#program-name {
+    color: rgb(170, 170, 170);
+    font-weight: 100;
+    margin-top: -0.2em;
+    font-size: 1.15em;
+}
+
+#program-stats {
+    margin-top: 2.0em;
+}
+
+#program-stats p {
+    font-size: 0.915em;
+    font-weight: 400;
+    line-height: 0.5em;
+}
+
+#program-stats #deadline {
+    color: red;
+}

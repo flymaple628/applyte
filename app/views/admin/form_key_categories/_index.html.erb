@@ -1,0 +1,62 @@
+<%# form_key_category, form_key_categories, notice %>
+<div class="admin-form-key-categories">
+	<h1> Form Key Categories (Template for each programs) </h1>
+	<h4>
+		<% if notice %>
+			<span class="label label-success"><%= notice[:success] if notice[:success] %></span>
+			<span class="label label-danger"><%= notice[:fail] if notice[:fail] %></span>
+		<% end %>
+	</h4>
+
+	<% if form_key_category.new_record? %>
+		<% url_hash = {:url=>admin_form_key_categories_path, :remote=>true} %>
+	<% else %>
+		<% url_hash = {:url=>admin_form_key_category_path(form_key_category), :method=>:patch, :remote=>true} %>
+	<% end %>
+
+
+	<%= form_for form_key_category, url_hash do |f| %>
+
+	<table class="table">
+			<tr>
+				<th> <%= f.label :name, "name" %> </th>
+				<th> <%= f.label :note, "note" %> </th>
+				<th> Form Keys</th>
+				<th></th>
+			</tr>
+
+			<tr>
+				<td> <%= f.text_field :name %> </td>
+				<td> <%= f.text_field :note %> </td>
+				<td></td>
+			<% if form_key_category.new_record? %>
+				<td>	<%= f.submit 'create', :class=>'btn btn-primary' %> </td>
+			<% else %>
+				<td>	<%= f.submit 'update', :class=>'btn btn-primary' %> </td>
+			<% end %>
+
+			</tr>
+
+			<% form_key_categories.each do |fkc| %>
+			<tr>
+				<td> <%= fkc.name %> </td>
+				<td> <%= fkc.note %> </td>
+				<td> <%= fkc.form_keys.try(:count) %> </td>
+				<td> <%= link_to "Edit", edit_admin_form_key_category_path(fkc), :remote=>true, :class=>"btn btn-info" %>
+				</td>
+				<td>
+						<%= link_to "Delete", admin_form_key_category_path(fkc), :remote=>true, :method=>:delete, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %>
+				</td>
+			</tr>
+			<% end %>
+
+	</table>
+
+
+	<% end %> <%# form_for %>
+
+
+</div>
+
+
+

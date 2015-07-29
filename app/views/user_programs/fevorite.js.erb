@@ -1,5 +1,5 @@
 <% if @add%>
-$("a[data-row-id=<%=params[:id]%>]").text('added');
+$("a[data-row-id=<%=params[:id]%>]").text('Remove');
 <% else %>
-$("a[data-row-id=<%=params[:id]%>]").text('add-fav');
+$("a[data-row-id=<%=params[:id]%>]").text('Add');
 <% end %>

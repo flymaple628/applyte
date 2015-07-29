@@ -1,0 +1,49 @@
+/* Import fonts */
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,500,300,700|Roboto:400,500,300,700);
+@import url(http://www.cssstickyfooter.com/style.css);
+@import 'navbar.css';
+@import 'program-intro.css';
+@import 'program-details.css';
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Roboto;
+    font-size: 1.5em;
+    color: rgb(155, 155, 155);
+    background-color: rgb(245, 245, 245);
+}
+
+#wrap {
+    min-height: 100%;
+}
+
+a, a:-webkit-any-link {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+div.contents {
+    margin-top: 7.1em;
+    margin-bottom: 5em;
+}
+
+#footer {
+    margin-top: -5em;
+    height: 5em;
+    background-color: white;
+    z-index: 100;
+    width: 100%;
+    padding: 1.5em;
+}
+
+#copyrights {
+    line-height: 2.5em;
+    font-size: 0.8em;
+    text-align: right;
+}

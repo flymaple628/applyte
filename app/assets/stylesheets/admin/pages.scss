@@ -5,17 +5,16 @@
 		height:1000px;
 		width:10%;
 		background-color: #7ee;
-		text-align: center;
 
 		ul{
-			text-align: center;
 
 			li{
 				margin-top:20px;
 				list-style: none;
 
 				a{
-					width:80%;
+					font-size:0.8em;
+					width:100%;
 				}
 			}
 		}
@@ -68,10 +67,63 @@
 					max-height: 200px;
 					overflow: scroll;
 				}
+
+				.area-input{
+					height: 400px
+				}
+			}
+
+			.field-pic{
+				border: 1px solid #aaa;
 			}
 		}
 	}
 }
 
+.admin-box .content{
+	.unit-program-form-key{
+		margin: 10px 0;
+		width:800px;
+		border:1px solid #ccc;
+		padding:10px;
 
+		.field-program-form-key-category{
+			margin: 5px;
+
+		}
+
+		.field-program-form-key{
+			margin-left: 20px;
+			color: #aaa;
+
+			.key{
+				display: inline-block;
+				width: 150px;
+			}
+
+			.key-type{
+				display: inline-block;
+				width: 100px;
+			}
+
+			.check{
+				display: inline-block;
+				width: 50px;
+			}
+
+			.show-unit{
+				display: inline-block;
+				width:180px;
+			}
+
+			.name-value, .desc-value{
+				color:black;
+			}
+
+
+
+		}
+
+	}
+}
 

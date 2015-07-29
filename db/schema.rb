@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150725102126) do
+ActiveRecord::Schema.define(version: 20150728145038) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -109,6 +109,10 @@ ActiveRecord::Schema.define(version: 20150725102126) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "title"
+    t.text     "education"
+    t.text     "publication"
+    t.text     "funding"
   end
 
   add_index "faculties", ["program_id"], name: "index_faculties_on_program_id"
@@ -122,6 +126,25 @@ ActiveRecord::Schema.define(version: 20150725102126) do
 
   add_index "faculty_areas", ["area_id"], name: "index_faculty_areas_on_area_id"
   add_index "faculty_areas", ["faculty_id"], name: "index_faculty_areas_on_faculty_id"
+
+  create_table "form_key_categories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "form_keys", force: :cascade do |t|
+    t.string   "name"
+    t.string   "note"
+    t.integer  "form_key_category_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "key_type"
+    t.string   "profile_column"
+  end
+
+  add_index "form_keys", ["form_key_category_id"], name: "index_form_keys_on_form_key_category_id"
 
   create_table "honors", force: :cascade do |t|
     t.integer  "profile_id"
@@ -204,14 +227,13 @@ ActiveRecord::Schema.define(version: 20150725102126) do
     t.string   "desc"
     t.integer  "order"
     t.integer  "program_id"
-    t.string   "key_type"
     t.string   "list_value"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.integer  "program_form_key_category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "form_key_id"
   end
 
-  add_index "program_form_keys", ["program_form_key_category_id"], name: "index_program_form_keys_on_program_form_key_category_id"
+  add_index "program_form_keys", ["form_key_id"], name: "index_program_form_keys_on_form_key_id"
   add_index "program_form_keys", ["program_id"], name: "index_program_form_keys_on_program_id"
 
   create_table "programs", force: :cascade do |t|
@@ -291,6 +313,18 @@ ActiveRecord::Schema.define(version: 20150725102126) do
 
   add_index "user_program_forms", ["program_id"], name: "index_user_program_forms_on_program_id"
   add_index "user_program_forms", ["user_id"], name: "index_user_program_forms_on_user_id"
+
+  create_table "user_updates", force: :cascade do |t|
+    t.string   "user_updatable_type"
+    t.integer  "user_updatable_id"
+    t.integer  "user_id"
+    t.string   "action"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "user_updates", ["user_id"], name: "index_user_updates_on_user_id"
+  add_index "user_updates", ["user_updatable_id"], name: "index_user_updates_on_user_updatable_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

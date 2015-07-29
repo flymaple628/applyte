@@ -1,16 +1,24 @@
 
-<div class="header">
-  <div class="header-logo">
-  </div>
-  <div class="header-buttons">
-  	<% if current_user %>
-			<%= link_to 'My Programs', myprograms_path, :class=>"header-buttons-button" %>
-			<%= link_to 'Logout', destroy_user_session_path, :method=>:delete, :class=>"header-buttons-button" %>
-		<% else %>
-			<%= link_to 'My Programs', myprograms_path, :class=>"header-buttons-button" %>
-			<%= link_to 'Login', destroy_user_session_path, :method=>:delete, :class=>"header-buttons-button" %>
+<div class="navbar row-fluid">
+  <span class="logo col-md-4">
+  	<%= link_to root_path do %>
+  		<%= image_tag "logo.png" %>
+  		<%= image_tag "logo-word.png" %>
+    <% end %>
+  </span>
+  <span class="search-bar col-md-4">
+  	<%= image_tag "search.png"%>
+	
+		<%= text_field_tag 'keyword',nil, :placeholder=>"Computer Science 2015", :class=>"input" %>
+
+
+  </span>
+  <span class="navbar-links col-md-4">
+  	<%= link_to "My Progresses", myprograms_path %>
+  	<%= link_to profile_path do %>
+				<%= image_tag "profile.png", :id=>"profile" %>
 		<% end %>
-  </div>
+  </span>
 </div>
 
 

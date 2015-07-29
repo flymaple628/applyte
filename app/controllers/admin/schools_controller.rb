@@ -11,6 +11,7 @@ class Admin::SchoolsController < ApplicationController
     @school = School.new(school_params)
     if @school.save
       @notice = {:success=>"#{@school.name} has been created successfully"}
+      current_user.user_updates.save_update(@school,"create")
       @school = School.new
     else
       @notice = {:fail=>@school.errors.full_messages}
@@ -27,6 +28,7 @@ class Admin::SchoolsController < ApplicationController
   def update
     if @school.update(school_params)
       @notice = {:success=>"#{@school.name} has been updated successfully"}
+      current_user.user_updates.save_update(@school,"update")
       @school = School.new
     else
       @notice = {:fail=>@school.errors.full_messages}
@@ -39,6 +41,7 @@ class Admin::SchoolsController < ApplicationController
   def destroy
     if @school.destroy
       @notice = {:success=>"#{@school.name} has been destroyed successfully"}
+      current_user.user_updates.save_update(@school,"destroy")
     else
       @notice = {:fail=>@school.errors.full_messages}
     end
@@ -57,9 +60,10 @@ private
   end 
 
   def school_params
-    params.require(:school).permit(:name, :campus, :desc, :phone, :email, :logo_id,
+    params.require(:school).permit(:name, :campus, :desc, :phone, :email,
                                    :city_id, :link_name, :link_url,
-                                   :address_attributes=>[:address1, :address2, :city_id, :postal_code],
+                                   :logo_attributes => [:photo, :id],
+                                   :address_attributes=>[:address1, :address2, :city_id, :postal_code, :id],
                                    :photos_attributes =>[:photo, :_destroy, :id])
 
   end
@@ -69,4 +73,5 @@ private
       format.js { render 'admin/schools/refresh'}
     end
   end
+
 end

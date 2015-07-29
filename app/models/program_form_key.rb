@@ -1,9 +1,9 @@
 class ProgramFormKey < ActiveRecord::Base
-	validates_presence_of :name,:order,:key_type
+	validates_presence_of :name
 	#list_value could be without validating (Derek)
 
 	belongs_to :program
-	belongs_to :program_form_key_category
+	belongs_to :form_key
 	has_many :user_program_form_values
 
 	def user_value(user)

@@ -9,16 +9,18 @@ Rails.application.routes.draw do
 
   resources :myprograms, :controller=>:user_programs do
     member do
-    get :fevorite
+      post :fevorite
     end
   end
 
   namespace :admin do
     get '/page' => 'pages#index'
     resources :programs do
-      resources :program_form_keys, :except=>[:index]
       collection do
         resources :program_form_keys, :only=>[:index]
+      end
+      member do 
+        resource :program_form_key
       end
     end
     resources :schools
@@ -30,7 +32,8 @@ Rails.application.routes.draw do
     resources :program_categories
     resources :areas
     resources :program_areaships
-
+    resources :form_keys
+    resources :form_key_categories
   end
 
   resource :profile do

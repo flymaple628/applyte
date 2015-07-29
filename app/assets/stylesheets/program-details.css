@@ -1,0 +1,38 @@
+#program-details {
+    border-top: 0.1em solid rgb(225, 225, 225);
+    margin-top: 3em;
+    padding-top: 1.8em;
+    padding-left: 0;
+}
+
+#detail-view-nav {
+    padding: 0em;
+    margin: 0em;
+    bottom: 0;
+}
+
+p.detail-view-nav-item {
+    border-right: 0.1em solid rgb(210, 210, 210);
+    padding: 1.1em 2.5em 1.1em 0em;
+    margin: 0em;
+    font-size: 0.95em;
+    font-weight: 500;
+    color: rgb(201, 201, 199);
+    text-align: right;
+}
+
+p.detail-view-nav-item:hover {
+    color: rgb(0, 175, 163);
+}
+
+p.detail-view-nav-item.selected-item {
+    border-right: 0.25em solid rgb(0, 175, 163);
+    color: rgb(0, 175, 163);
+    background-color: white;
+}
+
+#detail-view-contents {
+    margin-top: 0.5em;
+    font-weight: 300;
+    z-index: -1;
+}

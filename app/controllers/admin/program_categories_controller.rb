@@ -11,11 +11,12 @@ class Admin::ProgramCategoriesController < ApplicationController
   	@program_category = ProgramCategory.new(program_category_params)
   	if @program_category.save
       @notice = {:success=>"#{@program_category.name} has been created successfully"}
+      current_user.user_updates.save_update(@program_category,"create")
+      @program_category = ProgramCategory.new
   	else
       @notice = {:fail=>@program_category.errors.full_messages}
   	end
 
-    @program_category = ProgramCategory.new
     refresh
   end
 
@@ -27,11 +28,12 @@ class Admin::ProgramCategoriesController < ApplicationController
   def update
   	if @program_category.update(program_category_params)
       @notice = {:success=>"#{@program_category.name} has been updated successfully"}
+      current_user.user_updates.save_update(@program_category,"update")
+      @program_category = ProgramCategory.new
   	else
       @notice = {:fail=>@program_category.errors.full_messages}
   	end
 
-    @program_category = ProgramCategory.new
     refresh
   end
 
@@ -39,6 +41,7 @@ class Admin::ProgramCategoriesController < ApplicationController
   def destroy
   	if @program_category.destroy
       @notice = {:success=>"#{@program_category.name} has been destroyed successfully"}
+      current_user.user_updates.save_update(@program_category,"destroy")
     else
       @notice = {:fail=>@program_category.errors.full_messages}      
     end      
