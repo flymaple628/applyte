@@ -1,0 +1,45 @@
+div.navbar {
+    position: fixed;
+    top: 0em;
+    left: 0em;
+    right: 0em;
+    height: 5.25em;
+    border-radius: 0;
+    text-align: center;
+    box-shadow: 0 0 0.5em rgba(155, 155, 155, 1);
+    background-color: white;
+    z-index:100;
+}
+
+div.navbar span {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+div.navbar img {
+    margin: 0.4em;
+}
+
+div.navbar > span.search-bar input {
+    font-weight: 700;
+    font-size: 1.1em;
+    text-align: center;
+    color: rgb(0, 175, 163);
+    border: none;
+    outline: 0;
+}
+
+div.navbar > span.search-bar input:focus {
+    border-bottom: 0.13em solid rgb(0, 175, 163);
+}
+
+div.navbar > span a#my-progress {
+    font-weight: 300;
+    margin: 1em;
+    color: rgb(155, 155, 155);
+}
+
+div.navbar > span a#my-progress:hover {
+    color: rgb(0, 175, 163);
+}

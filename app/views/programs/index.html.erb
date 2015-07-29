@@ -1,16 +1,56 @@
-
-<div class="wrapper">
-  <div class="main-area">
-		<%= render :partial=>"layouts/search_bar" %>
-
-    <div class="search-result-area">
-      <div class="search-result-body">
-				<%= render :partial=>"/programs/program_row", :collection => @programs, :as => :program %>
-				<% if @programs.length ==0  %>
-					<h2 class="no-result">Sorry no result </h2>
-				<% end %>
+<!-- Main contents -->
+<div class="contents program-index row-fluid col-md-offset-1 col-md-10">
+  <div class="head row-fluid col-md-10">
+			<div class="search-title">
+				 <h1> COMPUTER SCIENCE 2015 </h1>
 			</div>
-		</div>
-	</div>
-</div>
+			<div class="sort-by">
+				<div class="sort-by-title"> Sort by/ </div>
+				<div class="sort-by-unit"> <%= link_to "RANKING", "#" %> </div>
+				<div class="sort-by-unit"> <%= link_to "TUITION", "#" %> </div>
+				<div class="sort-by-unit"> <%= link_to "DEADLINE", "#" %> </div>
+			</div>
 
+<!-- 				<div>Sort by </div>
+				<div class="filter-item">Ranking</div>
+				<div class="filter-item">Tuition</div>
+				<div class="filter-item">Deadline</div>
+			</div> -->
+	</div>
+	
+	<div class="wrap">
+		<% @programs.each do |program| %>
+			<div class="row">
+				<div class="col-md-2">
+					<div class="school">
+						<%= program.school.name %>
+					</div>
+					<div class="rank">
+						<%= program.ranking %>
+					</div>
+					<div class="add-fav">
+						<%= link_to "ADD", fevorite_myprogram_path(program), :method=>:post, :class=>"remove",:data => { :row_id => program.id },:remote=>true%>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="logo">
+						<%= image_tag(program.school.logo.photo.url(:medium)) %>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="program-name">
+						<%= program.title %>
+					</div>
+					<div class="program-desc">
+						<%= program.desc %>
+					</div>
+				</div>
+			</div> <%# row %>
+		<% end %>
+
+		<% if @programs.length ==0  %>
+			<h2 class="no-result">Sorry no result </h2>
+		<% end %>
+	</div>
+
+</div>
