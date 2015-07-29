@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728130131) do
+ActiveRecord::Schema.define(version: 20150728163429) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -64,6 +64,13 @@ ActiveRecord::Schema.define(version: 20150728130131) do
   create_table "areas", force: :cascade do |t|
     t.string   "name"
     t.integer  "program_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "auto_compeletes", force: :cascade do |t|
+    t.string   "name"
+    t.string   "associated"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -138,6 +145,7 @@ ActiveRecord::Schema.define(version: 20150728130131) do
     t.datetime "updated_at",           null: false
     t.string   "key_type"
     t.string   "profile_column"
+    t.integer  "auto_compelete_id"
   end
 
   add_index "form_keys", ["form_key_category_id"], name: "index_form_keys_on_form_key_category_id"

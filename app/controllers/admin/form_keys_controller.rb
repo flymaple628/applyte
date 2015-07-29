@@ -63,7 +63,7 @@ private
 	end
 
 	def form_key_params
-		params.require(:form_key).permit(:name, :note, :key_type, :form_key_category_id,:profile_column)
+		params.require(:form_key).permit(:name, :note, :key_type, :form_key_category_id,:auto_compelete_id)
 	end
 
 	def refresh

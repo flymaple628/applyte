@@ -6,22 +6,77 @@ class UserProgramForm < ActiveRecord::Base
 
 	def initialize_values
 		self.program.program_form_keys.each do |k|
-			# byebug
-			if(k.form_key.profile_column)
-				# puts "key:"+self.user.profile.("#{k.form_key.form_key_category.profile_column}")
-				byebug
-				if	self.user.profile.try("#{k.form_key.profile_column}")
-					check = true
-				end
-				byebug
-			else
-
-			check=false
-
-			end
-			self.user_program_form_values.new(:program_form_key => k,:check=> check )
+			self.user_program_form_values.new(:program_form_key => k )
 		end
 		self.user_program_form_values
 	end
+
+	# def check_auto_compelete(type)
+	# 	if self.user.profile && type.form_key.auto_compelete_id
+	# 		case type.name #
+	# 			when "name"
+	# 			  if self.user.profile.name
+	# 			  	puts "value.user.profile.name"
+	# 			  	return true
+	# 			  end
+	# 			when "birthday"
+	# 			  if self.user.profile.birthday
+	# 			  	puts "value.user.profile.birthday"
+	# 			  	return true
+	# 			  end
+	# 			when "major"
+	# 			  if self.user.profile.major
+	# 			  	puts "value.user.profile.major"
+	# 			  	return true
+	# 			  end
+	# 			when "research_area"
+	# 			  if self.user.profile.research_area
+	# 			  	puts "value.user.profile.research_area"
+	# 			  	return true
+	# 			  end
+	# 			when "toefl"
+	# 				profile=self.user.profile
+	# 			  if profile.toefl_read && profile.toefl_listen &&profile.toefl_speak &&profile.toefl_write
+	# 			  	puts "value.user.profile.toefl"
+	# 			  	return true
+	# 			  end
+
+	# 			when "gre"
+	# 				profile=self.user.profile
+	# 			  if profile.gre_verbal && profile.gre_guantitatiue &&profile.gre_awa &&profile.gre_total
+	# 			  	puts "value.user.profile.gre"
+	# 			  	return true
+	# 			  end
+
+	# 			when "publications"
+	# 			  if self.user.profile.publications.count > 0
+	# 			  	puts "value.user.profile.birthday"
+	# 			  	return true
+	# 			  end
+
+	# 			when "honor"
+	# 			  if self.user.profile.honors.count > 0
+	# 			  	puts "value.user.profile.honor"
+	# 			  	return true
+	# 			  end
+
+	# 			when "research_experience"
+	# 			  if self.user.profile.research_experience.count > 0
+	# 			  	puts "value.user.profile.research_experience"
+	# 			  	return true
+	# 			  end
+
+	# 			when "work_experience"
+	# 			  if self.user.profile.work_experience.count > 0
+	# 			  	puts "value.user.profile.work_experience"
+	# 			  	return true
+	# 			  end
+
+	# 			else
+	# 			  false
+	# 		end
+	# 	end
+	# end
+
 
 end
