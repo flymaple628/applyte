@@ -63,7 +63,9 @@ private
   end 
 
   def faculty_params
-    params.require(:faculty).permit(:name,:email,:intro,:link_url,:image, :program_id, :destroy_image)
+    params.require(:faculty).permit(:name,:email,:intro,:link_url,:image,
+                                    :title, :education, :publication, :funding,
+                                    :program_id, :destroy_image)
   end
 
   def refresh

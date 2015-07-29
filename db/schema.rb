@@ -116,6 +116,10 @@ ActiveRecord::Schema.define(version: 20150728163429) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "title"
+    t.text     "education"
+    t.text     "publication"
+    t.text     "funding"
   end
 
   add_index "faculties", ["program_id"], name: "index_faculties_on_program_id"
