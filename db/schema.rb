@@ -222,7 +222,6 @@ ActiveRecord::Schema.define(version: 20150725102126) do
     t.string   "fax"
     t.string   "phone"
     t.string   "email"
-    t.integer  "address_id"
     t.integer  "school_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -233,7 +232,6 @@ ActiveRecord::Schema.define(version: 20150725102126) do
     t.date     "deadline"
   end
 
-  add_index "programs", ["address_id"], name: "index_programs_on_address_id"
   add_index "programs", ["program_category_id"], name: "index_programs_on_program_category_id"
   add_index "programs", ["school_id"], name: "index_programs_on_school_id"
 
@@ -255,14 +253,12 @@ ActiveRecord::Schema.define(version: 20150725102126) do
     t.string   "phone"
     t.string   "email"
     t.integer  "logo_id"
-    t.integer  "address_id"
     t.string   "link_name"
     t.string   "link_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "schools", ["address_id"], name: "index_schools_on_address_id"
   add_index "schools", ["logo_id"], name: "index_schools_on_logo_id"
 
   create_table "states", force: :cascade do |t|

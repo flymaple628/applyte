@@ -1,9 +1,9 @@
 .landing-body{
   padding: 0px;
   margin: 0px;
-  min-width: 900px;
+  min-width: 1024px;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: grey;
+  // background-color: grey;
 
   .header {
       width: 100%;
@@ -27,13 +27,15 @@
   }
 
   .header .header-buttons {
+    text-decoration: none;
     float: right;
     line-height: 40px;
-    width: 400px;
+    width: 450px;
   }
 
   .header-buttons .header-buttons-button {
     float: left;
+    text-decoration: none;
     background-image: url("../img/bt01_bg.png");
     background-repeat: no-repeat;
     background-size: 100%;
