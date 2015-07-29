@@ -52,7 +52,14 @@
 				<% FormKeyCategory.includes(:form_keys => :program_form_keys).each do |fkc| %>
 					<h4 class="field-program-form-key-category"> <%= fkc.name %> </h4>
 					<% pg.program_form_keys.each do |pfk| %>
-
+						<% if pfk.form_key.form_key_category.name == fkc.name %>
+							<div class="field-program-form-key">
+								<div class="show-unit"><%= pfk.form_key.name %></div>
+								<div class="show-unit"><%= pfk.form_key.key_type %></div>
+								<div class="show-unit"> (<%= pfk.name %>)</div>
+								<div class="show-unit"><%= pfk.desc %></div>
+							</div>
+						<% end %>
 					<%end %> <%# kfc form key each %>
 				<% end %> <%# for key category each %>
 
