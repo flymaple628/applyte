@@ -37,8 +37,9 @@ module ApplicationHelper
 
 
 	def check_auto_compelete(type)
+
 		if current_user.profile && type.form_key.auto_compelete_id
-			case type.name #
+			case type.form_key.auto_compelete.name #
 				when "name"
 				  if current_user.profile.name
 				  	puts "value.user.profile.name"
@@ -60,22 +61,23 @@ module ApplicationHelper
 				  	return true
 				  end
 				when "toefl"
-					profile=current_userr.profile
+					profile=current_user.profile
 				  if profile.toefl_read && profile.toefl_listen &&profile.toefl_speak &&profile.toefl_write
 				  	puts "value.user.profile.toefl"
 				  	return true
 				  end
 
 				when "gre"
-					profile=current_userr.profile
+					profile=current_user.profile
 				  if profile.gre_verbal && profile.gre_guantitatiue &&profile.gre_awa &&profile.gre_total
 				  	puts "value.user.profile.gre"
 				  	return true
 				  end
 
-				when "publications"
+				when "publication"
+
 				  if current_user.profile.publications.count > 0
-				  	puts "value.user.profile.birthday"
+				  	puts "value.user.profile.publications"
 				  	return true
 				  end
 
