@@ -40,6 +40,7 @@ class UserProgramsController < ApplicationController
 	def fevorite
 		get_user_program_forms
 
+		@program=  Program.find(params[:id])
 		respond_to do |format|
 		  format.html	{ redirect_to myprograms_path }
 		  format.js
