@@ -30,7 +30,7 @@
 						<div class="icon"></div>
 						<div class="input-outer">
 							<%= form_tag programs_path, :method=>:get,:class=>:search do %>
-								<%= text_field_tag 'keyword',nil, :value=>"Your program here", :class=>"input-landing" %>
+								<%= text_field_tag 'keyword',nil, :placeholder=>"Your program here", :class=>"input-landing" %>
 									<a href="" class="">
 										<%= image_tag("go.png", :class=>:submit)  %>
 									</a>
