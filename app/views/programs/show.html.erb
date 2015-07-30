@@ -1,87 +1,153 @@
+<!-- Main contents -->
+<div class="contents row-fluid col-md-offset-1 col-md-10">
+    <!-- Intro (upper section) -->
+    <div id="program-intro" class="row-fluid col-md-12">
+        <!-- Left part of the intro (name, logo, add) -->
+        <div id="program-basics" class="col-md-3">
+            <div id="program-name-short"><%= @program.title %></div>
+            <span id="program-ranking"><%= @program.ranking %></span>
+            <%= link_to myprogram_path(@program) do %>
+							<p id="add-to-cart">Add</p>
+            <% end %>
 
-<div class="single-program">
-	<div class="info">
-		<div class="logo">
-			<%= image_tag(@pic_list[0]) %>
-		</div>
+            <div id="school-logo">
+            	<%= image_tag(@program.school.logo.photo.url(:thumb), :width=>"50px") %>
+ 						</div>
+        </div>
+			
+        <!-- Right part of the intro (name, descriptions) -->
+        <div id="program-headings" class="col-md-9">
+            <p id="school-name"> <%= @program.school.name%> </p>
+            <p id="program-name"> <%= @program.title %> </p>
+            <div id="program-stats" class="row">
+                <span id="deadline" class="col-md-4">
+                    <p> DEADLINE </p>
+                    <p> <%= @program.deadline %> </p>
+                </span>
+                <span id="time-required" class="col-md-4">
+                    <p> TIME ESTIMATED </p>
+                    <p> 10 Hours </p>
+                </span>
+                <span id="applicant-count" class="col-md-4">
+                    <p>APPLICANTS</p>
+                    <p> <%= @program.tuition %> </p>
+                </span>
+            </div>
+        </div>
+    </div> <%# program-intro %>
 
-		<div class="school-box">
-			<h3> <%= @program.school.name %></h3>
-			<p>	<%= @program.desc %></p>
-		</div>
+    <!-- Details (lower section) -->
+    <div id="program-details" class="row-fluid col-md-12">
+        <!-- Navbar of the lower section (left half) -->
+        <div id="detail-view-nav" class="col-md-2">
+            <a href="#"><p id="detail-campus" class="detail-view-nav-item">CAMPUS</p></a>
+            <a href="#"><p id="detail-climate" class="detail-view-nav-item">CLIMATE</p></a>
+            <a href="#"><p id="detail-location" class="detail-view-nav-item">LOCATION</p></a>
+            <a href="#"><p id="detail-faculty" class="detail-view-nav-item">FACULTY</p></a>
+            <a href="#"><p id="detail-document" class="detail-view-nav-item">DOCUMENT</p></a>
+            <a href="#"><p id="detail-alumni" class="detail-view-nav-item">ALUMNI</p></a>
+        </div>
 
-		<div class="fav">
-			<%= link_to "Start", myprogram_path(@program), :class=>"btn btn-danger"%>
-		</div>
+        <!-- Actual view of the lower section (right half) -->
+        <div id="detail-view-contents" class="col-md-10">
 
-	</div>
+						<div class="info">
+							<div class="logo">
+								<%= image_tag(@pic_list[0]) %>
+							</div>
 
-	<div class="nav">
-		<ul>
-			<li> <%= link_to "Campus","#", :class=>"btn btn-info" %> </li>
-			<li> <%= link_to "Weather","#", :class=>"btn btn-info" %> </li>
-			<li> <%= link_to "Location","#", :class=>"btn btn-info"  %> </li>
-			<li> <%= link_to "Faculty Info","#", :class=>"btn btn-info"  %> </li>
-			<li> <%= link_to "Document requirement","#", :class=>"btn btn-info"  %> </li>
-			<li> <%= link_to "admitted student","#", :class=>"btn btn-info"  %> </li>
-		</ul>
+							<div class="school-box">
+								<h3> <%= @program.school.name %></h3>
+								<p>	<%= @program.desc %></p>
+							</div>
 
-	</div>
-	<div class="content">
+							<div class="fav">
+								<%= link_to "Start", myprogram_path(@program), :class=>"btn btn-danger"%>
+							</div>
 
-		<div class="gallery">
-			<div class="main-pic">
-				<%= image_tag(@pic_list[1]) %>
-			</div>
-			<div class="sub-pic-box">
-				<div class="sub-pic-row">
-					<div class="sub-pic">
-						<%= image_tag(@pic_list[2]) %>
-					</div>
-					<div class="sub-pic">
-						<%= image_tag(@pic_list[3]) %>
-					</div>
-				</div>
+						</div>
 
-				<div class="sub-pic-row">
-					<div class="sub-pic">
-						<%= image_tag(@pic_list[4]) %>
-					</div>
-					<div class="sub-pic">
-						<%= image_tag(@pic_list[5]) %>
-					</div>
-				</div>
+						<div class="nav">
+							<ul>
+								<li> <%= link_to "Campus","#", :class=>"btn btn-info" %> </li>
+								<li> <%= link_to "Weather","#", :class=>"btn btn-info" %> </li>
+								<li> <%= link_to "Location","#", :class=>"btn btn-info"  %> </li>
+								<li> <%= link_to "Faculty Info","#", :class=>"btn btn-info"  %> </li>
+								<li> <%= link_to "Document requirement","#", :class=>"btn btn-info"  %> </li>
+								<li> <%= link_to "admitted student","#", :class=>"btn btn-info"  %> </li>
+							</ul>
 
-			</div>
-		</div>
+						</div>
+						<div class="content">
 
-		<%= render :partial=>"programs/program_map", :locals=>{:address=>@address} %>
+							<div class="gallery">
+								<div class="main-pic">
+									<%= image_tag(@pic_list[1]) %>
+								</div>
+								<div class="sub-pic-box">
+									<div class="sub-pic-row">
+										<div class="sub-pic">
+											<%= image_tag(@pic_list[2]) %>
+										</div>
+										<div class="sub-pic">
+											<%= image_tag(@pic_list[3]) %>
+										</div>
+									</div>
 
-		<div class="faculty">
+									<div class="sub-pic-row">
+										<div class="sub-pic">
+											<%= image_tag(@pic_list[4]) %>
+										</div>
+										<div class="sub-pic">
+											<%= image_tag(@pic_list[5]) %>
+										</div>
+									</div>
 
-			<% @faculties.each do |fc| %>
-				<div class="unit">
-					<%= image_tag fc.image.url(:thumb) %>
-					<p> <%= fc.name %> </p>
-					<p> <%= fc.email %> </p>
-					<p> <%= fc.intro %> </p>
-					<p> <%= fc.link_url %> </p>
-				</div>
-			<% end %>
-		</div>
+								</div>
+							</div>
 
-		<div class="Documents" %>
-		<%= render :partial=>"program_documents", :locals=>{:program => @program} %>
-		</div>
+							<%= render :partial=>"programs/program_map", :locals=>{:address=>@address} %>
 
-		<div class="PAS"> <%# previous admitted student %>
-		<%= render :partial=>"programs/alumn", :locals=>{:alumns=>@alumns} %>
-		</div>
+							<div class="faculty">
+
+								<% @faculties.each do |fc| %>
+									<div class="unit">
+										<%= image_tag fc.image.url(:thumb) %>
+										<p> <%= fc.name %> </p>
+										<p> <%= fc.email %> </p>
+										<p> <%= fc.intro %> </p>
+										<p> <%= fc.link_url %> </p>
+									</div>
+								<% end %>
+							</div>
+
+							<div class="Documents" %>
+							<%= render :partial=>"program_documents", :locals=>{:program => @program} %>
+							</div>
+
+							<div class="PAS"> <%# previous admitted student %>
+							<%= render :partial=>"programs/alumn", :locals=>{:alumns=>@alumns} %>
+							</div>
 
 
-	</div>
-
-
-
+						</div>
+        </div>
+    </div> <%# program-details %>
 </div>
+<script>
+$(document).ready(function() {
+    $(".detail-view-nav-item").click(function () {
+        // Do not respond if this is the selected item
+        if (!$(this).hasClass('selected-item')) {
+            $(".selected-item").removeClass('selected-item');
+            $(this).addClass('selected-item');
+
+            var lowerValue = $(this).html().toLowerCase();
+            $('#detail-view-contents').load('./views/' + lowerValue + '.html');
+        }
+    });
+
+    $('#detail-campus').trigger('click');
+});
+</script>
 

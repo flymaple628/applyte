@@ -1,0 +1,14 @@
+
+<div class="header">
+  <div class="header-logo">
+  </div>
+  <div class="header-buttons">
+  	<% if current_user %>
+			<%= link_to 'My Programs', myprograms_path, :class=>"header-buttons-button" %>
+			<%= link_to 'Logout', destroy_user_session_path, :method=>:delete, :class=>"header-buttons-button" %>
+		<% else %>
+			<%= link_to 'My Programs', myprograms_path, :class=>"header-buttons-button" %>
+			<%= link_to 'Login', user_session_path, :class=>"header-buttons-button" %>
+		<% end %>
+  </div>
+</div>
