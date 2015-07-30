@@ -11,10 +11,10 @@
             <% end %>
 
             <div id="school-logo">
-            	<%= image_tag(@program.school.logo.photo.url(:thumb), :width=>"50px") %>
+            	<%= image_tag(@program.school.logo.photo.url(:thumb), :width=>"50px") if @program.school.logo%>
  						</div>
         </div>
-			
+
         <!-- Right part of the intro (name, descriptions) -->
         <div id="program-headings" class="col-md-9">
             <p id="school-name"> <%= @program.school.name%> </p>

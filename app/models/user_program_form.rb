@@ -11,6 +11,15 @@ class UserProgramForm < ActiveRecord::Base
 		self.user_program_form_values
 	end
 
+	def count_percen
+		form_key_count = self.user_program_form_values.count
+		value_count = self.user_program_form_values.where(:check=>true).count
+		if form_key_count> 0
+			(value_count*100)/form_key_count
+		else
+			return 0
+		end
+	end
 	# def check_auto_compelete(type)
 	# 	if self.user.profile && type.form_key.auto_compelete_id
 	# 		case type.name #
