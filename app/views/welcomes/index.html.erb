@@ -10,7 +10,7 @@
 				<ul style="list-style-type: none">
 					<% if current_user %>
 						<li style="float:left"><%= link_to 'LOGOUT', destroy_user_session_path, :method=>:delete, :class=>"header-buttons-button" %></li>
-						<li style="float:left"><%= link_to 'MYPRESS',myprograms_path, :class=>"header-buttons-button"%></li>
+						<li style="float:left"><%= link_to 'MY PROGRESS',myprograms_path, :class=>"header-buttons-button"%></li>
 					<% else %>
 						<li style="float:left"><%= link_to 'LOGIN', new_user_session_path, :class=>"header-buttons-button"%></li>
 						<li style="float:left"><%= link_to 'SIGNUP', new_user_registration_path, :class=>"header-buttons-button"%></li>
