@@ -40,114 +40,86 @@
     <div id="program-details" class="row-fluid col-md-12">
         <!-- Navbar of the lower section (left half) -->
         <div id="detail-view-nav" class="col-md-2">
-            <a href="#"><p id="detail-campus" class="detail-view-nav-item">CAMPUS</p></a>
-            <a href="#"><p id="detail-climate" class="detail-view-nav-item">CLIMATE</p></a>
-            <a href="#"><p id="detail-location" class="detail-view-nav-item">LOCATION</p></a>
-            <a href="#"><p id="detail-faculty" class="detail-view-nav-item">FACULTY</p></a>
-            <a href="#"><p id="detail-document" class="detail-view-nav-item">DOCUMENT</p></a>
-            <a href="#"><p id="detail-alumni" class="detail-view-nav-item">ALUMNI</p></a>
+            <a href="#about"><p id="detail-about" class="detail-view-nav-item" value="about">ABOUT</p> </a>
+            <a href="#campus"><p id="detail-campus" class="detail-view-nav-item" value="campus">CAMPUS</p> </a>
+            <a href="#location"><p id="detail-location" class="detail-view-nav-item" value="location">LOCATION</p> </a>
+            <a href="#faculty"><p id="detail-faculty" class="detail-view-nav-item" value="faculty">FACULTY</p> </a>
+            <a href="#document"><p id="detail-document" class="detail-view-nav-item" value="document">DOCUMENT</p> </a>
+            <a href="#alumni">
+                <p id="detail-alumni" class="detail-view-nav-item" value="alumni">
+                    ALUMNI <%= image_tag "right-pointer-grey.png", :align=>"middle" %>
+                    <!-- <img align="middle" src="images/right-pointer-grey.png"></img> -->
+                </p>
+                <a href="#alumni-ellen">
+                    <p id="detail-alumni-ellen" class="detail-view-nav-item" value="alumni-ellen">Ellen Lai</p> 
+                </a>
+                <a href="#alumni-sam">
+                    <p id="detail-alumni-sam" class="detail-view-nav-item" value="alumni-sam">Sam Ling</p> 
+                </a>
+            </a>
         </div>
-
         <!-- Actual view of the lower section (right half) -->
-        <div id="detail-view-contents" class="col-md-10">
-
-						<div class="info">
-							<div class="logo">
-								<%= image_tag(@pic_list[0]) %>
-							</div>
-
-							<div class="school-box">
-								<h3> <%= @program.school.name %></h3>
-								<p>	<%= @program.desc %></p>
-							</div>
-
-							<div class="fav">
-								<%= link_to "Start", myprogram_path(@program), :class=>"btn btn-danger"%>
-							</div>
-
-						</div>
-
-						<div class="nav">
-							<ul>
-								<li> <%= link_to "Campus","#", :class=>"btn btn-info" %> </li>
-								<li> <%= link_to "Weather","#", :class=>"btn btn-info" %> </li>
-								<li> <%= link_to "Location","#", :class=>"btn btn-info"  %> </li>
-								<li> <%= link_to "Faculty Info","#", :class=>"btn btn-info"  %> </li>
-								<li> <%= link_to "Document requirement","#", :class=>"btn btn-info"  %> </li>
-								<li> <%= link_to "admitted student","#", :class=>"btn btn-info"  %> </li>
-							</ul>
-
-						</div>
-						<div class="content">
-
-							<div class="gallery">
-								<div class="main-pic">
-									<%= image_tag(@pic_list[1]) %>
-								</div>
-								<div class="sub-pic-box">
-									<div class="sub-pic-row">
-										<div class="sub-pic">
-											<%= image_tag(@pic_list[2]) %>
-										</div>
-										<div class="sub-pic">
-											<%= image_tag(@pic_list[3]) %>
-										</div>
-									</div>
-
-									<div class="sub-pic-row">
-										<div class="sub-pic">
-											<%= image_tag(@pic_list[4]) %>
-										</div>
-										<div class="sub-pic">
-											<%= image_tag(@pic_list[5]) %>
-										</div>
-									</div>
-
-								</div>
-							</div>
-
-							<%= render :partial=>"programs/program_map", :locals=>{:address=>@address} %>
-
-							<div class="faculty">
-
-								<% @faculties.each do |fc| %>
-									<div class="unit">
-										<%= image_tag fc.image.url(:thumb) %>
-										<p> <%= fc.name %> </p>
-										<p> <%= fc.email %> </p>
-										<p> <%= fc.intro %> </p>
-										<p> <%= fc.link_url %> </p>
-									</div>
-								<% end %>
-							</div>
-
-							<div class="Documents" %>
-							<%= render :partial=>"program_documents", :locals=>{:program => @program} %>
-							</div>
-
-							<div class="PAS"> <%# previous admitted student %>
-							<%= render :partial=>"programs/alumn", :locals=>{:alumns=>@alumns} %>
-							</div>
-
-
-						</div>
+        <div id="detail-view" class="col-md-10 row-fluid">
+            <div id="show_about"> <%= render :partial=>"programs/show_about" %> </div>
+            <div id="show_campus"> <%= render :partial=>"programs/show_campus" %> </div>
+            <div id="show_location"> <%= render :partial=>"programs/show_location" %> </div>
+            <div id="show_faculty"> <%= render :partial=>"programs/show_faculty" %> </div>
+            <div id="show_document"> <%= render :partial=>"programs/show_document" %> </div>
+            <div id="show_alumni"> <%= render :partial=>"programs/show_alumni" %> </div>
         </div>
+
     </div> <%# program-details %>
 </div>
+
 <script>
-$(document).ready(function() {
-    $(".detail-view-nav-item").click(function () {
-        // Do not respond if this is the selected item
-        if (!$(this).hasClass('selected-item')) {
-            $(".selected-item").removeClass('selected-item');
-            $(this).addClass('selected-item');
 
-            var lowerValue = $(this).html().toLowerCase();
-            $('#detail-view-contents').load('./views/' + lowerValue + '.html');
+    $(document).ready(function() {
+
+        $('#detail-about').click(function(){
+            hideAll();  
+            $('#show_about').show();
+        })
+
+        $('#detail-campus').click(function(){
+            hideAll();  
+            $('#show_campus').show();
+        })
+
+        $('#detail-location').click(function(){
+            hideAll();  
+            $('#show_location').show();
+        })
+        $('#detail-faculty').click(function(){
+            hideAll();  
+            $('#show_faculty').show();
+        })
+        $('#detail-document').click('#show_document',function(){
+            hideAll();  
+            $('#show_document').show();
+        })
+        $('#detail-alumni').click('#show_alumni',function(){
+            hideAll();  
+            $('#show_alumni').show();
+        })
+
+        var hideAll = function(){
+            $('#show_about').hide();
+            $('#show_campus').hide();
+            $('#show_location').hide();
+            $('#show_faculty').hide();
+            $('#show_document').hide();
+            $('#show_alumni').hide();            
+
         }
-    });
 
-    $('#detail-campus').trigger('click');
-});
+
+        hideAll();
+        $('#show_about').show();
+    })
+
+
+
 </script>
+
+
 

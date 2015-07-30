@@ -1,0 +1,97 @@
+<script>
+$(document).ready(function() {
+    var alumnis = $("#detail-alumni-ellen, #detail-alumni-sam");
+
+    $(".detail-view-nav-item").click(function () {
+        // Do not respond if this is the selected item
+        console.log('clicked');
+        console.log(this);
+
+        if (!$(this).hasClass('selected-item')) {
+            var curSelection = $($(".selected-item")[0]);
+
+            // If currently selected is the alumni tab
+            if (curSelection.attr('id') === 'detail-alumni') {
+                // And if the next selected is one of the alumni
+                if ($(this).attr('id') === 'detail-alumni-ellen'
+                        || $(this).attr('id') === 'detail-alumni-sam') {
+                    // Simply remove the class for both (we will add it back later)
+                    alumnis.removeClass('selected-item');
+                } else {
+                    // Otherwise, it means we are not selecting alumni anymore
+                    curSelection.removeClass('selected-item');
+                    alumnis.removeClass('selected-item');
+                    $("#detail-alumni img").attr('src', '../images/right-pointer-grey.png');
+                    alumnis.slideUp(200);
+                }
+            } else {
+                // If current is not alumni, just treat it normally
+                curSelection.removeClass('selected-item');
+            }
+
+            // Add the selected class to stylise selected items
+            $(this).addClass('selected-item');
+
+            // In case the user loads any of the alumnis directly,
+            // the 'Alumni' nav item will not be selected. Select it.
+            if ($(this).attr('id') === 'detail-alumni-ellen'
+                    || $(this).attr('id') === 'detail-alumni-sam') {
+                $("#detail-alumni img").attr('src', '../images/right-pointer.png');
+                $('#detail-alumni').addClass('selected-item');
+                alumnis.slideDown(200);
+            }
+
+            // Default to displaying Ellen if alumni is clicked
+            var value = $(this).attr('value');
+            if (value === 'alumni') {
+                value = 'alumni-ellen';
+                $('#detail-alumni-ellen').addClass('selected-item');
+            }
+
+            // Load the corresponding view
+            $('#detail-view').fadeOut(150, function () {
+                $('#detail-view').load('../views/' + value + '.html', function () {
+                    $('#detail-view').fadeIn(150);
+                });
+            });
+
+            // Make sure to display the alumnis list if the clicked item is alumni
+            if ($(this).attr('id') === 'detail-alumni') {
+                $("#detail-alumni img").attr('src', '../images/right-pointer.png');
+                alumnis.slideDown(200);
+            }
+        }
+    });
+
+    $("#detail-alumni").hover(function () {
+        console.log("alumni-yes")
+        $("#detail-alumni img").attr('src', '../images/right-pointer.png');
+    }, function () {
+        console.log("alumni-no")
+
+        if (!$('#detail-alumni').hasClass('selected-item')) {
+            $("#detail-alumni img").attr('src', '../images/right-pointer-grey.png');
+        }
+    });
+
+    $("#add-to-cart").click(function () {
+        $(this).html("ADDED");
+        $(this).attr('id', 'add-to-cart-added');
+    });
+
+    // Default to view 'About'
+    var openView = $('#detail-about');
+
+    // Jump to view anchor point if exists
+    var anchor = window.location.href.indexOf('#');
+
+    if (anchor >= 0) {
+        anchor = window.location.href.substring(anchor + 1);
+        if ($('#detail-' + anchor).length) {
+            openView = $('#detail-' + anchor);
+        }
+    }
+
+    openView.trigger('click');
+});
+</script>

@@ -45,10 +45,16 @@
 	}
 
 	.wrap{
-		padding: 30px 10px 0px 10px;
+
 		
 		.row{
-			padding: 15px 0;
+			padding: 20px 0 20px 0;
+			margin: 10px 0 10px 0;
+			height: 170px;
+
+			hr{
+				background-color: #e2e2e2;
+			}
 	
 			.title::after{
 				display:block;
@@ -59,9 +65,6 @@
 			.title{
 				width: 150px;
 				padding: 10px;
-				>*{
-					float: left;
-				}
 
 				.name-1{
 					font-family: "SanFranciscoDisplay-Bold";
@@ -79,7 +82,7 @@
 				}
 
 				.add-fav{
-					margin-left:10px;
+					margin-left:0px;
 					margin-top:5px;
 					width:60px;
 					height: 20px;
@@ -106,32 +109,34 @@
 
 			}
 
-			.logo{
-				padding:10px;
+			.program-logo{
+				padding:20px 40px 0 50px;
+				display: block;
 
 				img {
-					width:60px;
-					height: 60px;
-				}
+					width:80px;
+					height: 80px;
+				}				
 			}
 
 			.program-content{
-				padding:10px 0px 0px;
-				width:480px;
+				display: block;
+				padding: 10px 0 0 0;
 
 				.program-name{
 					height: 30px;
-					size: 24px;
+					font-size: 24px;
+					color: #9b9b9b;
 					font-family: "SanFranciscoDisplay-Thin";
 				}
 
 				.program-desc{
 					height: 36px;
 					font-size: 14px;
+					color: #c9c9c7;
 					font-family: "SanFranciscoDisplay-Light";
 				}
 			}			
-
 		}
 	}
 

@@ -1,7 +1,7 @@
 <!-- Main contents -->
 <div class="contents program-index row-fluid col-md-offset-1 col-md-10">
 	<div class="head row">
-	  <div class="col-md-10">
+	  <div class="col-md-offset-1 col-md-10">
 				<div class="search-title">
 					 <h1> COMPUTER SCIENCE 2015 </h1>
 				</div>
@@ -24,13 +24,13 @@
 		<% @programs.each do |program| %>
 			<div class="row">
 
-				<div class="col-md-2">
+				<div class="col-md-offset-1 col-md-2">
 					<div class="title">
 						<div class="name-1">
 							<%= program.school.name %>
 						</div>
 						<div class="name-2">
-							<%= program.ranking %>
+							<%= "2015/12/31" %>
 						</div>
 
 						<%= render :partial=>"add_fav_button", :locals=>{:program=>program} %>
@@ -44,16 +44,19 @@
 					</div>
 				</div>
 
-				<div class="col-md-8">
-					<div class="program-content">
+				<div class="col-md-6">
+					<%= link_to program_path(program), :class=>"program-content" do %>
 						<div class="program-name">
 							<%= program.title %>
 						</div>
 						<div class="program-desc">
-							<%= shorten(program.desc,300) %>
+							<%= shorten(program.desc,400) %>
 						</div>
-					</div>
-				</div>
+					<% end %>
+				</div> <%# col-md-6 %>
+
+				<hr class="col-md-10 col-md-offset-1">
+
 			</div> <%# row %>
 		<% end %>
 
