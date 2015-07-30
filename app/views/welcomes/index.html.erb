@@ -1,47 +1,45 @@
-<div class="landing-bg"></div>
-<div class="landing-body">
-	<div class="header">
-		<div class="header-logo">
-		</div>
-
-		<div class="header-buttons">
-			<ul style="list-style-type: none">
-				<% if current_user %>
-					<li style="float:left"><%= link_to 'LOGOUT', destroy_user_session_path, :method=>:delete, :class=>"header-buttons-button" %></li>
-				<% else %>
-					<li style="float:left"><%= link_to 'LOGIN', new_user_session_path, :class=>"header-buttons-button"%></li>
-				<% end %>
-					<li style="float:left"><%= link_to 'SIGNUP', new_user_registration_path, :class=>"header-buttons-button"%></li>
-			</ul>
-		</div>
-	</div>
-
-	<div class="wrapper">
-	  <div class="main-area">
-	    <div class="slogan-landing-01">
-				Comprehensive Program Search Engine
-	    </div>
-			<div class="slogan-landing-02">
-	      Get started applying your dream school
-	    </div>
-	    <div class="search-bar">
-					<div class="icon"></div>
-					<div class="input-outer">
-						<%= form_tag programs_path, :method=>:get do %>
-							<%= text_field_tag 'keyword',nil, :placeholder=>"Your program here", :class=>"input-landing" %>
-							<%# submit_tag 'search'%>
-						<% end %>
-					</div>
-	        <div class="submit"></div>
-	    </div>
-	    <div class="description">
-				A place chasing your dream easier and more enjoyable
-	    </div>
-	  </div>
-				</div>
+<div class="landing-page">
+	<div class="landing-bg"></div>
+	<div class="landing-body">
+		<div class="header">
+			<div class="header-logo">
 			</div>
+
+			<div class="header-buttons">
+				<ul style="list-style-type: none">
+					<% if current_user %>
+						<li style="float:left"><%= link_to 'LOGOUT', destroy_user_session_path, :method=>:delete, :class=>"header-buttons-button" %></li>
+					<% else %>
+						<li style="float:left"><%= link_to 'LOGIN', new_user_session_path, :class=>"header-buttons-button"%></li>
+					<% end %>
+						<li style="float:left"><%= link_to 'SIGNUP', new_user_registration_path, :class=>"header-buttons-button"%></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="wrapper">
+		  <div class="main-area">
+		    <div class="slogan-landing-01">
+					Comprehensive Program Search Engine
+		    </div>
+				<div class="slogan-landing-02">
+		      Get started applying your dream school
+		    </div>
+		    <div class="search-bar">
+						<div class="icon"></div>
+						<div class="input-outer">
+							<%= form_tag programs_path, :method=>:get do %>
+								<%= text_field_tag 'keyword',nil, :placeholder=>"Your program here", :class=>"input-landing" %>
+								<%# submit_tag 'search'%>
+							<% end %>
+						</div>
+		        <div class="submit"></div>
+		    </div>
+		    <div class="description">
+					A place chasing your dream easier and more enjoyable
+		    </div>
+		  </div>
 		</div>
 	</div>
 </div>
-
 
