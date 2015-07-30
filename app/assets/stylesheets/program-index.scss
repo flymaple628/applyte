@@ -1,45 +1,138 @@
+
 .program-index{
 	
-	.search-title{
-		border-bottom: 1px solid #d8d8d8;
+	.head{
+		.search-title{
+			border-bottom: 1px solid #d8d8d8;
 
-		h1{
-			color:#00afa3;
-		  font-weight: 1000;
-		  font-size: 3em;
-		  padding: 0 0 20px 0;	
-		  font-family: SanFranciscoDisplay-Bold;
-		}
-
-	}
-
-	.sort-by::after{
-		content: "";
-		display: block;
-		clear:both;
-	}
-
-	.sort-by{
-		padding:10px 0 10px 0;
-		
-		.sort-by-title{
-			float: left;
-			font-size: 1.5em;
-			margin-right: 29px;
-			font-family: SanFranciscoDisplay-Light;
-		}
-
-		.sort-by-unit{
-			float: left;
-			font-size: 1.5em;
-			margin-right:16px;
-			font-family: SanFranciscoDisplay-Medium;
-			a{
-				color:#9b9b9b;
+			h1{
+				color:#00afa3;
+			  font-weight: 1000;
+			  font-size: 3em;
+			  padding: 0 0 20px 0;	
+			  font-family: "SanFranciscoDisplay-Bold";
 			}
+
 		}
 
+		.sort-by::after{
+			content: "";
+			display: block;
+			clear:both;
+		}
+
+		.sort-by{
+			padding:10px 0 10px 0;
+			
+			.sort-by-title{
+				float: left;
+				font-size: 20px;
+				margin-right: 29px;
+				font-family: SanFranciscoDisplay-Light;
+			}
+
+			.sort-by-unit{
+				float: left;
+				font-size: 20px;
+				margin-right:16px;
+				font-family: SanFranciscoDisplay-Medium;
+				a{
+					color:#9b9b9b;
+				}
+			}
+
+		}
 	}
 
+	.wrap{
+		padding: 30px 10px 0px 10px;
+		
+		.row{
+			padding: 15px 0;
+	
+			.title::after{
+				display:block;
+				content:"";
+				clear: both;
+			};
+
+			.title{
+				width: 150px;
+				padding: 10px;
+				>*{
+					float: left;
+				}
+
+				.name-1{
+					font-family: "SanFranciscoDisplay-Bold";
+					color: #9b9b9b;
+					width:130px;
+					font-size: 28px;
+				}
+
+				.name-2{
+					font-family: "SanFranciscoDisplay-Bold";
+					color: #c9c9c7;
+					width:50px;
+					font-size: 36px;
+					margin-top: -8px;
+				}
+
+				.add-fav{
+					margin-left:10px;
+					margin-top:5px;
+					width:60px;
+					height: 20px;
+					text-align: center;
+				}
+				
+				.add-fav-unadded{
+					border: 1px solid #00afa3;
+					a {
+						color:#00afa3;	
+						font-family: "SanFranciscoDisplay-Medium";
+						font-size: 12px;				
+					}
+				}
+
+				.add-fav-added{
+					background-color: #00afa3;
+					a{
+						color:white;
+						font-family: "SanFranciscoDisplay-Medium";
+						font-size: 12px;
+					}
+				}
+
+			}
+
+			.logo{
+				padding:10px;
+
+				img {
+					width:60px;
+					height: 60px;
+				}
+			}
+
+			.program-content{
+				padding:10px 0px 0px;
+				width:480px;
+
+				.program-name{
+					height: 30px;
+					size: 24px;
+					font-family: "SanFranciscoDisplay-Thin";
+				}
+
+				.program-desc{
+					height: 36px;
+					font-size: 14px;
+					font-family: "SanFranciscoDisplay-Light";
+				}
+			}			
+
+		}
+	}
 
 }
