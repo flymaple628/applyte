@@ -1,0 +1,45 @@
+<div id="detail-view-header" class="row-fluid">
+    <span class="col-md-1">
+        <%= image_tag("double-square.png",:width=>"45px") %>
+    </span>
+</div>
+
+<div id="detail-view-contents" class="col-md-11 col-md-offset-1 row">
+    <div class="row col-md-12" style="">
+        <%=image_tag("purdue/purdue_campus_1.jpg", :class=>"col-md-12",
+             :style=>"padding: 0;", :id=>"gallery-main") %>
+
+        <%=image_tag("back.png",:class=>"col-md-1 gallery-control",
+                                :id=>"gallery-back-button",
+                                :onclick=>"galleryBack(this);") %>
+
+        <%=image_tag("purdue/purdue_campus_1_thumbnail.jpg",:class=>"col-md-1 gallery-thumbnail selected-thumbnail",
+                                                            :id=>"gallery-thumbnail-1",
+                                                            :onclick=>"galleryBack(this);") %>
+
+        <%=image_tag("purdue/purdue_campus_2_thumbnail.jpg",:class=>"col-md-1 gallery-thumbnail",
+                                                            :id=>"gallery-thumbnail-2",
+                                                            :onclick=>"galleryBack(this);") %>
+
+        <%=image_tag("purdue/purdue_campus_3_thumbnail.jpg",:class=>"col-md-1 gallery-thumbnail",
+                                                            :id=>"gallery-thumbnail-3",
+                                                            :onclick=>"galleryBack(this);") %>
+
+        <%=image_tag("purdue/purdue_campus_4_thumbnail.jpg",:class=>"col-md-1 gallery-thumbnail",
+                                                            :id=>"gallery-thumbnail-4",
+                                                            :onclick=>"galleryBack(this);") %>
+
+        <%=image_tag("purdue/purdue_campus_5_thumbnail.jpg",:class=>"col-md-1 gallery-thumbnail",
+                                                            :id=>"gallery-thumbnail-5",
+                                                            :onclick=>"galleryBack(this);") %>
+
+        <%=image_tag("purdue/purdue_campus_6_thumbnail.jpg",:class=>"col-md-1 gallery-thumbnail",
+                                                            :id=>"gallery-thumbnail-6",
+                                                            :onclick=>"galleryBack(this);") %>
+
+        <%=image_tag("next.png",:class=>"col-md-1 pull-right gallery-control",
+                                :id=>"gallery-next-button",
+                                :onclick=>"galleryNext(this);") %>
+
+    </div>
+</div>

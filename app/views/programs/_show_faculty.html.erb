@@ -1,0 +1,29 @@
+<div id="detail-view-header" class="row-fluid">
+    <span class="col-md-1">
+        <%= image_tag("double-square.png",:width=>"45px") %>
+    </span>
+
+    <h1 class="col-md-11">faculty-grey Info</h1>
+</div>
+
+<div id="detail-view-contents" class="col-md-11 col-md-offset-1">
+    <% 12.times do %>
+
+        <div class="sub-section col-md-4" style="text-align: center; cursor: pointer;">
+            <%= image_tag("faculty-grey.png", :style=>"max-width: 100%; max-height: 100%;") %>
+            <p style="font-size: 1.3em; color: black; margin-top: 1em;">Daniel Aliaga</p>
+            <p style="font-size: 1.3em; color: rgb(175, 175, 175);">Associate Professor</p>
+            <p style="font-size: 0.7em; color: rgb(0, 175, 163); font-weight: 500;">ALGORITHM, BIOINFO</p>
+        </div>
+
+    <% end %>
+
+
+    <div id="faculty-more" class="sub-section col-md-12" style="text-align: center">
+        <p onclick="$('#hidden1, #hidden2, #hidden3').slideDown(300); $('#faculty-more').fadeOut(200);"
+                style="font-size: 2em; font-weight: 400; margin-top:1em; cursor: pointer;">
+            MORE
+            <img src="../images/down-pointer-grey.png" style="margin-top: -0.1em; padding: 0;margin-left: 0.2em; width: 0.5em;"></img>
+        </p>
+    </div>
+</div>
