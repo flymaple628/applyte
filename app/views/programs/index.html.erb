@@ -17,7 +17,7 @@
 				<div class="filter-item">Deadline</div>
 			</div> -->
 	</div>
-	
+
 	<div class="wrap">
 		<% @programs.each do |program| %>
 			<div class="row">
@@ -34,7 +34,7 @@
 				</div>
 				<div class="col-md-2">
 					<div class="logo">
-						<%= image_tag(program.school.logo.photo.url(:medium)) %>
+						<%= image_tag(program.school.logo.photo.url(:medium)) if program.school.logo %>
 					</div>
 				</div>
 				<div class="col-md-8">
