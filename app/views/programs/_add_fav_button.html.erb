@@ -1,0 +1,12 @@
+<%# program %>
+
+<% if check_user_program_forms(program) %>
+	<div class="add-fav add-fav-added program-<%= program.id %>">
+		<%= link_to "ADDED", fevorite_myprogram_path(program), :method=>:post,:data => { :row_id => program.id },:remote=>true%>
+	</div>
+<% else %>
+	<div class="add-fav add-fav-unadded program-<%= program.id%>">
+		<%= link_to "ADD", fevorite_myprogram_path(program), :method=>:post, :data => { :row_id => program.id },:remote=>true%>
+	</div>
+<% end %>
+
