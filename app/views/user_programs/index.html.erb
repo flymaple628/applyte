@@ -52,7 +52,7 @@
 							<div class="logo">
 								<img src="#">
 							</div>
-							<div class="continue"><a href="">continue</a></div>
+							<div class="continue"><%=link_to "continue", myprogram_path(pf.program_id)%></div>
 							<!--<div class="continue"><%= link_to "remove-fav", fevorite_myprogram_path(pf.program), :class=>"label label-danger",:data => { :row_id => pf.program.id }%></div>-->
 						</div><!--left-->
 						<div class="right col-md-8">
@@ -79,7 +79,7 @@
 								<div class="per-item col-md-3">
 									<div class="circle-percen">
 										<p>
-											<%= categories.form_keys.program_form_keys.user_program_form_values%>
+											<%#= categories.form_keys.program_form_keys.user_program_form_values%>
 										</p>
 									</div>
 									<div class="form-category"><%= categories.name%></div>
@@ -102,7 +102,7 @@
 							<div class="logo">
 								<img src="#">
 							</div>
-							<div class="continue"><a href="">continue</a></div>
+							<div class="continue"><%=link_to "continue", myprogram_path(pf.program_id)%></div>
 							<!--<div class="continue"><%= link_to "remove-fav", fevorite_myprogram_path(pf.program), :class=>"label label-danger",:data => { :row_id => pf.program.id }%></div>-->
 						</div><!--left-->
 						<div class="right col-md-8">
