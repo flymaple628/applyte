@@ -1,0 +1,14 @@
+
+
+<div class="search-bar">
+	<%= link_to "back", programs_path, :class=>"btn btn-warning" %>
+	<%= form_tag programs_path, :method=>:get do %>
+		<%= text_field_tag 'keyword',nil, :placeholder=>"Enter program name", :class=>"search-input" %>
+		<%= submit_tag 'search', :class=>"btn btn-primary"%>
+	<% end %>
+
+	<%= link_to "Rank", programs_path, :class=>"btn btn-info" %>
+
+</div>
+
+

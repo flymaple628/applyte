@@ -5,7 +5,7 @@
 	padding:10px 10%;
 	background-color: #afa;
 	height: $header-height;
-	
+
 
 	.logo{
 		display: inline-block;
@@ -45,17 +45,17 @@
 }
 
 .program-list{
-	$program-unit-height:120px;	
-	
+	$program-unit-height:120px;
+
 	.title{
 
 		margin:5px;
 	}
-	
+
 	.list-box{
 
 		margin:5px;
-	
+
 		.program_cell {
 			height: $program-unit-height;
 
@@ -69,7 +69,7 @@
 				text-align: center;
 			}
 
-			.content{			
+			.content{
 				width: 85%;
 				display: block;
 
@@ -139,7 +139,7 @@
 				padding: 10px
 			}
 
-			p{			
+			p{
 				padding:10px;
 			}
 		}
@@ -173,7 +173,7 @@
 
 
 	}
-	
+
 	.content{
 		background-color: #aaa;
 		width:80%;
@@ -194,14 +194,14 @@
 				width:42%;
 				margin: 10px 2%;
 			}
-	
+
 			.sub-pic-box{
 				width:42%;
 				margin: 10px 2%;
 
 			 .sub-pic-row{
-					width:100%;	
-						
+					width:100%;
+
 					.sub-pic{
 						float: left;
 						width:40%;
@@ -222,7 +222,7 @@
 			text-align: center;
 			border-bottom: 2px solid #999;
 		}
-		
+
 		.faculty{
 			padding: 20px 2%;
 			::after{
@@ -235,7 +235,7 @@
 				display: inline-block;
 				width: 33%;
 				padding: 30px 5%;
-				text-align: center;	
+				text-align: center;
 			}
 		}
 	}
@@ -245,6 +245,8 @@
 
 
 .sign-up, .sign-in{
+	position:fixed;
+	text-align:center;
 	width:90%;
 	margin-left: auto;
 	margin-right: auto;
@@ -262,7 +264,7 @@
 
 
 .my_programs-single-box{
-	
+
 
 
 
@@ -271,7 +273,7 @@
 .my_programs-single-box{
 	.field{
 		margin-top:20px;
-	
+
 		ul{
 			li{
 				margin: 10px;
@@ -301,7 +303,7 @@
 
 
 .my_programs-index-box{
-	
+
 	.field {
 		margin: 20px;
 		width: 600px;
@@ -311,7 +313,7 @@
 			font-size: 20px;
 			height: 40px;
 		}
-		
+
 		.school{
 			width: 25%;
 		}
