@@ -4,6 +4,7 @@
 @import 'navbar.css';
 @import 'program-intro.css';
 @import 'program-details.css';
+@import 'program-gallery.css';
 
 body {
     height: 100%;

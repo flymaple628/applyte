@@ -25,14 +25,14 @@
 					<ul>
 					<% current_cat = cat_name %>
 				<% end %>
-
 					<li>
 						<div class="title">
 							<%= fuv.object.program_form_key.name %>
 							<%= fuv.hidden_field :program_form_key_id %>
 						</div>
+
 						<div class="check">
-							<%= fuv.check_box :check %>
+							<%= fuv.check_box :check, {checked: check_auto_compelete(fuv.object.program_form_key) } %>
 						</div>
 					</li>
 			<% end %>

@@ -118,7 +118,7 @@
 			<p class="form-group">
 				<%= ef.label :date_to, "date_to" %>
 				<%= ef.text_field :date_to %>
-				<%= ef.hidden_field :etype %>
+				<%= ef.hidden_field :etype, :value => "Research" %>
 				<%= ef.remove_nested_fields_link %>
 			</p>
 			<% end %>
@@ -146,7 +146,7 @@
 			<p class="form-group">
 				<%= ef.label :date_to, "date_to" %>
 				<%= ef.text_field :date_to %>
-				<%= ef.hidden_field :etype %>
+				<%= ef.hidden_field :etype, :value => "Work" %>
 				<%= ef.remove_nested_fields_link %>
 			</p>
 			<% end %>

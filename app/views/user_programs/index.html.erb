@@ -1,20 +1,144 @@
-<div class="my_programs-index-box">
-	<h1> My Progress </h1>
-	<% @user_program_forms.each do |pf| %>
-		<p class="field">
+<div class="my_programs-index-box  contents col-md-offset-1 col-md-11">
+	<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active tab-wait"><a href="#tab-wait" aria-controls="home" role="tab" data-toggle="tab">tab-wait</a></li>
+    <li role="presentation" class="tab-inprogess"><a href="#tab-inprogess" aria-controls="profile" role="tab" data-toggle="tab">tab-inprogess</a></li>
+    <li role="presentation" class="tab-compelete"><a href="#tab-compelete" aria-controls="messages" role="tab" data-toggle="tab">tab-compelete</a></li>
+  </ul>
+ 	<div class="progress-list tab-content">
+    <div role="tabpanel" class="tab-pane active" id="tab-wait">
+			<% @user_program_forms.each do |pf| %>
+				<% if current_user%>
+					<div class="program-list row  col-md-12">
+						<div class="row">
+						<div class="left col-md-3">
+							<div class="logo">
+								<% if pf.program.school.logo %>
+								<%= image_tag(pf.program.school.logo.photo.url(:medium)) if pf.program.school.logo %>
+								<% else%>
+								<img src="">
+								<% end %>
+							</div>
+							<div class="continue"><%=link_to "continue", myprogram_path(pf.program_id)%></div>
+							<!--<div class="continue"><%= link_to "remove-fav", fevorite_myprogram_path(pf.program), :class=>"label label-danger",:data => { :row_id => pf.program.id }%></div>-->
+						</div><!--left-->
+						<div class="right col-md-8">
+							<div class="program-info col-md-12">
+								<div class="school-info col-md-9">
+									<div class="shool"><%=pf.program.school.try(:name)%></div>
+									<div class="program"><%= pf.program.title %></div>
+								</div>
+								<div class="deadline col-md-3">
+									<%= pf.program.deadline %>
+								</div>
+							</div><!--program_info-->
+							<div class="progress-rate col-md-12">
+								<div class="line col-md-10"><progress value="0" max="100"></progress></div>
+								<div class="percen col-md-2">0%</div>
+							</div><!--progress_rate-->
+						</div><!--right-->
+						</div><!--row-->
+					</div><!--program-list-->
+				<%else %>
+					<%= pf.title%>
+				<% end %>
+			<% end %>
+    </div><!--tab-wait-->
+    <div role="tabpanel" class="tab-pane" id="tab-inprogess">
+			<% @user_program_forms.each do |pf| %>
+				<% if current_user%>
+					<div class="program-list row  col-md-12">
+						<div class="row">
+						<div class="left col-md-3">
+							<div class="logo">
+								<img src="#">
+							</div>
+							<div class="continue"><%=link_to "continue", myprogram_path(pf.program_id)%></div>
+							<!--<div class="continue"><%= link_to "remove-fav", fevorite_myprogram_path(pf.program), :class=>"label label-danger",:data => { :row_id => pf.program.id }%></div>-->
+						</div><!--left-->
+						<div class="right col-md-8">
+							<div class="program-info col-md-12">
+								<div class="school-info col-md-9">
+									<div class="shool"><%=pf.program.school.try(:name)%></div>
+									<div class="program"><%= pf.program.title %></div>
+								</div>
+								<div class="deadline col-md-3">
+									<%= pf.program.deadline %>
+								</div>
+							</div><!--program_info-->
+							<div class="progress-rate col-md-12">
+								<div class="line col-md-10"><progress value="<%=pf.count_percen%>" max="100"></progress></div>
+								<div class="percen col-md-2"><%=pf.count_percen%>%</div>
+							</div><!--progress_rate-->
+						</div><!--right-->
+						</div><!--row-->
+						<div class="detail col-md-12"><a href="#" date-detail="<%=pf.id%>">detail</a></div>
+						<div class="row">
+							<div class="sub-percen">
+							<% @form_key_categories.each do |categories|%>
+							<%# pf.program.form_keys.form_key_category do%>
+								<div class="per-item col-md-3">
+									<div class="circle-percen">
+										<p>
+											<%#= categories.form_keys.program_form_keys.user_program_form_values%>
+										</p>
+									</div>
+									<div class="form-category"><%= categories.name%></div>
+								</div>
+							<% end %>
+							</div>
+						</div>
+					</div><!--program-list-->
+				<%else %>
+					<%= pf.title%>
+				<% end %>
+			<% end %>
+    </div><!--tab-inprogess-->
+    <div role="tabpanel" class="tab-pane " id="tab-compelete">
+			<% @user_program_forms.each do |pf| %>
+				<% if current_user%>
+					<div class="program-list row  col-md-12">
+						<div class="row">
+						<div class="left col-md-3">
+							<div class="logo">
+								<img src="#">
+							</div>
+							<div class="continue"><%=link_to "continue", myprogram_path(pf.program_id)%></div>
+							<!--<div class="continue"><%= link_to "remove-fav", fevorite_myprogram_path(pf.program), :class=>"label label-danger",:data => { :row_id => pf.program.id }%></div>-->
+						</div><!--left-->
+						<div class="right col-md-8">
+							<div class="program-info col-md-12">
+								<div class="school-info col-md-9">
+									<div class="shool"><%=pf.program.school.try(:name)%></div>
+									<div class="program"><%= pf.program.title %></div>
+								</div>
+								<div class="deadline col-md-3">
+									<%= pf.program.deadline %>
+								</div>
+							</div><!--program_info-->
+							<div class="progress-rate col-md-12">
+								<div class="line col-md-10"><progress value="100"></progress></div>
+								<div class="percen col-md-2">100%</div>
+							</div><!--progress_rate-->
+						</div><!--right-->
+						</div><!--row-->
+					</div><!--program-list-->
+				<%else %>
+					<%= pf.title%>
+				<% end %>
+			<% end %>
+    </div><!--tab-compelete-->
 
-		<% if current_user%>
-		<%= link_to myprogram_path(pf) do%>
-				<span class="school label label-danger"> <%=pf.program.school.try(:name) %> </span>
-				<span class="program label label-primary"><%= pf.program.title %> </span>
-				<span class="progresses label label-warning"><%= "(? %)" %></span>
-				<span label label-danger><%= link_to "remove-fav", fevorite_myprogram_path(pf.program), :class=>"label label-danger",:data => { :row_id => pf.program.id }%>
-				</span>
-		  <% end %>
-		<%else %>
-			<%= pf.title%>
-		<% end %>
+  </div>
 
-		</p>
-	<% end %>
+
 </div>
+<script>
+	$(".info").on('click', function(event) {
+		var d =$(this).children('.department').text();
+		$("#main-department").text(d);
+	});
+	$(".detail").on('click', function(event) {
+		var d =$(this).children('.department').text();
+		$("#main-department").text(d);
+	});
+</script>

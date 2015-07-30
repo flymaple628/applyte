@@ -2,6 +2,8 @@ class UserProgramsController < ApplicationController
 	before_action :authenticate_user!,:except=>[:index,:fevorite]
 
 	def index
+		@form_key_categories = FormKeyCategory.all
+
 		if current_user.nil?
 			@user_program_forms = Program.find(session[:myprogram])
 		else
@@ -23,7 +25,7 @@ class UserProgramsController < ApplicationController
 
 	def show
 
-		@user_program_form = current_user.user_program_forms.includes(:user_program_form_values => { :program_form_key => :program_form_key_category } ).find_by_program_id(params[:id])
+		@user_program_form = current_user.user_program_forms.includes(:user_program_form_values   ).find_or_create_by(:program_id=>params[:id])
 
 		if @user_program_form.user_program_form_values.empty?
 	  		@user_program_form.initialize_values

@@ -1,0 +1,105 @@
+.my_programs-index-box{
+
+	.nav-tabs li{
+		font-size: 1.5em;
+		width: 270px;
+		margin: 0 auto ;
+		a{
+			color:#00afa3;
+		}
+
+	}
+	.nav-tabs .active{
+		background: #fff;
+		border-bottom: 3px solid #00afa3;
+	}
+	.program-list{
+		/* program-list main*/
+		// height: 148px;
+		border-bottom-width:1px;
+		border-bottom-style:solid;
+		border-color: #dbdbdb;
+		overflow: hidden;
+		.continue{
+			height: 30px;
+			margin-top: 10px;
+
+			a{
+				padding: 6px 28px;
+				font-size: 14px;
+				border:#00afa3 solid;
+				color: #00afa3;
+			}
+		}
+		.left{
+
+			margin-top: 1em;
+			.logo{
+				margin:1em 30%;
+			}
+			.continue{
+				margin:1em 25%;
+			}
+			.logo img{
+				height: 5em;
+				width: 5em;
+			}
+		}
+		.right{
+			margin-top: 16px;
+			.program-info{
+				color: #9b9b9b;
+				.school-info{
+					font-size :28px;
+					height: 56px;
+				}
+				.deadline{
+					font-size :1.5em;
+				}
+			}
+			.progress-rate{
+				.line{
+					margin-top: 30px;
+					progress{
+						width: 100%;
+						color: #d8d8d8;
+					}
+					progress:not([value]) {
+					   /* Styling here */
+					   color: #fff;
+					}
+				}
+				.percen{
+					margin-top: 10px;
+					font-size: 48px;
+				}
+			}
+		}
+		.detail{
+			font-size: 1.5em;
+			margin: 0 40%;
+		}
+		/* sub-percen*/
+		.sub-percen{
+
+			.per-item{
+				margin-top: 1.25em;
+
+				.circle-percen{
+					border:#00afa3 2px solid;
+    			border-radius: 50px;
+    			width:5em;
+    			height: 5em;
+    			margin: 0 auto;
+    			p{
+    				margin:1.5em 1em;
+    			}
+				}
+				.form-category{
+					margin: 10px 20%;
+					font-size :20px;
+				}
+			}
+		}
+	}
+}
