@@ -6,4 +6,5 @@ class Area < ActiveRecord::Base
 
 	has_many :program_areaships
 	has_many :programs, :through=>:program_areaships
+
 end

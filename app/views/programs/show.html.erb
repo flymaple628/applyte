@@ -4,18 +4,18 @@
     <div id="program-intro" class="row-fluid col-md-12">
         <!-- Left part of the intro (name, logo, add) -->
         <div id="program-basics" class="col-md-3">
-            <div id="program-name-short"><%= @program.title %></div>
+            <div id="program-name-short"><%= @program.program_category.try(:name) %></div>
             <span id="program-ranking"><%= @program.ranking %></span>
-                <%= render :partial=>"add_fav_button", :locals=>{:program=>@program} %>
+                
             <div id="school-logo">
-            	<%= image_tag(@program.school.logo.photo.url(:thumb), :width=>"50px") if @program.school.logo%>
- 						</div>
+            	<%= image_tag(@program.school.logo.photo.url(:thumb), :width=>"80px", :height=>"80px") if @program.school.logo%>
+			</div>
         </div>
 
         <!-- Right part of the intro (name, descriptions) -->
         <div id="program-headings" class="col-md-9">
             <p id="school-name"> <%= @program.school.name%> </p>
-            <p id="program-name"> <%= @program.title %> </p>
+            <p id="program-name"> <%= "#{@program.title} #{@program.degree}" %> </p>
             <div id="program-stats" class="row">
                 <span id="deadline" class="col-md-4">
                     <p> DEADLINE </p>
@@ -23,12 +23,15 @@
                 </span>
                 <span id="time-required" class="col-md-4">
                     <p> TIME ESTIMATED </p>
-                    <p> 10 Hours </p>
+                    <p> 5 Months </p>
                 </span>
                 <span id="applicant-count" class="col-md-4">
                     <p>APPLICANTS</p>
-                    <p> <%= @program.tuition %> </p>
+                    <p> <%= @program.applicant %> </p>
                 </span>
+            </div>
+            <div class="myprogram-start" class="row">
+                <%= link_to "Start", myprogram_path(@program), :class=>"col-md-offset-4 col-md-4 myprogram-start-icon" %> 
             </div>
         </div>
     </div> <%# program-intro %>
