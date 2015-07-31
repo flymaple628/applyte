@@ -20,3 +20,27 @@
     height: 70px;
     width: 45px;
 }
+
+.img-box{
+    height: 500px;
+    
+    .image-main::before{
+
+        content: "";
+        display: block;
+
+    };
+
+
+    .image-main{
+        height: 300px;
+        text-align: center;
+
+        #gallery-main{
+
+            max-width: 90%;
+            max-height: 90%;
+        }
+    }
+
+}

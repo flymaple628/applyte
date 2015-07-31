@@ -7,7 +7,7 @@ module ApplicationHelper
 	def check_user_program_forms(program)
 		session[:myprogram] ||= []
 		session[:myprogram].include?(program.id.to_s) ||
-		(current_user && program.user_program_forms.any?)
+		(current_user && program.user_program_forms.where(:user_id=>current_user).any?)
 	end
 
 	def shorten(text, w_len)
