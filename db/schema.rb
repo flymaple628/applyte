@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728163429) do
+ActiveRecord::Schema.define(version: 20150730123921) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -307,8 +307,10 @@ ActiveRecord::Schema.define(version: 20150728163429) do
     t.integer  "program_form_key_id"
     t.text     "note"
     t.boolean  "check"
+    t.integer  "form_key_category_id"
   end
 
+  add_index "user_program_form_values", ["form_key_category_id"], name: "index_user_program_form_values_on_form_key_category_id"
   add_index "user_program_form_values", ["program_form_key_id"], name: "index_user_program_form_values_on_program_form_key_id"
   add_index "user_program_form_values", ["user_program_form_id"], name: "index_user_program_form_values_on_user_program_form_id"
 

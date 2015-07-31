@@ -3,23 +3,11 @@ class UserProgramsController < ApplicationController
 
 	def index
 		@form_key_categories = FormKeyCategory.all
-
-		if current_user.nil?
-			@user_program_forms = Program.find(session[:myprogram])
-		else
-			if session[:myprogram]
-				session[:myprogram].each do |my|
-					unless current_user.user_program_forms.find_by_program_id(my)
-						current_user.user_program_forms.create( :program_id => my )
-					end
-				end
-				session[:myprogram] = []
-				@user_program_forms = current_user.user_program_forms
-			end
-		end
-
-		if 	@user_program_forms.nil?
-			@user_program_forms=[]
+		@user_program_forms = UserProgramForm.get_user_program_forms(current_user,session[:myprogram],:wish)
+		@user_program_forms = UserProgramForm.get_user_program_forms(current_user,session[:myprogram],:progress)
+		@user_program_forms = UserProgramForm.get_user_program_forms(current_user,session[:myprogram],:compelete)
+		if current_user
+			session[:myprogram]=[]
 		end
 	end
 
@@ -73,7 +61,7 @@ private
 	end
 
 	def user_program_form_params
-		params.require(:user_program_form).permit(:user_program_form_values_attributes=>[:id,:program_form_key_id,:check,:note])
+		params.require(:user_program_form).permit(:user_program_form_values_attributes=>[:id,:program_form_key_id,:check,:note, :form_key_category_id])
 	end
 
 end
