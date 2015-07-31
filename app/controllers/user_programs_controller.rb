@@ -2,7 +2,7 @@ class UserProgramsController < ApplicationController
 	before_action :authenticate_user!,:except=>[:index,:fevorite]
 
 	def index
-		@form_key_categories = FormKeyCategory.all
+		@form_key_categories = FormKeyCategory.all.order(:id)
 		@wish = current_user.user_program_forms.wish
 		@progress = current_user.user_program_forms.progress
 		@finish = current_user.user_program_forms.finish
