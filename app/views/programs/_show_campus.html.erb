@@ -2,6 +2,7 @@
     <span class="col-md-1">
         <%= image_tag("double-square.png",:width=>"45px") %>
     </span>
+    <h1 class="col-md-11">Campus Gallery</h1>
 </div>
 
 <div id="detail-view-contents" class="col-md-11 col-md-offset-1 row">
@@ -19,23 +20,24 @@
 
         <%=image_tag("purdue/purdue_campus_2_thumbnail.jpg",:class=>"col-md-1 gallery-thumbnail",
                                                             :id=>"gallery-thumbnail-2",
-                                                            :onclick=>"galleryBack(this);") %>
+                                                            :onclick=>"galleryClick(this);") %>
 
         <%=image_tag("purdue/purdue_campus_3_thumbnail.jpg",:class=>"col-md-1 gallery-thumbnail",
                                                             :id=>"gallery-thumbnail-3",
-                                                            :onclick=>"galleryBack(this);") %>
+                                                            :onclick=>"galleryClick(this);") %>
 
         <%=image_tag("purdue/purdue_campus_4_thumbnail.jpg",:class=>"col-md-1 gallery-thumbnail",
                                                             :id=>"gallery-thumbnail-4",
-                                                            :onclick=>"galleryBack(this);") %>
+                                                            :onclick=>"galleryClick(this);") %>
 
         <%=image_tag("purdue/purdue_campus_5_thumbnail.jpg",:class=>"col-md-1 gallery-thumbnail",
                                                             :id=>"gallery-thumbnail-5",
-                                                            :onclick=>"galleryBack(this);") %>
+                                                            :onclick=>"galleryClick(this);")
+                                                                 %>
 
         <%=image_tag("purdue/purdue_campus_6_thumbnail.jpg",:class=>"col-md-1 gallery-thumbnail",
                                                             :id=>"gallery-thumbnail-6",
-                                                            :onclick=>"galleryBack(this);") %>
+                                                            :onclick=>"galleryNext(this);") %>
 
         <%=image_tag("next.png",:class=>"col-md-1 pull-right gallery-control",
                                 :id=>"gallery-next-button",
