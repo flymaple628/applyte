@@ -60,7 +60,7 @@
             <div id="detail-about-view"> <%= render :partial=>"programs/show_about" %> </div>
             <div id="detail-campus-view"> <%= render :partial=>"programs/show_campus", :locals=>{:program=>@program} %> </div>
             <div id="detail-location-view"> <%= render :partial=>"programs/show_location" %> </div>
-            <div id="detail-faculty-view"> <%= render :partial=>"programs/show_faculty" %> </div>
+            <div id="detail-faculty-view"> <%= render :partial=>"programs/show_faculty", :locals=>{:program=>@program} %> </div>
             <div id="detail-document-view"> <%= render :partial=>"programs/show_document" %> </div>
             <div id="detail-alumni-1-view"> <%= render :partial=>"programs/show_alumni" %> </div>
         </div>
