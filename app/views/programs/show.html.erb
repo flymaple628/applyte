@@ -6,10 +6,7 @@
         <div id="program-basics" class="col-md-3">
             <div id="program-name-short"><%= @program.title %></div>
             <span id="program-ranking"><%= @program.ranking %></span>
-            <%= link_to myprogram_path(@program) do %>
-							<p id="add-to-cart">Add</p>
-            <% end %>
-
+                <%= render :partial=>"add_fav_button", :locals=>{:program=>@program} %>
             <div id="school-logo">
             	<%= image_tag(@program.school.logo.photo.url(:thumb), :width=>"50px") if @program.school.logo%>
  						</div>
