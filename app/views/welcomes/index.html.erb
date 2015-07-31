@@ -1,3 +1,4 @@
+
 <div class="landing-page">
 	<div class="landing-bg"></div>
 	<div class="landing-body">
@@ -9,7 +10,7 @@
 				<ul style="list-style-type: none">
 					<% if current_user %>
 						<li style="float:left"><%= link_to 'LOGOUT', destroy_user_session_path, :method=>:delete, :class=>"header-buttons-button" %></li>
-						<li style="float:left"><%= link_to 'MYPRESS',myprograms_path, :class=>"header-buttons-button"%></li>
+						<li style="float:left"><%= link_to 'MY PROGRESS',myprograms_path, :class=>"header-buttons-button"%></li>
 					<% else %>
 						<li style="float:left"><%= link_to 'LOGIN', new_user_session_path, :class=>"header-buttons-button"%></li>
 						<li style="float:left"><%= link_to 'SIGNUP', new_user_registration_path, :class=>"header-buttons-button"%></li>
@@ -30,18 +31,27 @@
 		    <div class="search-bar">
 						<div class="icon"></div>
 						<div class="input-outer">
-							<%= form_tag programs_path, :method=>:get do %>
+							<%= form_tag programs_path, :method=>:get,:class=>:search do %>
 								<%= text_field_tag 'keyword',nil, :placeholder=>"Your program here", :class=>"input-landing" %>
-								<%# submit_tag 'search'%>
+									<a href="" class="">
+										<%= image_tag("go.png", :class=>:submit)  %>
+									</a>
 							<% end %>
 						</div>
-		        <div class="submit"></div>
+		      <!--   <div class="submit">
+		        	<a href=""></a>
+		        </div> -->
 		    </div>
 		    <div class="description">
-					A place chasing your dream easier and more enjoyable
+					A place for you chasing your dream easier and more enjoyable
 		    </div>
 		  </div>
 		</div>
 	</div>
 </div>
+<script>
+	$(".submit").on("click",function(e){
 
+		$(".search").submit();
+	});
+</script>
