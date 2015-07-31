@@ -6,7 +6,7 @@
         <div id="program-basics" class="col-md-3">
             <div id="program-name-short"><%= @program.program_category.try(:name) %></div>
             <span id="program-ranking"><%= @program.ranking %></span>
-                
+
             <div id="school-logo">
             	<%= image_tag(@program.school.logo.photo.url(:thumb), :width=>"80px", :height=>"80px") if @program.school.logo%>
 			</div>
@@ -23,7 +23,7 @@
                 </span>
                 <span id="time-required" class="col-md-4">
                     <p> TIME ESTIMATED </p>
-                    <p> 5 Months </p>
+                    <p> 2 Weeks </p>
                 </span>
                 <span id="applicant-count" class="col-md-4">
                     <p>APPLICANTS</p>
@@ -31,7 +31,7 @@
                 </span>
             </div>
             <div class="myprogram-start" class="row">
-                <%= link_to "Start", myprogram_path(@program), :class=>"col-md-offset-4 col-md-4 myprogram-start-icon" %> 
+                <%= link_to "Start", myprogram_path(@program), :class=>"col-md-offset-3 col-md-4 myprogram-start-icon" %>
             </div>
         </div>
     </div> <%# program-intro %>
@@ -51,10 +51,10 @@
                     <!-- <img align="middle" src="images/right-pointer-grey.png"></img> -->
                 </p>
                 <a href="#detail-alumni-1">
-                    <p id="detail-alumni-a" class="detail-view-nav-item" value="alumni-ellen">Ellen Lai</p> 
+                    <p id="detail-alumni-a" class="detail-view-nav-item" value="alumni-ellen">Ellen Lai</p>
                 </a>
                 <a href="#detail-alumni-2">
-                    <p id="detail-alumni-b" class="detail-view-nav-item" value="alumni-sam">Sam Ling</p> 
+                    <p id="detail-alumni-b" class="detail-view-nav-item" value="alumni-sam">Sam Ling</p>
                 </a>
             </a>
         </div>
@@ -77,45 +77,45 @@
 
         $('.detail-view-nav-item').click(function(){
 
-            var view_id = "#" + $(this).attr('id') + '-view';  
+            var view_id = "#" + $(this).attr('id') + '-view';
             if (!$(this).attr('class').includes('selected-item')){
                 if (!$(this).attr('id').includes('detail-alumni')){
-                    hideAllView();         
+                    hideAllView();
                     unselectedAllView();
                     $(this).addClass('selected-item')
-                    $(view_id).fadeIn(100); 
-                    alumniFadeOut();                                
+                    $(view_id).fadeIn(100);
+                    alumniFadeOut();
                 }else{
                     if ($(this).attr('id')==='detail-alumni'){
                         alumniFadeIn();
-                        hideAllView();         
+                        hideAllView();
                         unselectedAllView();
                         $(this).addClass('selected-item');
                         $('#detail-alumni-1').addClass('selected-item');
-                        $('#detail-alumni-1-view').fadeIn(100); 
+                        $('#detail-alumni-1-view').fadeIn(100);
                     }else{
                         alumniFadeIn();
-                        hideAllView();         
+                        hideAllView();
                         unselectedAllView();
                         $(this).addClass('selected-item');
                         $('#detail-alumni').addClass('selected-item');
-                        $(view_id).fadeIn(100); 
+                        $(view_id).fadeIn(100);
                     }
-                    $(this).addClass('selected-item')                    
+                    $(this).addClass('selected-item')
                 }
             }
         })
-    
+
         var alumniFadeOut = function(){
             $('#detail-alumni').children().fadeOut(300);
         }
-        
+
         var alumniFadeIn = function(){
-            $('#detail-alumni').children().fadeIn(300);            
+            $('#detail-alumni').children().fadeIn(300);
         }
 
         var unselectedAllView = function(){
-            $('#detail-view-nav').find("*").removeClass('selected-item')    
+            $('#detail-view-nav').find("*").removeClass('selected-item')
         }
 
         var hideAllView = function(){
