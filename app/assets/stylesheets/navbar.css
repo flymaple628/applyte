@@ -43,3 +43,8 @@ div.navbar > span a#my-progress {
 div.navbar > span a#my-progress:hover {
     color: rgb(0, 175, 163);
 }
+
+#grey-font {
+    color: #9B9B9B;
+
+}
