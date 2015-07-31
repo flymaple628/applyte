@@ -13,7 +13,7 @@ class UserProgramsController < ApplicationController
 
 	def show
 
-		@user_program_form = current_user.user_program_forms.includes(:user_program_form_values   ).find_or_create_by(:program_id=>params[:id])
+		@user_program_form = current_user.user_program_forms.includes(:user_program_form_values).find_or_create_by(:program_id=>params[:id])
 
 		if @user_program_form.user_program_form_values.empty?
 	  		@user_program_form.initialize_values
@@ -21,13 +21,9 @@ class UserProgramsController < ApplicationController
 	end
 
 	def update
-
 		@user_program_form = current_user.user_program_forms.find(params[:id])
 		@user_program_form.update(user_program_form_params)
 
-		@user_program_form = current_user.user_program_forms.find(params[:id])
-		percen = @user_program_form.count_percen
-		@user_program_form.update({:percen=>percen})
 		redirect_to myprograms_path
 	end
 
@@ -44,6 +40,7 @@ class UserProgramsController < ApplicationController
 private
 
 	def get_user_program_forms
+		# FIXME: remove @add ?
 		@add=false
 		if current_user
 			if current_user.user_program_forms.find_by_program_id(params[:id]).nil?

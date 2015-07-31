@@ -1,0 +1,48 @@
+.myprogram-intro{
+	border-bottom: 1px solid #dbdbdb;
+}
+.myprogram-details{
+	.detail-view-nav{
+		font-size: 1.5em;
+	}
+
+	.detail-view{
+		font-size: 1.5em;
+		.category{
+			font-size: 1.2em;
+		}
+		.des{
+			font-size: 1em;
+		}
+		.value_list{
+			margin-top:5%;
+			.des{
+				margin-top: 1em;
+				margin-left: 5%;
+			}
+			.checked{
+				background-image: url('<%= asset_path("Checked.png") %>');
+				height: 30px;
+				width: 40px;
+				display: inline;
+			}
+			.unchecked{
+				background-image: url('<%= asset_path("Unchecked.png") %>');
+			}
+			.category input {
+			    display: none;
+			}
+
+			.category span {
+			    width: 30px;
+			    height: 30px;
+			    display:  inline-block;
+			    background: url('<%= asset_path("Unchecked.png") %>');
+			}
+
+			.category input:checked + span {
+			    background: url('<%= asset_path("Checked.png") %>');
+			}
+		}
+	}
+}

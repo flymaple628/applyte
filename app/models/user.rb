@@ -11,13 +11,18 @@ class User < ActiveRecord::Base
   has_many :programs, :through=>:user_program_forms
 
   has_one :profile
-  has_many :user_updates
+  has_many :user_updates, :dependent => :destroy
 
   serialize :auth_raw_data
 
   has_attached_file :avatar,
   									:styles => { :medium => "300x300>", :thumb => "100x100>" }
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
+  #after_create :create_profile
+  #def create_profile
+  #  self.profile.create!
+  #end
 
   def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid

@@ -30,10 +30,11 @@ class ProfilesController < ApplicationController
 	def update
 		@profile = current_user.profile.update(profile_params)
 
-		if params[:profile][:alumn_attributes].nil?
-			redirect_to profile_path
-		else
+		#if params[:profile][:alumn_attributes].nil?
+		if @profile.alumn
 			redirect_to alumnus_profile_path
+		else
+			redirect_to profile_path
 		end
 	end
 	#DELETE /profolio/

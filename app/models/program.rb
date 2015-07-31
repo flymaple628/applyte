@@ -29,8 +29,8 @@ class Program < ActiveRecord::Base
   before_destroy :check_subclasses
   before_create :check_program_form_keys
 
-  def get_photo_list()
-  	photo_list()
+  def get_photo_list
+  	photo_list
   end
 
 private
@@ -60,7 +60,7 @@ private
 			FormKey.all.each do |fk|
 				self.program_form_keys.new(:form_key_id=>fk.id, :name=>fk.name)
 			end
-		end	
+		end
 	end
 
 	def photo_list #temp method

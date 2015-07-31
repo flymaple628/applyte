@@ -1,6 +1,7 @@
 module ApplicationHelper
 
 	def address_escape(address)
+		# Use { q: address }.to_query
 		address.gsub ' ','+' if address
 	end
 
@@ -11,16 +12,7 @@ module ApplicationHelper
 	end
 
 	def shorten(text, w_len)
-		if text.length > w_len
-			p = w_len
-			loop do
-				p+=1
-				break if text[p] = " "
-				break if p>= w_len
-			end
-			text = text[0, p] + "..."
-		end
-		text
+		truncate(text, :length => w_len, :separator => ' ' )
 	end
 
 	def convertFormKey(form_keys)
@@ -38,12 +30,17 @@ module ApplicationHelper
 
 	def check_auto_compelete(type)
 		if current_user.profile && type.form_key.auto_compelete_id
+
+			#if ["name", "birthday", "major", "research_area"].include?(type.form_key.auto_compelete.name)
+			#	return current_user.profile.send(type.form_key.auto_compelete.name).present?
+			#elsif ["toefl", "gre"].include?(type.form_key.auto_compelete.name)
+			#	return profile.toefl_read && profile.toefl_listen &&profile.toefl_speak &&profile.toefl_write
+			#elsif ....
+			#end
+
 			case type.form_key.auto_compelete.name #
 				when "name"
-				  if current_user.profile.name
-				  	puts "value.user.profile.name"
-				  	return true
-				  end
+				  return current_user.profile.name.present?
 				when "birthday"
 				  if current_user.profile.birthday
 				  	puts "value.user.profile.birthday"
@@ -61,11 +58,7 @@ module ApplicationHelper
 				  end
 				when "toefl"
 					profile=current_user.profile
-				  if profile.toefl_read && profile.toefl_listen &&profile.toefl_speak &&profile.toefl_write
-				  	puts "value.user.profile.toefl"
-				  	return true
-				  end
-
+				  return !!( profile.toefl_read && profile.toefl_listen &&profile.toefl_speak &&profile.toefl_write )
 				when "gre"
 					profile=current_user.profile
 				  if profile.gre_verbal && profile.gre_guantitatiue &&profile.gre_awa &&profile.gre_total

@@ -12,10 +12,10 @@ class Admin::ProgramFormKeysController < ApplicationController
   end
 
   def update
-    params['program_form_key'].each do |form_key_id,value|
+    params[:program_form_key].each do |form_key_id,value|
       program_form_key = @program.program_form_keys.includes(:form_key).find_by_form_key_id(form_key_id)
       form_key = FormKey.find(form_key_id)
-      name = value[:name]=="" ? form_key.name : value[:name]
+      name = value[:name].blank? ? form_key.name : value[:name]
       if program_form_key
         if value[:check]
           program_form_key.update(:name=>value[:name],:desc=> value[:desc])

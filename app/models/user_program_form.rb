@@ -2,25 +2,41 @@ class UserProgramForm < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :program
 	has_many :user_program_form_values
+
+
 	accepts_nested_attributes_for :user_program_form_values, :allow_destroy => true, :reject_if => :all_blank
 
 	scope :wish, -> { where( percen: 0 ) }
 	scope :progress, -> { where( percen: (1..99) ) }
 	scope :finish, -> { where( percen: 100 ) }
 
+	before_save :setup_percen
+
+	# def photo
+	# 	program.school.logo.photo
+	# end
+
+	def values_by_category
+		self.user_program_form_values
+	end
+
 	def initialize_values
 
 		self.program.program_form_keys.each do |k|
 
-			self.user_program_form_values.new(:program_form_key => k )
+			self.user_program_form_values.new(:program_form_key => k, :form_key_category => k.form_key.form_key_category )
 
 		end
 		self.user_program_form_values
 	end
 
+	def setup_percen
+		self.percen = count_percen
+	end
+
 	def count_percen
-		form_key_count = self.user_program_form_values.count
-		value_count = self.user_program_form_values.where(:check=>true).count
+		form_key_count = self.user_program_form_values.size
+		value_count = self.user_program_form_values.select{ |x| x.check == true }.size
 		if form_key_count> 0
 			(value_count*100)/form_key_count
 		else
@@ -28,11 +44,21 @@ class UserProgramForm < ActiveRecord::Base
 		end
 	end
 
+	#def count_percen
+	#	form_key_count = self.user_program_form_values.count
+	#	value_count = self.user_program_form_values.where(:check=>true).count
+	#	if form_key_count> 0
+	#		(value_count*100)/form_key_count
+	#	else
+	#		return 0
+	#	end
+	#end
+
 	def count_sub_percen(category)
 		select=self.user_program_form_values.where(:form_key_category=>category, :check=>true ).count
 		all=self.user_program_form_values.where(:form_key_category=>category).count
-		if all> 0
-			(select*100)/all
+		if all > 0
+			(select*100) / all
 		else
 			return 0
 		end
