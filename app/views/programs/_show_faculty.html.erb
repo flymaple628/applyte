@@ -7,6 +7,9 @@
     <h1 class="col-md-11">faculty-grey Info</h1>
 </div>
 
+<% areas1 = ["ALGORITHM", "BIOINFORMATICS", "OPERATION SYSTEM", "MACHINE LEARNING", "DATABASE", "NETWORKING", "BIG DATA", "COMPUTER ENGINEERING"] %>
+<% areas2 = ["SECURITY", "PARALLEL COMPUTING", "SYSTEM PROGRAMING", "COMPUTER GRAPHICS", "HUMAN-COMPUTER INTERATION", "ARTIFICIAL INTELLIGENCE", "COMPUTER ARCHITECTURE", "DATA VISUALIZATION", "THEORY OF COMPUTER SCIENCE"] %>
+
 <div id="detail-view-contents" class="col-md-11 col-md-offset-1">
     <% program.faculties.each do |faculty| %>
     
@@ -14,7 +17,9 @@
             <%= image_tag(faculty.image.url(:thumb), :style=>"bordmax-width: 100%; max-height: 100%;") %>
             <p style="font-size: 1.3em; color: black; margin-top: 1em;"><%= faculty.name %></p>
             <p style="font-size: 1.3em; color: rgb(175, 175, 175);"><%= faculty.title %></p>
-            <p style="font-size: 0.7em; color: rgb(0, 175, 163); font-weight: 500;"><%= faculty.intro %></p>
+            <p style="font-size: 0.7em; color: rgb(0, 175, 163); font-weight: 500;"> 
+                <%= "#{areas1[rand(areas1.count)]} | #{areas2[rand(areas2.count)]} " %> 
+            </p>
         </div>
     <% end %>
 

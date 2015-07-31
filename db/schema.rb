@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150731053517) do
+ActiveRecord::Schema.define(version: 20150731105107) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -260,6 +260,7 @@ ActiveRecord::Schema.define(version: 20150731053517) do
     t.integer  "ranking"
     t.integer  "tuition"
     t.date     "deadline"
+    t.integer  "applicant"
   end
 
   add_index "programs", ["program_category_id"], name: "index_programs_on_program_category_id"

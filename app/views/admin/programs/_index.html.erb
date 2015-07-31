@@ -36,7 +36,7 @@
 
 			<div class="field">
 				<%= f.label :degree, "degree", :class=>'title' %>
-				<%= f.select :degree, [[:bachelor,:bachelor],[:master, :master],[:doctor,:doctor]], :class=>'value'  %>			
+				<%= f.select :degree, [[:BS,:BS],[:MS, :MS],[:MEng,:MEng],[:PhD,:PhD]], :class=>'value'  %>			
 			</div>
 
 			<div class="field">
@@ -57,6 +57,11 @@
 			<div class="field">
 				<%= f.label :tuition, "tuition", :class=>'title' %>
 				<%= f.number_field :tuition, :class=>'value'  %>			
+			</div>
+
+			<div class="field">
+				<%= f.label :applicant, "applicant", :class=>'title' %>
+				<%= f.number_field :applicant, :class=>'value' %>
 			</div>
 
 			<div class="field">
@@ -180,6 +185,11 @@
 		<div class="field">
 			<div class="title"> Tuition: </div> 
 			<div class="value"> <%= pg.tuition %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> Applicant: </div>
+			<div class="value"> <%= pg.applicant %> </div>
 		</div>
 
 		<div class="field">
