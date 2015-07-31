@@ -2,10 +2,10 @@ class UserProgramsController < ApplicationController
 	before_action :authenticate_user!,:except=>[:index,:fevorite]
 
 	def index
-		@form_key_categories = FormKeyCategory.all
-		@user_program_forms = UserProgramForm.get_user_program_forms(current_user,session[:myprogram],:wish)
-		@user_program_forms = UserProgramForm.get_user_program_forms(current_user,session[:myprogram],:progress)
-		@user_program_forms = UserProgramForm.get_user_program_forms(current_user,session[:myprogram],:compelete)
+		@form_key_categories = FormKeyCategory.all.order(:id)
+		@wish = current_user.user_program_forms.wish
+		@progress = current_user.user_program_forms.progress
+		@finish = current_user.user_program_forms.finish
 		if current_user
 			session[:myprogram]=[]
 		end
@@ -21,9 +21,13 @@ class UserProgramsController < ApplicationController
 	end
 
 	def update
+
 		@user_program_form = current_user.user_program_forms.find(params[:id])
 		@user_program_form.update(user_program_form_params)
 
+		@user_program_form = current_user.user_program_forms.find(params[:id])
+		percen = @user_program_form.count_percen
+		@user_program_form.update({:percen=>percen})
 		redirect_to myprograms_path
 	end
 
@@ -61,7 +65,7 @@ private
 	end
 
 	def user_program_form_params
-		params.require(:user_program_form).permit(:user_program_form_values_attributes=>[:id,:program_form_key_id,:check,:note, :form_key_category_id])
+		params.require(:user_program_form).permit(:user_program_form_values_attributes=>[:id,:program_form_key_id,:check,:note, :form_key_category_id, :percen_count])
 	end
 
 end

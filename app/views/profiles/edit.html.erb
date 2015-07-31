@@ -1,9 +1,11 @@
+<div class="contents">
 <%= form_for @profile, :url => profile_path do |f| %>
 	<%= render :partial => "edit_profile" , :locals => { :f=>f } %>
 	<div class="button">
 		<%= f.submit :submit %>
 	</div>
 <% end %>
+</div>
 <script>
 
 $('.datetimepicker').datetimepicker({ format: 'YYYY-MM-DD' })

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730123921) do
+ActiveRecord::Schema.define(version: 20150731053517) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address1"
@@ -317,10 +317,12 @@ ActiveRecord::Schema.define(version: 20150730123921) do
   create_table "user_program_forms", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "program_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "percen",     default: 0
   end
 
+  add_index "user_program_forms", ["percen"], name: "index_user_program_forms_on_percen"
   add_index "user_program_forms", ["program_id"], name: "index_user_program_forms_on_program_id"
   add_index "user_program_forms", ["user_id"], name: "index_user_program_forms_on_user_id"
 

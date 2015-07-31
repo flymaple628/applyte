@@ -30,10 +30,14 @@
 							<%= fuv.object.program_form_key.name %>
 							<%= fuv.hidden_field :program_form_key_id %>
 							<%= fuv.hidden_field :form_key_category_id,:value=> fuv.object.program_form_key.form_key.form_key_category.id%>
+							<%#= fuv.hidden_field :percen_count%>
 						</div>
 
 						<div class="check">
-							<%= fuv.check_box :check, {checked: check_auto_compelete(fuv.object.program_form_key) } %>
+							<%= fuv.check_box :check, { checked: fuv.object.check||check_auto_compelete(fuv.object.program_form_key)
+							} %>
+
+							<%= check_auto_compelete(fuv.object.program_form_key) %>
 						</div>
 					</li>
 			<% end %>
