@@ -91,7 +91,7 @@ puts "program for every school"
 								[1, 4, "Edu department", "EEdu", ['math','eng','social','physics']],
 								[1, 5, "Edu department", "Soc", ['nation','human','history']],
 								[0, 6, "Science department", "CheS", ['theory','business','che']],
-								[0, 7, "Science department", "CS",['code','theory','Electrical']],
+								[0, 7, "Computer Science", "CS",['code','theory','Electrical']],
 								[0, 8, "Science department", "GB", ['theory','insect','medical']]]
 
 		pg_photos =	Dir.glob("public/example_pic/school/*")
