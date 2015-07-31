@@ -37,7 +37,6 @@ module ApplicationHelper
 
 
 	def check_auto_compelete(type)
-
 		if current_user.profile && type.form_key.auto_compelete_id
 			case type.form_key.auto_compelete.name #
 				when "name"

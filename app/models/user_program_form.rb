@@ -4,6 +4,10 @@ class UserProgramForm < ActiveRecord::Base
 	has_many :user_program_form_values
 	accepts_nested_attributes_for :user_program_form_values, :allow_destroy => true, :reject_if => :all_blank
 
+	scope :wish, -> { where( percen: 0 ) }
+	scope :progress, -> { where( percen: (1..99) ) }
+	scope :finish, -> { where( percen: 100 ) }
+
 	def initialize_values
 
 		self.program.program_form_keys.each do |k|
