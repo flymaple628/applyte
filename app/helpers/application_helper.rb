@@ -87,13 +87,13 @@ module ApplicationHelper
 				  end
 
 				when "research_experience"
-				  if current_user.profile.research_experience.count > 0
+				  if current_user.profile.research_experiences.count > 0
 				  	puts "value.user.profile.research_experience"
 				  	return true
 				  end
 
 				when "work_experience"
-				  if current_user.profile.work_experience.count > 0
+				  if current_user.profile.work_experiences.count > 0
 				  	puts "value.user.profile.work_experience"
 				  	return true
 				  end
