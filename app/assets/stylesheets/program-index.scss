@@ -81,32 +81,6 @@
 					margin-top: -8px;
 				}
 
-				.add-fav{
-					margin-left:0px;
-					margin-top:5px;
-					width:60px;
-					height: 20px;
-					text-align: center;
-				}
-				
-				.add-fav-unadded{
-					border: 1px solid #00afa3;
-					a {
-						color:#00afa3;	
-						font-family: "SanFranciscoDisplay-Medium";
-						font-size: 12px;				
-					}
-				}
-
-				.add-fav-added{
-					background-color: #00afa3;
-					a{
-						color:white;
-						font-family: "SanFranciscoDisplay-Medium";
-						font-size: 12px;
-					}
-				}
-
 			}
 
 			.program-logo{
@@ -140,4 +114,32 @@
 		}
 	}
 
+}
+
+
+
+.add-fav{
+	margin-left:0px;
+	margin-top:5px;
+	width:60px;
+	height: 20px;
+	text-align: center;
+}
+
+.add-fav-unadded{
+	border: 1px solid #00afa3;
+	a {
+		color:#00afa3;	
+		font-family: "SanFranciscoDisplay-Medium";
+		font-size: 12px;				
+	}
+}
+
+.add-fav-added{
+	background-color: #00afa3;
+	a{
+		color:white;
+		font-family: "SanFranciscoDisplay-Medium";
+		font-size: 12px;
+	}
 }
