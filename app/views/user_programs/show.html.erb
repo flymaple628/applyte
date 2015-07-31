@@ -1,53 +1,64 @@
-<div class="my_programs-single-box"%>
+<!-- Main contents -->
+<div class="contents row-fluid col-md-offset-1 col-md-10">
+    <!-- Intro (upper section) -->
+    <div id="program-intro" class="row-fluid col-md-12">
+        <!-- Left part of the intro (name, logo, add) -->
+        <div id="program-basics" class="col-md-3">
+            <div id="program-name-short"><%#= @program.title %></div>
+            <span id="program-ranking"><%#= @program.ranking %></span>
+            <%#= link_to myprogram_path(@program) do %>
+                            <p id="add-to-cart">Add</p>
+            <%# end %>
 
-	<div class="nav">
-		<ul>
+            <div id="school-logo">
+                <%#= image_tag(@program.school.logo.photo.url(:thumb), :width=>"50px") if @program.school.logo%>
+                        </div>
+        </div>
 
+        <!-- Right part of the intro (name, descriptions) -->
+        <div id="program-headings" class="col-md-9">
+            <p id="school-name"> <%#= @program.school.name%> </p>
+            <p id="program-name"> <%#= @program.title %> </p>
+            <div id="program-stats" class="row">
+                <span id="deadline" class="col-md-4">
+                    <p> DEADLINE </p>
+                    <p> <%#= @program.deadline %> </p>
+                </span>
+                <span id="time-required" class="col-md-4">
+                    <p> TIME ESTIMATED </p>
+                    <p> 10 Hours </p>
+                </span>
+                <span id="applicant-count" class="col-md-4">
+                    <p>APPLICANTS</p>
+                    <p> <%#= @program.tuition %> </p>
+                </span>
+            </div>
+        </div>
+    </div> <%# program-intro %>
 
-		</ul>
+    <!-- Details (lower section) -->
+    <div id="program-details" class="row-fluid col-md-12">
+        <!-- Navbar of the lower section (left half) -->
+        <div id="detail-view-nav" class="col-md-2">
+            <% FormKeyCategory.all.each do |fc|%>
+            <a href="#detail-<%=fc.name%>">
+                <p id="detail-about" class="detail-view-nav-item" value="about"><%=fc.name%></p>
+            </a>
+            <% end %>
+        </div>
+        <!-- Actual view of the lower section (right half) -->
+        <div id="detail-view" class="col-md-10 row-fluid">
+            <% FormKeyCategory.all.each do |fc|%>
+            <div id="detail-<%=fc.id%>"> <%#= render :partial=>"programs/show_about" %>
+            </div>
+            <% end %>
+        </div>
 
-	</div>
-
-	<div class="content">
-
-		<h2> <%=@user_program_form.program.title %> </h2>
-
-		<% current_cat = "" %>
-		<%= form_for @user_program_form, :url=>myprogram_path(@user_program_form), :method=>:patch do |fu| %>
-			<%= fu.fields_for :user_program_form_values do |fuv| %>
-
-				<% cat_name = fuv.object.program_form_key.form_key.name %>
-
-				<% if current_cat != cat_name %>
-					<%= raw("</ul>") if current_cat != "" %>
-					<div class="field">
-					<h3> <%= cat_name %> </h3>
-					<ul>
-					<% current_cat = cat_name %>
-				<% end %>
-					<li>
-						<div class="title">
-							<%= fuv.object.program_form_key.name %>
-							<%= fuv.hidden_field :program_form_key_id %>
-							<%= fuv.hidden_field :form_key_category_id,:value=> fuv.object.program_form_key.form_key.form_key_category.id%>
-							<%#= fuv.hidden_field :percen_count%>
-						</div>
-
-						<div class="check">
-							<%= fuv.check_box :check, { checked: fuv.object.check||check_auto_compelete(fuv.object.program_form_key)
-							} %>
-
-							<%= check_auto_compelete(fuv.object.program_form_key) %>
-						</div>
-					</li>
-			<% end %>
-					</ul>
-					</div> <%# field %>
-
-			<%= fu.submit 'submit', :class=>"btn btn-primary" %>
-			<br>
-		<% end %>
-	</div>
-
+    </div> <%# program-details %>
 </div>
+
+
+
+
+
 
