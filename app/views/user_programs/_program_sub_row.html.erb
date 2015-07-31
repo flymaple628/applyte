@@ -1,0 +1,22 @@
+<div class="program-list row  col-md-12">
+	<div class="detail col-md-12">
+		<a href="#" date-detail="<%=pf.id%>">detail</a></div>
+	<div class="row">
+		<div class="sub-percen">
+		<% form_key_categories.each do |category|%>
+			<div class="per-item col-md-3">
+				<div class="circle-percen">
+					<p>
+						<%= pf.count_sub_percen(category)%>%
+					</p>
+				</div>
+				<div class="form-category">
+					<% category.name.split(" ").each do |c| %>
+						<p><%=	c%></p>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+		</div>
+	</div>
+</div>

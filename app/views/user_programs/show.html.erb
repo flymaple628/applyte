@@ -29,6 +29,7 @@
 						<div class="title">
 							<%= fuv.object.program_form_key.name %>
 							<%= fuv.hidden_field :program_form_key_id %>
+							<%= fuv.hidden_field :form_key_category_id,:value=> fuv.object.program_form_key.form_key.form_key_category.id%>
 						</div>
 
 						<div class="check">
