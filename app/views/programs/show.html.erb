@@ -50,22 +50,22 @@
                     ALUMNI <%= image_tag "right-pointer-grey.png", :align=>"middle" %>
                     <!-- <img align="middle" src="images/right-pointer-grey.png"></img> -->
                 </p>
-                <a href="#alumni-ellen">
-                    <p id="detail-alumni-ellen" class="detail-view-nav-item" value="alumni-ellen">Ellen Lai</p> 
+                <a href="#detail-alumni-1">
+                    <p id="detail-alumni-a" class="detail-view-nav-item" value="alumni-ellen">Ellen Lai</p> 
                 </a>
-                <a href="#alumni-sam">
-                    <p id="detail-alumni-sam" class="detail-view-nav-item" value="alumni-sam">Sam Ling</p> 
+                <a href="#detail-alumni-2">
+                    <p id="detail-alumni-b" class="detail-view-nav-item" value="alumni-sam">Sam Ling</p> 
                 </a>
             </a>
         </div>
         <!-- Actual view of the lower section (right half) -->
         <div id="detail-view" class="col-md-10 row-fluid">
-            <div id="show_about"> <%= render :partial=>"programs/show_about" %> </div>
-            <div id="show_campus"> <%= render :partial=>"programs/show_campus" %> </div>
-            <div id="show_location"> <%= render :partial=>"programs/show_location" %> </div>
-            <div id="show_faculty"> <%= render :partial=>"programs/show_faculty" %> </div>
-            <div id="show_document"> <%= render :partial=>"programs/show_document" %> </div>
-            <div id="show_alumni"> <%= render :partial=>"programs/show_alumni" %> </div>
+            <div id="detail-about-view"> <%= render :partial=>"programs/show_about" %> </div>
+            <div id="detail-campus-view"> <%= render :partial=>"programs/show_campus" %> </div>
+            <div id="detail-location-view"> <%= render :partial=>"programs/show_location" %> </div>
+            <div id="detail-faculty-view"> <%= render :partial=>"programs/show_faculty" %> </div>
+            <div id="detail-document-view"> <%= render :partial=>"programs/show_document" %> </div>
+            <div id="detail-alumni-1-view"> <%= render :partial=>"programs/show_alumni" %> </div>
         </div>
 
     </div> <%# program-details %>
@@ -75,51 +75,163 @@
 
     $(document).ready(function() {
 
-        $('#detail-about').click(function(){
-            hideAll();  
-            $('#show_about').show();
-        })
+        $('.detail-view-nav-item').click(function(){
 
-        $('#detail-campus').click(function(){
-            hideAll();  
-            $('#show_campus').show();
+            var view_id = "#" + $(this).attr('id') + '-view';  
+            if (!$(this).attr('class').includes('selected-item')){
+                if (!$(this).attr('id').includes('detail-alumni')){
+                    hideAllView();         
+                    unselectedAllView();
+                    $(this).addClass('selected-item')
+                    $(view_id).fadeIn(100); 
+                    alumniFadeOut();                                
+                }else{
+                    if ($(this).attr('id')==='detail-alumni'){
+                        alumniFadeIn();
+                        hideAllView();         
+                        unselectedAllView();
+                        $(this).addClass('selected-item');
+                        $('#detail-alumni-1').addClass('selected-item');
+                        $('#detail-alumni-1-view').fadeIn(100); 
+                    }else{
+                        alumniFadeIn();
+                        hideAllView();         
+                        unselectedAllView();
+                        $(this).addClass('selected-item');
+                        $('#detail-alumni').addClass('selected-item');
+                        $(view_id).fadeIn(100); 
+                    }
+                    $(this).addClass('selected-item')                    
+                }
+            }
         })
-
-        $('#detail-location').click(function(){
-            hideAll();  
-            $('#show_location').show();
-        })
-        $('#detail-faculty').click(function(){
-            hideAll();  
-            $('#show_faculty').show();
-        })
-        $('#detail-document').click('#show_document',function(){
-            hideAll();  
-            $('#show_document').show();
-        })
-        $('#detail-alumni').click('#show_alumni',function(){
-            hideAll();  
-            $('#show_alumni').show();
-        })
-
-        var hideAll = function(){
-            $('#show_about').hide();
-            $('#show_campus').hide();
-            $('#show_location').hide();
-            $('#show_faculty').hide();
-            $('#show_document').hide();
-            $('#show_alumni').hide();            
-
+    
+        var alumniFadeOut = function(){
+            $('#detail-alumni').children().fadeOut(300);
+        }
+        
+        var alumniFadeIn = function(){
+            $('#detail-alumni').children().fadeIn(300);            
         }
 
+        var unselectedAllView = function(){
+            $('#detail-view-nav').find("*").removeClass('selected-item')    
+        }
 
-        hideAll();
-        $('#show_about').show();
+        var hideAllView = function(){
+            $('#detail-view').children().hide();
+        }
+
+        $('#detail-about').trigger('click');
     })
 
 
 
+// For keeping track of which image is being displayed
+var curnum = 1;
+
+/**
+ * Display larger image when thumbnail is being clicked
+ *
+ * @param   self    The clicked thumbnail img DOM
+ */
+var galleryClick = function (self) {
+    $('.selected-thumbnail').removeClass('selected-thumbnail');
+    $(self).addClass('selected-thumbnail');
+
+    var next = $(self).attr('src').substring(0, $(self).attr('src').indexOf('_thumbnail')) + '.jpg';
+
+    // Gradually animate in
+    $('#gallery-main').animate({
+        opacity: 0
+    }, 100, function () {
+        $('#gallery-main').attr('src', next);
+        $('#gallery-main').animate({
+            opacity: 1
+        }, 100);
+    });
+
+    // Recalculate the currently displayed image number
+    curnum = parseInt(next.substring(next.length - 5, next.length - 4));
+}
+
+/**
+ * Display next image when next button is being clicked
+ *
+ * @param   self    The next button DOM
+ */
+var galleryNext = function (self) {
+    if (curnum === 6) {
+        curnum = 1;
+    } else {
+        curnum += 1;
+    }
+
+    // Correction if not in right range
+    if (curnum > 6 || curnum < 1) {
+        curnum = 1;
+    }
+
+    // Get the next thumbnail to set as selected
+    var thumbnailId = '#gallery-thumbnail-' + curnum;
+    $('.selected-thumbnail').removeClass('selected-thumbnail');
+    $(thumbnailId).addClass('selected-thumbnail');
+
+    // Find out the next image to display
+    var next = $(thumbnailId).attr('src').substring(0, $(thumbnailId).attr('src').indexOf('_thumbnail')) + '.jpg';
+
+    // Gradually animate in
+    $('#gallery-main').animate({
+        opacity: 0
+    }, 100, function () {
+        $('#gallery-main').attr('src', next);
+        $('#gallery-main').animate({
+            opacity: 1
+        }, 100);
+    });
+}
+
+/**
+ * Display previous image when next button is being clicked
+ *
+ * @param   self    The previous button DOM
+ */
+var galleryBack = function (self) {
+    // Loop back if maximum
+    if (curnum === 1) {
+        curnum = 6;
+    } else {
+        curnum -= 1;
+    }
+
+    // Correction if not in right range
+    if (curnum > 6 || curnum < 1) {
+        curnum = 1;
+    }
+
+    // Get the previous thumbnail to set as selected
+    var thumbnailId = '#gallery-thumbnail-' + curnum;
+    $('.selected-thumbnail').removeClass('selected-thumbnail');
+    $(thumbnailId).addClass('selected-thumbnail');
+
+    // Find out the last image to display
+    var next = $(thumbnailId).attr('src').substring(0, $(thumbnailId).attr('src').indexOf('_thumbnail')) + '.jpg';
+
+    // Gradually animate in
+    $('#gallery-main').animate({
+        opacity: 0
+    }, 100, function () {
+        $('#gallery-main').attr('src', next);
+        $('#gallery-main').animate({
+            opacity: 1
+        }, 100);
+    });
+}
+
+
+
 </script>
+
 
 
 

@@ -1,0 +1,31 @@
+
+	<div class="program-list row  col-md-12">
+		<div class="row">
+		<div class="left col-md-3">
+			<div class="logo">
+				<% if pf.program.school.logo %>
+					<%= image_tag(pf.program.school.logo.photo.url(:medium))  %>
+				<% else%>
+				<img src="">
+				<% end %>
+			</div>
+			<div class="continue"><%=link_to "continue", myprogram_path(pf.program_id)%></div>
+			<!--<div class="continue"><%= link_to "remove-fav", fevorite_myprogram_path(pf.program), :class=>"label label-danger",:data => { :row_id => pf.program.id }%></div>-->
+		</div><!--left-->
+		<div class="right col-md-8">
+			<div class="program-info col-md-12">
+				<div class="school-info col-md-9">
+					<div class="shool"><%=pf.program.school.try(:name)%></div>
+					<div class="program"><%= pf.program.title %></div>
+				</div>
+				<div class="deadline col-md-3">
+					<%= pf.program.deadline %>
+				</div>
+			</div><!--program_info-->
+			<div class="progress-rate col-md-12">
+				<div class="line col-md-10"><progress value="0" max="100"></progress></div>
+				<div class="percen col-md-2">0%</div>
+			</div><!--progress_rate-->
+		</div><!--right-->
+		</div><!--row-->
+	</div><!--program-list-->

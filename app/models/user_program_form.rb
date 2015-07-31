@@ -5,8 +5,11 @@ class UserProgramForm < ActiveRecord::Base
 	accepts_nested_attributes_for :user_program_form_values, :allow_destroy => true, :reject_if => :all_blank
 
 	def initialize_values
+
 		self.program.program_form_keys.each do |k|
+
 			self.user_program_form_values.new(:program_form_key => k )
+
 		end
 		self.user_program_form_values
 	end
@@ -20,6 +23,44 @@ class UserProgramForm < ActiveRecord::Base
 			return 0
 		end
 	end
+
+	def count_sub_percen(category)
+		select=self.user_program_form_values.where(:form_key_category=>category, :check=>true ).count
+		all=self.user_program_form_values.where(:form_key_category=>category).count
+		if all> 0
+			(select*100)/all
+		else
+			return 0
+		end
+	end
+
+	def self.get_user_program_forms(user,session_myprogram,type)
+		if user.nil?
+			if session_myprogram
+				user_program_forms = Program.find(myprogram)
+			else
+				user_program_forms=[]
+			end
+		else
+			if session_myprogram
+				session_myprogram.each do |my|
+					unless user.user_program_forms.find_by_program_id(my)
+						user.user_program_forms.create( :program_id => my )
+					end
+				end
+				user_program_forms = user.user_program_forms
+			end
+			if type == "progress"
+				user_program_forms = user.user_program_forms
+			elsif type == "compelete"
+				user_program_forms = user.user_program_forms
+			else
+				user_program_forms = user.user_program_forms
+			end
+
+		end
+	end
+	# pf.user_program_form_values.where(:form_key_category=>category).count
 	# def check_auto_compelete(type)
 	# 	if self.user.profile && type.form_key.auto_compelete_id
 	# 		case type.name #

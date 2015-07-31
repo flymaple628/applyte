@@ -2,7 +2,8 @@
 
 	.nav-tabs li{
 		font-size: 1.5em;
-		width: 270px;
+		width: 33%;
+		text-align: center;
 		margin: 0 auto ;
 		a{
 			color:#00afa3;
@@ -76,12 +77,15 @@
 			}
 		}
 		.detail{
+			a{
+			 	color: #00afa3;
+			 }
 			font-size: 1.5em;
 			margin: 0 40%;
 		}
 		/* sub-percen*/
 		.sub-percen{
-
+			display: none;
 			.per-item{
 				margin-top: 1.25em;
 
@@ -96,7 +100,7 @@
     			}
 				}
 				.form-category{
-					margin: 10px 20%;
+					margin: 10px 30%;
 					font-size :20px;
 				}
 			}

@@ -7,7 +7,7 @@
 			<span class="label label-danger"><%= notice[:fail] if notice[:fail] %></span>
 		<% end %>
 	</h4>
-	
+
 	<% if faculty.new_record? %>
 		<% url_hash = {:url=>admin_faculties_path, :authenticity_token => true , :remote=>true} %>
 	<% else %>
@@ -25,43 +25,43 @@
 			</div>
 
 			<div class="field">
-				<%= f.label :name, "name", :class=>'title' %> 
+				<%= f.label :name, "name", :class=>'title' %>
 				<%= f.text_field :name, :class=>'value' %>
 			</div>
 
 			<div class="field">
-				<%= f.label :title, "title", :class=>'title' %> 
+				<%= f.label :title, "title", :class=>'title' %>
 				<%= f.text_field :title, :class=>'value' %>
 			</div>
 
 			<div class="field">
 				<%= f.label :link_url, "link_url", :class=>'title' %>
-				<%= f.text_field :link_url, :class=>'value'  %>			
-			</div>	
+				<%= f.text_field :link_url, :class=>'value'  %>
+			</div>
 
 			<div class="field">
 				<%= f.label :email, "email", :class=>'title' %>
-				<%= f.text_field :email, :class=>'value'  %>			
+				<%= f.text_field :email, :class=>'value'  %>
 			</div>
 
 			<div class="field">
 				<%= f.label :intro, "intro", :class=>'title' %>
-				<%= f.text_area :intro, :class=>'value-area area-input'  %>			
+				<%= f.text_area :intro, :class=>'value-area area-input'  %>
 			</div>
 
 			<div class="field">
 				<%= f.label :education, "education", :class=>'title' %>
-				<%= f.text_area :education, :class=>'value-area area-input'  %>			
+				<%= f.text_area :education, :class=>'value-area area-input'  %>
 			</div>
 
 			<div class="field">
 				<%= f.label :publication, "publication", :class=>'title' %>
-				<%= f.text_area :publication, :class=>'value-area area-input'  %>			
+				<%= f.text_area :publication, :class=>'value-area area-input'  %>
 			</div>
 
 			<div class="field">
 				<%= f.label :funding, "funding", :class=>'title' %>
-				<%= f.text_area :funding, :class=>'value-area area-input'  %>			
+				<%= f.text_area :funding, :class=>'value-area area-input'  %>
 			</div>
 
 			<div class="field">
@@ -70,7 +70,7 @@
 				<% else %>
 					<%= check_box_tag "destroy_image", "1" %> 刪除檔案
 					<%= image_tag faculty.image.url(:thumb)%>
-				<% end %>	
+				<% end %>
 			</div>
 
 			<div class="field">
@@ -81,7 +81,7 @@
 				<% end %>
 			</div>
 
-		<% end %> <%# fields_for %>				
+		<% end %> <%# fields_for %>
 		<% end %> <%# form_for %>
 	</div>
 
@@ -93,27 +93,32 @@
 		</div>
 
 		<div class="field">
-			<div class="title"> Name: </div> 
+			<div class="title"> Name: </div>
 			<div class="value"> <%= fc.name %> </div>
 		</div>
 
 		<div class="field">
-			<div class="title"> School: </div> 
+			<div class="title"> Title: </div>
+			<div class="value"> <%= fc.title %> </div>
+		</div>
+
+		<div class="field">
+			<div class="title"> School: </div>
 			<div class="value"> <%= fc.program.school.try(:name) if fc.program.school %> </div>
 		</div>
 
 		<div class="field">
-			<div class="title"> Program: </div> 
+			<div class="title"> Program: </div>
 			<div class="value"> <%= fc.program.program_category.name %> </div>
 		</div>
 
 		<div class="field">
-			<div class="title"> intro: </div> 
+			<div class="title"> intro: </div>
 			<div class="value-area"> <%= fc.intro %> </div>
 		</div>
 
 		<div class="field">
-			<div class="title"> email: </div> 
+			<div class="title"> email: </div>
 			<div class="value"> <%= fc.email %> </div>
 		</div>
 
@@ -133,11 +138,11 @@
 		</div>
 
 		<div class="field">
-			<div class="title"> 
-				<%= link_to "Edit", edit_admin_faculty_path(fc), :remote=>true, :class=>"btn btn-info" %> 
-			 </div> 
-			<div class="value"> 
-				<%= link_to "Delete", admin_faculty_path(fc), :remote=>true, :method=>:delete, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %> 
+			<div class="title">
+				<%= link_to "Edit", edit_admin_faculty_path(fc), :remote=>true, :class=>"btn btn-info" %>
+			 </div>
+			<div class="value">
+				<%= link_to "Delete", admin_faculty_path(fc), :remote=>true, :method=>:delete, :class=>"btn btn-danger", :data=>{:confirm=>"Are you sure?"} %>
 			 </div>
 		</div>
 	</div>

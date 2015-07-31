@@ -1,12 +1,20 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  layout 'sign_page'  if:devise_controller?
+  layout :layout_by_resource
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
 
 protected
+
+  def layout_by_resource
+    if devise_controller?
+      "sign_page"
+    else
+      "application"
+    end
+  end
 
   def configure_permitted_parameters
 
