@@ -21,6 +21,7 @@
     <div role="tabpanel" class="tab-pane" id="tab-compelete">
 			<% if current_user %>
 			<% @finish.each do |pf| %>
+
 				<%= render :partial => "program_row", :locals => { :pf => pf } %>
 			<% end %>
 			<% end %>
