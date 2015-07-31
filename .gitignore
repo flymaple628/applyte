@@ -20,6 +20,7 @@
 /public/system/users/*
 
 /config/facebook.yml
+/Gemfile.lock
 
 
 

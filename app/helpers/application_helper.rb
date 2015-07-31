@@ -7,7 +7,7 @@ module ApplicationHelper
 	def check_user_program_forms(program)
 		session[:myprogram] ||= []
 		session[:myprogram].include?(program.id.to_s) ||
-		(current_user && program.user_program_forms.any?)
+		(current_user && program.user_program_forms.where(:user_id=>current_user).any?)
 	end
 
 	def shorten(text, w_len)
@@ -87,13 +87,13 @@ module ApplicationHelper
 				  end
 
 				when "research_experience"
-				  if current_user.profile.research_experience.count > 0
+				  if current_user.profile.research_experiences.count > 0
 				  	puts "value.user.profile.research_experience"
 				  	return true
 				  end
 
 				when "work_experience"
-				  if current_user.profile.work_experience.count > 0
+				  if current_user.profile.work_experiences.count > 0
 				  	puts "value.user.profile.work_experience"
 				  	return true
 				  end
