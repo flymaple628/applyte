@@ -1,14 +1,52 @@
-<div class="my_programs-single-box"%>
+<!-- Main contents -->
+<div class="contents row-fluid col-md-offset-1 col-md-10">
+    <!-- Intro (upper section) -->
+    <div id="myprogram-intro" class="row-fluid col-md-12">
+        <!-- Left part of the intro (name, logo, add) -->
+        <div id="myprogram-basics" class="col-md-12">
+            <div id="myprogram-name-short">
+                <h2>
+                    <%=@user_program_form.program.title %>
+                </h2>
+            </div>
 
-    <div class="nav">
-        <ul>
+        </div>
+
+    </div> <%# myprogram-intro %>
+
+    <!-- Details (lower section) -->
+    <div id="myprogram-details" class="row-fluid col-md-12">
+        <!-- Navbar of the lower section (left half) -->
+        <div id="detail-view-nav" class="col-md-2">
+            <% FormKeyCategory.all.each do |fc|%>
+            <a href="#detail-<%=fc.name%>">
+                <p id="detail-about" class="detail-view-nav-item" value="about"><%=fc.name%></p>
+            </a>
+            <% end %>
+        </div>
+        <!-- Actual view of the lower section (right half) -->
+        <div id="detail-view" class="col-md-10 row-fluid">
+            <% FormKeyCategory.all.each do |fc|%>
+            <div id="detail-<%=fc.id%>">
+                <div class="category col-md-12">
+                    <%=fc.name%>
+                </div>
+
+                <div class="col-md-4"></div>
+                <div class="col-md-4">item</div>
+                <div class="col-md-4">buttom</div>
+
+                <%#= render :partial=>"programs/show_about" %>
+            </div>
+            <% end %>
+        </div>
+
+    </div> <%# myprogram-details %>
+</div>
 
 
-        </ul>
 
-    </div>
-
-    <div class="content">
+<div class="content">
 
         <h2> <%=@user_program_form.program.title %> </h2>
 
@@ -49,5 +87,4 @@
         <% end %>
     </div>
 
-</div>
 
