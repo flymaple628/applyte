@@ -7,10 +7,15 @@
     <% end %>
   </span>
   <span class="search-bar col-md-4">
-  	<%= image_tag "search.png"%>
 
-		<%= text_field_tag 'keyword',nil, :placeholder=>"Computer Science Fall 2016", :class=>"input" %>
+    <%= form_tag programs_path, :method=>:get do %>
 
+    	<%= image_tag "search.png", :class=>'search-img'%>
+
+	   	<%= text_field_tag 'keyword',nil, :placeholder=>"Your Program Here", :required=>true  %>
+
+
+    <% end %>
 
   </span>
   <span class="navbar-links col-md-4">

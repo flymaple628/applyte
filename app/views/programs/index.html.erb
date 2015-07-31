@@ -1,15 +1,36 @@
+
 <!-- Main contents -->
 <div class="contents program-index row-fluid col-md-offset-1 col-md-10">
 	<div class="head row">
 	  <div class="col-md-offset-1 col-md-10">
 				<div class="search-title">
-					 <h1> COMPUTER SCIENCE 2015 </h1>
+					 <h1> <%= "#{@keyword} Fall 2016" %>  </h1>
 				</div>
 				<div class="sort-by">
 					<div class="sort-by-title"> Sort by/ </div>
-					<div class="sort-by-unit"> <%= link_to "RANKING", "#" %> </div>
-					<div class="sort-by-unit"> <%= link_to "TUITION", "#" %> </div>
-					<div class="sort-by-unit"> <%= link_to "DEADLINE", "#" %> </div>
+					<div class="sort-by-unit"> 
+							<% if @sort_by == 'ranking' %>
+								<%= link_to "RANKING", programs_path(:sort_by=>"ranking"), :class=>"sort-by-selected" %> 
+							<% else %> 
+								<%= link_to "RANKING", programs_path(:sort_by=>"ranking") %> 
+							<% end %>
+					</div>
+
+					<div class="sort-by-unit"> 
+							<% if @sort_by == 'tuition' %>
+								<%= link_to "TUITION", programs_path(:sort_by=>"tuition"), :class=>"sort-by-selected" %> 
+							<% else %>
+								<%= link_to "TUITION", programs_path(:sort_by=>"tuition") %> 
+							<% end %>
+					</div>
+
+					<div class="sort-by-unit"> 
+						<% if @sort_by == 'deadline' %>
+							<%= link_to "DEADLINE", programs_path(:sort_by=>"deadline"), :class=>"sort-by-selected" %> 
+						<% else %>
+							<%= link_to "DEADLINE", programs_path(:sort_by=>"deadline") %> 
+						<% end %>
+					</div>
 				</div>
 
 	<!-- 				<div>Sort by </div>
@@ -30,14 +51,13 @@
 							<%= program.school.name %>
 						</div>
 						<div class="name-2">
-							<%= "2015/12/31" %>
+							<%= program[@sort_by].to_s.gsub '-','/' %>
 						</div>
 
 						<%= render :partial=>"add_fav_button", :locals=>{:program=>program} %>
 
 					</div> <%# title %>
 				</div> <%# col-md-2 %>
-
 
 				<div class="col-md-2">
 					<%= link_to program_path(program), :class=>"program-logo" do %>
@@ -49,7 +69,7 @@
 				<div class="col-md-6">
 					<%= link_to program_path(program), :class=>"program-content" do %>
 						<div class="program-name">
-							<%= program.title %>
+							<%= "#{program.title} #{program.school.try(:campus)}"  %>
 						</div>
 						<div class="program-desc">
 							<%= shorten(program.desc,400) %>
