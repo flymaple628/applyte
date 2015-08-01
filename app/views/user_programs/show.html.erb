@@ -54,12 +54,13 @@
 
                     <%= fu.fields_for :user_program_form_values,@user_program_form.user_program_form_values do  |fuv| %>
 
-                    <%if fuv.object.form_key_category.name == fc.name %>
-                        <div class="category col-md-12">
+                    <%if fuv.object.form_key_category.id == fc.id %>
+                        <div class="category col-md-12 " data-id="<%= fuv.object.program_form_key_id%>">
+                            <%#= fuv.object.inspect%>
                             <a  class="" href="">
-                            <%= fuv.check_box :check, { checked: fuv.object.check||check_auto_compelete(fuv.object.program_form_key)
+                            <%= fuv.check_box :check , { checked: fuv.object.check||check_auto_compelete(fuv.object.program_form_key),id: "check#{fuv.object.program_form_key_id}"
                                 } %>
-                            <span class="checked">
+                            <span class="checked" id="pic<%= fuv.object.program_form_key_id %>">
                             </span>
                             <%= fuv.object.program_form_key.name %>
                             <%= fuv.hidden_field :program_form_key_id %>
@@ -75,7 +76,7 @@
                 </div><!--detail-<%=fc.id%>-->
 
             <% end %>
-            <%= fu.submit 'submit', :class=>"btn btn-primary" %>
+            <%= fu.submit 'submit', :class=>"" %>
             <% end %>
         </div><!--id="detail-view"-->
 
@@ -83,9 +84,15 @@
 </div>
 
 <script>
-$(".category").on('click', function(event){
+$(".value_list").on('click',".category", function(event){
     event.preventDefault();
-    $(this).children("a").attr('checked', true);
-    console.log($(this).children("input:checkbox").val());
+    var id =$(this).data('id');
+    var check = $("#check"+id).attr('checked');
+    if(check){
+        $("#check"+id).attr('checked',false);
+    }
+    else{
+        $("#check"+id).attr('checked',true);
+    }
 });
 </script>
