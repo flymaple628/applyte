@@ -1,9 +1,6 @@
 /* Import fonts */
 @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,500,300,700|Roboto:400,500,300,700);
 @import url(http://www.cssstickyfooter.com/style.css);
-@import 'program-intro.css';
-@import 'program-details.css';
-@import 'program-gallery.css';
 
 body {
     height: 100%;
