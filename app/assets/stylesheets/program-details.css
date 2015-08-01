@@ -71,6 +71,9 @@ p.detail-view-nav-item.selected-item {
 
 #detail-view .sub-section {
     margin-bottom: 2em;
+}
+
+#detail-view .faculty {
     height: 200px;
 }
 
