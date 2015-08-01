@@ -39,7 +39,9 @@
         <div class="detail-view-nav col-md-2">
             <% FormKeyCategory.all.each do |fc|%>
             <a href="#detail<%=fc.name%>">
-                <p id="detail-about" class="detail-view-nav-item" value="about"><%=fc.name%></p>
+                <p id="detail-about" class="detail-view-nav-item" value="about">
+                    <%=fc.name%>
+                </p>
             </a>
             <% end %>
         </div>
@@ -53,7 +55,7 @@
                 <div class="value_list col-md-12">
 
                     <%= fu.fields_for :user_program_form_values,@user_program_form.user_program_form_values do  |fuv| %>
-
+                    <div class="value_list_sub">
                     <%if fuv.object.form_key_category.id == fc.id %>
                         <div class="category col-md-12 " data-id="<%= fuv.object.program_form_key_id%>">
                             <%#= fuv.object.inspect%>
@@ -62,7 +64,9 @@
                                 } %>
                             <span class="checked" id="pic<%= fuv.object.program_form_key_id %>">
                             </span>
-                            <%= fuv.object.program_form_key.name %>
+                            <span class="category_title">
+                                <%= fuv.object.program_form_key.name %>
+                            </span>
                             <%= fuv.hidden_field :program_form_key_id %>
                             <%= fuv.hidden_field :form_key_category_id,:value=> fuv.object.program_form_key.form_key.form_key_category.id%>
                             </div>
@@ -71,12 +75,15 @@
                             </div>
                             </a>
                     <%end %>
+                    </div><!--value_list_sub-->
                     <% end %>
                 </div>
                 </div><!--detail-<%=fc.id%>-->
 
             <% end %>
-            <%= fu.submit 'submit', :class=>"" %>
+            <div class="col-md-12">
+                <%= link_to "finish",{}, id: "submit", class: "myprogram-submit"   %>
+            </div>
             <% end %>
         </div><!--id="detail-view"-->
 
@@ -94,5 +101,9 @@ $(".value_list").on('click',".category", function(event){
     else{
         $("#check"+id).attr('checked',true);
     }
+});
+$("#submit").click(function(event) {
+    event.preventDefault();
+    $("form").submit();
 });
 </script>

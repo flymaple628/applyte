@@ -2,8 +2,10 @@
 	border-bottom: 1px solid #dbdbdb;
 }
 .myprogram-details{
+
 	.detail-view-nav{
-		font-size: 1.5em;
+		font-size: .75em;
+		word-break: keep-all;
 	}
 
 	.detail-view{
@@ -13,12 +15,18 @@
 		}
 		.des{
 			font-size: 1em;
+			color: #c9c9c7;
+			margin-bottom: 2em;
 		}
 		.value_list{
-			margin-top:5%;
+			x-top:5%;
+			.value_list_sub{
+				margin-top: 1.8em;
+			}
 			.des{
 				margin-top: 1em;
 				margin-left: 5%;
+				font-size: 0.9em;
 			}
 			.checked{
 				background-image: url('<%= asset_path("Checked.png") %>');
@@ -29,20 +37,35 @@
 			.unchecked{
 				background-image: url('<%= asset_path("Unchecked.png") %>');
 			}
+			.category {
+				.category_title {
+					font-size: 1.75em;
+					color: #9b9b9b;
+				}
+			}
 			.category input {
 			    display: none;
 			}
 
-			.category span {
+			.category .checked {
 			    width: 30px;
 			    height: 30px;
 			    display:  inline-block;
 			    background: url('<%= asset_path("Unchecked.png") %>');
 			}
 
-			.category input:checked + span {
+			.category input:checked + .checked {
 			    background: url('<%= asset_path("Checked.png") %>');
 			}
+		}
+		.myprogram-submit{
+			background-color: #00afa3;
+	    text-align: center;
+	    height: 40px;
+	    line-height: 40px;
+	    color: #ffffff;
+	    font-family: "SanFranciscoDisplay-bold";
+	    display: block;
 		}
 	}
 }
