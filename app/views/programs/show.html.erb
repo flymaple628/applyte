@@ -37,35 +37,68 @@
     </div> <%# program-intro %>
 
     <!-- Details (lower section) -->
+
     <div id="program-details" class="row-fluid col-md-12">
         <!-- Navbar of the lower section (left half) -->
         <div id="detail-view-nav" class="col-md-2">
-            <a href="#about"><p id="detail-about" class="detail-view-nav-item" value="about">ABOUT</p> </a>
-            <a href="#campus"><p id="detail-campus" class="detail-view-nav-item" value="campus">CAMPUS</p> </a>
-            <a href="#location"><p id="detail-location" class="detail-view-nav-item" value="location">LOCATION</p> </a>
-            <a href="#faculty"><p id="detail-faculty" class="detail-view-nav-item" value="faculty">FACULTY</p> </a>
-            <a href="#document"><p id="detail-document" class="detail-view-nav-item" value="document">DOCUMENT</p> </a>
-            <a href="#alumni">
-                <p id="detail-alumni" class="detail-view-nav-item" value="alumni">
-                    ALUMNI <%= image_tag "right-pointer-grey.png", :align=>"middle" %>
-                    <!-- <img align="middle" src="images/right-pointer-grey.png"></img> -->
+
+            <% list = ["ABOUT","CAMPUS","LOCATION","FACULTY","DOCUMENT"] %>
+            <% list.each do |item| %>
+                <%= link_to "", :class=>"detail-view-nav-btn", 
+                                :data=>".detail-view-#{item}" do %>
+                    <p class="detail-view-nav-item"> <%=item%> </p>
+                <% end %>
+            <% end %>
+
+            <%= link_to "", :class=>"detail-view-nav-alumni" do %>
+                <p class="detail-view-nav-item">      
+                    ALUMNI 
+                    <%= image_tag "right-pointer-grey.png", :align=>"middle" %>
                 </p>
-                <a href="#detail-alumni-1">
-                    <p id="detail-alumni-a" class="detail-view-nav-item" value="alumni-ellen">Ellen Lai</p>
-                </a>
-                <a href="#detail-alumni-2">
-                    <p id="detail-alumni-b" class="detail-view-nav-item" value="alumni-sam">Sam Ling</p>
-                </a>
-            </a>
+
+                <% alumnus = ["Ellen Lai", "Sam Ling"] %>                    
+                <% alumnus.each_with_index do |alumni,index| %>
+                    <%= link_to "", :class=>"detail-view-nav-alumni-btn detail-view-nav-alumni-#{index+1}", 
+                                    :data=>".detail-view-ALUMNI-#{index+1}" do %>
+                        <p class="detail-view-nav-item detail-view-nav-alumni-p"> 
+                            <%=alumni%> 
+                        </p>
+                    <% end %>
+                <% end %>
+            <% end %>
         </div>
+
         <!-- Actual view of the lower section (right half) -->
         <div id="detail-view" class="col-md-10 row-fluid">
-            <div id="detail-about-view"> <%= render :partial=>"programs/show_about" %> </div>
-            <div id="detail-campus-view"> <%= render :partial=>"programs/show_campus", :locals=>{:program=>@program} %> </div>
-            <div id="detail-location-view"> <%= render :partial=>"programs/show_location" %> </div>
-            <div id="detail-faculty-view"> <%= render :partial=>"programs/show_faculty", :locals=>{:program=>@program} %> </div>
-            <div id="detail-document-view"> <%= render :partial=>"programs/show_document" %> </div>
-            <div id="detail-alumni-1-view"> <%= render :partial=>"programs/show_alumni" %> </div>
+            <div class="detail-view-ABOUT detail-view-content"> 
+                <%= render :partial=>"programs/show_about" %> 
+            </div>
+
+            <div class="detail-view-CAMPUS detail-view-content"> 
+                <%= render :partial=>"programs/show_campus", 
+                           :locals=>{:program=>@program} %> 
+            </div>
+
+            <div class="detail-view-LOCATION detail-view-content"> 
+                <%= render :partial=>"programs/show_location" %> 
+            </div>
+
+            <div class="detail-view-FACULTY detail-view-content"> 
+                <%= render :partial=>"programs/show_faculty", 
+                           :locals=>{:program=>@program} %> 
+            </div>
+
+            <div class="detail-view-DOCUMENT detail-view-content"> 
+                <%= render :partial=>"programs/show_document" %> 
+            </div>
+
+            <div class="detail-view-ALUMNI-1 detail-view-content"> 
+                <%= render :partial=>"programs/show_alumni_ellen" %>
+            </div>
+
+            <div class="detail-view-ALUMNI-2 detail-view-content"> 
+                <%= render :partial=>"programs/show_alumni_sam" %> 
+            </div>
         </div>
 
     </div> <%# program-details %>
@@ -75,62 +108,46 @@
 
     $(document).ready(function() {
 
-        $('.detail-view-nav-item').click(function(){
+        var isSlideDown = false;
 
-            var view_id = "#" + $(this).attr('id') + '-view';
-            if (!$(this).attr('class').includes('selected-item')){
-                if (!$(this).attr('id').includes('detail-alumni')){
-                    hideAllView();
-                    unselectedAllView();
-                    $(this).addClass('selected-item')
-                    $(view_id).fadeIn(100);
-                    alumniFadeOut();
-                }else{
-                    if ($(this).attr('id')==='detail-alumni'){
-                        alumniFadeIn();
-                        hideAllView();
-                        unselectedAllView();
-                        $(this).addClass('selected-item');
-                        $('#detail-alumni-1').addClass('selected-item');
-                        $('#detail-alumni-1-view').fadeIn(100);
-                    }else{
-                        alumniFadeIn();
-                        hideAllView();
-                        unselectedAllView();
-                        $(this).addClass('selected-item');
-                        $('#detail-alumni').addClass('selected-item');
-                        $(view_id).fadeIn(100);
-                    }
-                    $(this).addClass('selected-item')
-                }
+        $('.detail-view-nav-btn').click(function(e){
+            e.preventDefault();
+            showView(this);
+            $('.detail-view-nav-alumni-p').slideUp(200);
+        });
+
+        $('.detail-view-nav-alumni').click(function(e){
+            e.preventDefault();
+            if (isSlideDown){
+                $('.detail-view-nav-alumni-p').slideUp(200);
+            }else{
+                $('.detail-view-nav-alumni-p').slideDown(200);
             }
+            isSlideDown = !isSlideDown
         })
 
-        var alumniFadeOut = function(){
-            $('#detail-alumni').children().fadeOut(300);
+        $('.detail-view-nav-alumni-btn').click(function(e){
+            e.preventDefault();
+            showView(this);            
+        })
+
+        var showView = function(object){
+            $('.selected-item').removeClass('selected-item');
+            $(object).find('p').addClass('selected-item');
+            $('.detail-view-content').hide();
+            $($(object).attr('data')).show();       
         }
 
-        var alumniFadeIn = function(){
-            $('#detail-alumni').children().fadeIn(300);
-        }
+        $('.detail-view-content').hide();
 
-        var unselectedAllView = function(){
-            $('#detail-view-nav').find("*").removeClass('selected-item')
-        }
+        $('.detail-view-ABOUT').show();
+        $('.detail-view-nav-alumni-p').hide();
+        $($('.detail-view-nav-btn').find('p')[0]).addClass('selected-item');
 
-        var hideAllView = function(){
-            $('#detail-view').children().hide();
-        }
-
-        $('#detail-about').trigger('click');
     })
 
 
 
-
-
 </script>
-
-
 
 
