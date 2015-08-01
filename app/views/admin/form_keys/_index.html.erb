@@ -57,7 +57,7 @@
 				<td> <%= fk.note %> </td>
 				<td> <%= fk.key_type %> </td>
 				<td> <%= fk.program_form_keys.count %> </td>
-				<td> <%= fk.auto_compelete.name %> </td>
+				<td> <%= fk.auto_compelete.try(:name) %> </td>
 
 				<td> <%= link_to "Edit", edit_admin_form_key_path(fk), :remote=>true, :class=>"btn btn-info" %>
 				</td>
