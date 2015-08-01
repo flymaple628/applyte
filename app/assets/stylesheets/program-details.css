@@ -71,6 +71,7 @@ p.detail-view-nav-item.selected-item {
 
 #detail-view .sub-section {
     margin-bottom: 2em;
+    height: 200px;
 }
 
 #detail-view .sub-section p {
