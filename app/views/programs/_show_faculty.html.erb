@@ -13,7 +13,7 @@
 <div id="detail-view-contents" class="col-md-11 col-md-offset-1">
     <% program.faculties.each do |faculty| %>
     
-        <div class="sub-section col-md-4" style="text-align: center; cursor: pointer;">
+        <div class="sub-section col-md-4 faculty" style="text-align: center; cursor: pointer;">
             <%= image_tag(faculty.image.url(:thumb), :style=>"bordmax-width: 100%; max-height: 100%;") %>
             <p style="font-size: 1.3em; color: black; margin-top: 1em;"><%= faculty.name %></p>
             <p style="font-size: 1.3em; color: rgb(175, 175, 175);"><%= faculty.title %></p>
