@@ -27,7 +27,7 @@
                 <% photos.each_with_index do |photo,index| %>
 
                 <%= image_tag(photo.photo.url(:original), 
-                            :class=>"col-md-1 gallery-thumbnail selected-thumbnail", 
+                            :class=>"col-md-1 gallery-thumbnail", 
                             :id=>"gallery-thumbnail-#{index+1}", 
                             :onclick => "galleryClick(this);") %>
                 <% end %>
@@ -149,6 +149,7 @@
         });
     }
 
+    $($('.image-gallery').find('.gallery-thumbnail')[0]).addClass('selected-thumbnail');
 
 </script>
 
