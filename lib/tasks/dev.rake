@@ -62,7 +62,7 @@ namespace :dev do
 		area_categories = ["Science", "Education", "Engineering"]
 
 		area_categories.each_with_index do |ac,index|
-			AreaCategory.create(:id=>index, :name=>ac)
+			AreaCategory.create( :name=>ac)
 		end
 
 		ProgramCategory.destroy_all
