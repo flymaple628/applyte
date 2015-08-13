@@ -73,7 +73,7 @@ namespace :dev do
 													[4, "Computer Science"],
 													[5, "Genetic Biology"]]
 		program_categories.each do |pc|
-			ProgramCategory.create(:id=> pc[0],:name=>pc[1])
+			ProgramCategory.create(:name=>pc[1])
 		end
 
 #program for every school
