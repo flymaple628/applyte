@@ -16,11 +16,11 @@
 	puts "AutoCompelete"
 	AutoCompelete.destroy_all
 
-	Country.create(:id=>1, :name=>"USA")
+	Country.create(:name=>"USA")
 
 	state_list = ['Florida', 'Georgia', 'Texas', 'New York', 'California', 'Indina', 'Massachusetts','Illinois']
 	state_list.each_with_index do |st, index|
-		State.create(:id=>index, :name=>st, :country_id=>1)
+		State.create(:name=>st, :country_id=>Country.first)
 	end
 
 	city_list = [[1, 'Palo Alto',4],
@@ -29,7 +29,7 @@
 							 [4, 'Chicago',7]]
 
 	city_list.each_with_index do |ct, index|
-		City.create(:id=>ct[0], :name=>ct[1], :state_id=>ct[2])
+		City.create(:name=>ct[1], :state_id=>ct[2])
 	end
 
 	puts "auto compelete"
