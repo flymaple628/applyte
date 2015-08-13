@@ -7,10 +7,13 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-	puts "country state city"
+	puts "country "
 	Country.destroy_all
+	puts "state"
 	State.destroy_all
+	puts "city"
 	City.destroy_all
+	puts "AutoCompelete"
 	AutoCompelete.destroy_all
 
 	Country.create(:id=>1, :name=>"USA")
