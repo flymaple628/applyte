@@ -3,11 +3,11 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-role :app, %w{deploy@139.162.11.161}
-role :web, %w{deploy@139.162.11.161}
-role :db,  %w{deploy@139.162.11.161}
+role :app, %w{deploy@128.199.214.88}
+role :web, %w{deploy@128.199.214.88}
+role :db,  %w{deploy@128.199.214.88}
 
-server '139.162.11.161', user: 'deploy', roles: %w{app db web}, my_property: :my_value
+server '128.199.214.88', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 
 
 

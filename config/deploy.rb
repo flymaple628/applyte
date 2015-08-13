@@ -4,7 +4,7 @@ lock '3.4.0'
 `ssh-add` # need this to make key-forwarding work
 
 set :application, 'applyte'
-set :repo_url, 'git@github.com:crsgypin/applyte.git'
+set :repo_url, 'git@github.com:flymaple628/applyte.git'
 
 set :deploy_to, '/home/deploy/applyte/'
 
@@ -15,6 +15,8 @@ set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/
 
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+
+set :passenger_restart_with_touch, true
 
 namespace :deploy do
 
@@ -27,5 +29,5 @@ namespace :deploy do
     end
   end
 
-end 
+end
 

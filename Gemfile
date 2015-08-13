@@ -33,7 +33,7 @@ gem 'capistrano-rails', :group => :development
 gem 'capistrano-passenger', :group => :development
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rbenv', github: "capistrano/rbenv"
-gem 'pg'
+gem 'mysql2'
 
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'remotipart', '~> 1.2'
